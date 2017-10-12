@@ -23,6 +23,13 @@ public class PlayerControllerMapTut : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
+		/*
+		-I was thinking about spawning doors in pairs.
+		-On collision compare the X-coordinates of the doors to determine whether
+			the player should be moved in a positive or negative direction
+		-translate to the position of the other door
+
+		 */
 		if (other.tag == "Door") {
 			Debug.Log ("Collision with door");
 		
