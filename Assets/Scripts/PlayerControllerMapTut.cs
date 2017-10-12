@@ -35,7 +35,8 @@ public class PlayerControllerMapTut : MonoBehaviour {
 		 the player should be moved in a positive or negative direction
 		-translate to the position of the other door
 		-every door needs a door script which holds their x,y coordinates
-		-door scripts can be accessed from the PlayerController through gameObject blablabla something 
+		-door scripts can be accessed from the PlayerController through gameObject 
+		 getComponent<DoorScript> blablabla something 
 
 		 */
 		if (other.tag == "Door") {
