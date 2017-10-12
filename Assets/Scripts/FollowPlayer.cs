@@ -15,5 +15,6 @@ public class FollowPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         transform.position = new Vector3(focusTarget.position.x + offset.x, focusTarget.position.y + offset.y, focusTarget.position.z + offset.z);
-	}
+
+    }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerControllerMapTut : MonoBehaviour {
 
     public float speed;
+    public GunController gun;
 
 	Rigidbody rigidbody;
 	Vector3 velocity;
@@ -17,12 +18,16 @@ public class PlayerControllerMapTut : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		velocity = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical")).normalized * speed * Time.deltaTime;
+		velocity = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical")).normalized * speed;
 
-	}
+        // Input(Keyboard and Mouse)
+        if (Input.GetMouseButtonDown(0)) gun.isFiring = true;
+        if (Input.GetMouseButtonUp(0)) gun.isFiring = false;
+
+    }
 
 	void FixedUpdate(){
-		rigidbody.MovePosition(rigidbody.position + velocity *  Time.fixedDeltaTime);
+        rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
 	}
 
 	void OnTriggerEnter(Collider other){
