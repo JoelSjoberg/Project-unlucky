@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerControllerMapTut : MonoBehaviour {
 
+    public float speed = 150;
+
 	Rigidbody rigidbody;
 	Vector3 velocity;
 
@@ -15,7 +17,8 @@ public class PlayerControllerMapTut : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		velocity = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical")).normalized * 10;
+		velocity = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical")).normalized * speed * Time.deltaTime;
+
 	}
 
 	void FixedUpdate(){
