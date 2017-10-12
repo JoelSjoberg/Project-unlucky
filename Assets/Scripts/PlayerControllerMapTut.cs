@@ -24,10 +24,15 @@ public class PlayerControllerMapTut : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		/*
+
+		~~~~~~Brainstorming regarding teh m0vem3nt between d0orz~~~~
+		 
 		-I was thinking about spawning doors in pairs.
 		-On collision compare the X-coordinates of the doors to determine whether
-			the player should be moved in a positive or negative direction
+		 the player should be moved in a positive or negative direction
 		-translate to the position of the other door
+		-every door needs a door script which holds their x,y coordinates
+		-door scripts can be accessed from the PlayerController through gameObject blablabla something 
 
 		 */
 		if (other.tag == "Door") {
