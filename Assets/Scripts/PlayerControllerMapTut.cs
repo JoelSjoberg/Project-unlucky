@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerControllerMapTut : MonoBehaviour {
 
     public float speed = 150;
+    public bool useController;
+    public Camera mainCamera;
+    public GunController gun;
 
 	Rigidbody rigidbody;
 	Vector3 velocity;
@@ -17,12 +20,35 @@ public class PlayerControllerMapTut : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // Use 3D Vector for movement, normalize it to create equality on each axis and multiply it by speed to make the length = speed
 		velocity = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical")).normalized * speed * Time.deltaTime;
+        if (!useController)
+        {
+            // rotate with mouse
+            Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+            float rayLength;
 
-	}
+            if (groundPlane.Raycast(cameraRay, out rayLength))
+            // i.e. if the ray cast from the camera touches anything
+            {
+                Vector3 pointToLook = cameraRay.GetPoint(rayLength); // get the POINT where the ray touches the plane
+                Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue); // Draw a debug-line from camera to plane
+
+                transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z)); // and rotate towards the POINT
+            }
+
+            // input for gunfire
+            if (Input.GetMouseButtonDown(0)) gun.isFiring = true;
+            if (Input.GetMouseButtonUp(0)) gun.isFiring = false;
+        }
+
+    }
 
 	void FixedUpdate(){
-		rigidbody.MovePosition(rigidbody.position + velocity *  Time.fixedDeltaTime);
+        // move the rigidbody with velocity
+        rigidbody.MovePosition(rigidbody.position + velocity *  Time.fixedDeltaTime);
+        //rigidbody.velocity = velocity;
 	}
 
 	void OnTriggerEnter(Collider other){
