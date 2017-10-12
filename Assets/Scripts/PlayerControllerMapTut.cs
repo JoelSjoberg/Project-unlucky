@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerControllerMapTut : MonoBehaviour {
 
-    public float speed = 150;
+    public float speed;
 
 	Rigidbody rigidbody;
 	Vector3 velocity;
