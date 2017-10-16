@@ -212,6 +212,8 @@ GameObject:
   m_Component:
   - component: {fileID: 124809109}
   - component: {fileID: 124809110}
+  - component: {fileID: 124809111}
+  - component: {fileID: 124809112}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -274,6 +276,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &124809111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124809108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b1388c9b8eaafc46ab757cc2ab50805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 0
+  degrees: 0
+  mainCamera: {fileID: 426238359}
+--- !u!95 &124809112
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124809108}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65b185ae6dc13224d87b5da64130a59a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &141785394
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +562,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -879,6 +912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 426238359}
   isFiring: 0
+  offset: {x: 0, y: 0, z: 0}
 --- !u!23 &1713204324
 MeshRenderer:
   m_ObjectHideFlags: 0

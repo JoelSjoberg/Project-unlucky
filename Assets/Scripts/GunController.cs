@@ -6,6 +6,7 @@ public class GunController : MonoBehaviour {
 
     public Camera mainCamera;
     public bool isFiring;
+    public Vector3 offset;
 
     private Ray cameraRay;
     private Plane groundPlane;
@@ -28,7 +29,7 @@ public class GunController : MonoBehaviour {
             Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);// Draw a line draw the line in blue color
 
             // rotate the gun towards ray point
-            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+            transform.LookAt(new Vector3(pointToLook.x + offset.x, transform.position.y + offset.y, pointToLook.z + offset.z));
         }
     }
 }
