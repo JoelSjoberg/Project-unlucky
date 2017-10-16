@@ -59,6 +59,17 @@ public class PlayerControllerMapTut : MonoBehaviour {
 			Debug.Log ("Collision with door left");
 			currentPosition.x = currentPosition.x - 20f;
 
+		}
+
+		if (other.tag == "DoorTop") {
+			Debug.Log ("Collision with door top");
+			currentPosition.z = currentPosition.z + 20f;
+
+		}
+
+		if (other.tag == "DoorDown") {
+			Debug.Log ("Collision with door down");
+			currentPosition.z = currentPosition.z - 20f;
 
 		}
 

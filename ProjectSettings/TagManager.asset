@@ -4,11 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Door
-  - Door1
-  - Door2
   - DoorRight
   - DoorLeft
+  - DoorTop
+  - DoorDown
   layers:
   - Default
   - TransparentFX
