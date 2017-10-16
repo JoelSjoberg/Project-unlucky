@@ -20,10 +20,12 @@ public class PlayerRotator : MonoBehaviour {
     void Start () {
         anim = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
+
         // Take cursor position amd manipulate z value to avoid "location bug"
         mousePos = Input.mousePosition;
         mousePos.z = mainCamera.transform.position.y;
@@ -37,7 +39,6 @@ public class PlayerRotator : MonoBehaviour {
         if (rotation < 0) rotation += 360;  // Keep rotation in range 0 - 360
 
         degrees = rotation;
-        print(degrees);
 
         if (degrees < 90 || degrees > 270) renderer.flipX = false;
         else renderer.flipX = true;
@@ -64,5 +65,9 @@ public class PlayerRotator : MonoBehaviour {
             anim.SetBool("Up", false);
             anim.SetBool("Down", true);
         }
+
+        // Check if player is moving
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) anim.SetBool("Walking", true);
+        else anim.SetBool("Walking", false);
     }
 }
