@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//comment
 public class PlayerControllerMapTut : MonoBehaviour {
 
     public float speed;
