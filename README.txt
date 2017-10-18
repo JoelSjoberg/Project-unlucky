@@ -1,1 +1,0 @@
-Press left mouse button to generate new level
