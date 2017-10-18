@@ -45,11 +45,37 @@ public class PlayerControllerMapTut : MonoBehaviour {
 		-door scripts can be accessed from the PlayerController through gameObject 
 		 getComponent<DoorScript> blablabla something 
 
+		In reality too complicated...
 		 */
-		if (other.tag == "Door") {
-			Debug.Log ("Collision with door");
-		
+
+		Vector3 currentPosition = transform.position;
+
+
+		if (other.tag == "DoorRight") {
+			Debug.Log ("Collision with door right");
+			currentPosition.x = currentPosition.x + 20f;
+
 		}
+
+		if (other.tag == "DoorLeft") {
+			Debug.Log ("Collision with door left");
+			currentPosition.x = currentPosition.x - 20f;
+
+		}
+
+		if (other.tag == "DoorTop") {
+			Debug.Log ("Collision with door top");
+			currentPosition.z = currentPosition.z + 20f;
+
+		}
+
+		if (other.tag == "DoorDown") {
+			Debug.Log ("Collision with door down");
+			currentPosition.z = currentPosition.z - 20f;
+
+		}
+
+		transform.position = currentPosition;
 	}
 
 }
