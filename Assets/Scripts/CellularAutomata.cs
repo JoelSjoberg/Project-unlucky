@@ -26,7 +26,7 @@ public class CellularAutomata : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.G)) {
+		if (Input.GetMouseButtonDown(0)) {
 			GenerateMap();
 		}
 	}

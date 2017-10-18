@@ -1,41 +1,41 @@
 fileFormatVersion: 2
-guid: 4f41a04dc642f0c498437b855b553731
-timeCreated: 1507981581
+guid: dbf997ceeb4f14f42a66bab473aad92c
+timeCreated: 1507836646
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: main-char_0
-    21300002: main-char_1
-    21300004: main-char_2
-    21300006: main-char_3
-    21300008: main-char_4
-    21300010: main-char_5
-    21300012: main-char_6
-    21300014: main-char_7
-    21300016: main-char_8
-    21300018: main-char_9
-    21300020: main-char_10
-    21300022: main-char_11
-    21300024: main-char_12
-    21300026: main-char_13
-    21300028: main-char_14
-    21300030: main-char_15
-    21300032: main-char_16
-    21300034: main-char_17
-    21300036: main-char_18
-    21300038: main-char_19
-    21300040: main-char_20
-    21300042: main-char_21
-    21300044: main-char_22
-    21300046: main-char_23
-    21300048: main-char_24
-    21300050: main-char_25
-    21300052: main-char_26
-    21300054: main-char_27
-    21300056: main-char_28
-    21300058: main-char_29
-    21300060: main-char_30
-    21300062: main-char_31
+    21300000: main-char_preview_0
+    21300002: main-char_preview_1
+    21300004: main-char_preview_2
+    21300006: main-char_preview_3
+    21300008: main-char_preview_4
+    21300010: main-char_preview_5
+    21300012: main-char_preview_6
+    21300014: main-char_preview_7
+    21300016: main-char_preview_8
+    21300018: main-char_preview_9
+    21300020: main-char_preview_10
+    21300022: main-char_preview_11
+    21300024: main-char_preview_12
+    21300026: main-char_preview_13
+    21300028: main-char_preview_14
+    21300030: main-char_preview_15
+    21300032: main-char_preview_16
+    21300034: main-char_preview_17
+    21300036: main-char_preview_18
+    21300038: main-char_preview_19
+    21300040: main-char_preview_20
+    21300042: main-char_preview_21
+    21300044: main-char_preview_22
+    21300046: main-char_preview_23
+    21300048: main-char_preview_24
+    21300050: main-char_preview_25
+    21300052: main-char_preview_26
+    21300054: main-char_preview_27
+    21300056: main-char_preview_28
+    21300058: main-char_preview_29
+    21300060: main-char_preview_30
+    21300062: main-char_preview_31
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -139,180 +139,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: main-char_0
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 249
-        width: 20
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_1
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 249
-        width: 20
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_2
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 249
-        width: 20
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_3
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 249
-        width: 20
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_4
-      rect:
-        serializedVersion: 2
-        x: 134
-        y: 249
-        width: 20
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_5
-      rect:
-        serializedVersion: 2
-        x: 166
-        y: 249
-        width: 20
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_6
-      rect:
-        serializedVersion: 2
-        x: 198
-        y: 249
-        width: 20
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_7
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 249
-        width: 20
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_8
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 201
-        width: 20
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_9
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 201
-        width: 20
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_10
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 201
-        width: 20
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_11
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 201
-        width: 20
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_12
+      name: main-char_preview_0
       rect:
         serializedVersion: 2
         x: 5
-        y: 153
-        width: 22
+        y: 245
+        width: 20
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -321,13 +153,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_13
+      name: main-char_preview_1
       rect:
         serializedVersion: 2
-        x: 38
-        y: 153
+        x: 37
+        y: 245
         width: 20
-        height: 35
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -335,12 +167,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_14
+      name: main-char_preview_2
       rect:
         serializedVersion: 2
         x: 69
-        y: 153
-        width: 22
+        y: 245
+        width: 20
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -349,11 +181,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_15
+      name: main-char_preview_3
       rect:
         serializedVersion: 2
-        x: 102
-        y: 153
+        x: 101
+        y: 245
         width: 20
         height: 35
       alignment: 0
@@ -363,12 +195,68 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_16
+      name: main-char_preview_4
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 245
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_5
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 245
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_6
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 245
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_7
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 245
+        width: 20
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_8
       rect:
         serializedVersion: 2
         x: 5
-        y: 105
-        width: 22
+        y: 197
+        width: 20
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -377,13 +265,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_17
+      name: main-char_preview_9
       rect:
         serializedVersion: 2
-        x: 38
-        y: 105
+        x: 37
+        y: 197
         width: 20
-        height: 35
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,12 +279,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_18
+      name: main-char_preview_10
       rect:
         serializedVersion: 2
         x: 69
-        y: 105
-        width: 22
+        y: 197
+        width: 20
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -405,11 +293,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_19
+      name: main-char_preview_11
       rect:
         serializedVersion: 2
-        x: 102
-        y: 105
+        x: 101
+        y: 197
         width: 20
         height: 35
       alignment: 0
@@ -419,13 +307,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_20
+      name: main-char_preview_12
       rect:
         serializedVersion: 2
         x: 4
-        y: 57
-        width: 27
-        height: 35
+        y: 149
+        width: 22
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -433,12 +321,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_21
+      name: main-char_preview_13
       rect:
         serializedVersion: 2
-        x: 36
-        y: 57
-        width: 27
+        x: 37
+        y: 149
+        width: 20
         height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -447,13 +335,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_22
+      name: main-char_preview_14
       rect:
         serializedVersion: 2
         x: 68
-        y: 57
-        width: 27
-        height: 41
+        y: 149
+        width: 22
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -461,13 +349,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_23
+      name: main-char_preview_15
       rect:
         serializedVersion: 2
-        x: 100
-        y: 57
-        width: 27
-        height: 41
+        x: 101
+        y: 149
+        width: 20
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -475,67 +363,67 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_24
-      rect:
-        serializedVersion: 2
-        x: 132
-        y: 57
-        width: 27
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_25
-      rect:
-        serializedVersion: 2
-        x: 164
-        y: 57
-        width: 27
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_26
-      rect:
-        serializedVersion: 2
-        x: 196
-        y: 57
-        width: 27
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_27
-      rect:
-        serializedVersion: 2
-        x: 228
-        y: 57
-        width: 27
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: main-char_28
+      name: main-char_preview_16
       rect:
         serializedVersion: 2
         x: 4
-        y: 10
+        y: 101
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_17
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 101
+        width: 20
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_18
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 101
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_19
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 101
+        width: 20
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_20
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 53
         width: 27
         height: 35
       alignment: 0
@@ -545,11 +433,123 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_29
+      name: main-char_preview_21
       rect:
         serializedVersion: 2
-        x: 36
-        y: 10
+        x: 35
+        y: 53
+        width: 27
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_22
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 53
+        width: 27
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_23
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 53
+        width: 27
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_24
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 53
+        width: 27
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_25
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 53
+        width: 27
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_26
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 53
+        width: 27
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_27
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 53
+        width: 27
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_28
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 6
+        width: 27
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: main-char_preview_29
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 6
         width: 27
         height: 36
       alignment: 0
@@ -559,11 +559,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_30
+      name: main-char_preview_30
       rect:
         serializedVersion: 2
-        x: 66
-        y: 10
+        x: 65
+        y: 6
         width: 29
         height: 37
       alignment: 0
@@ -573,11 +573,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main-char_31
+      name: main-char_preview_31
       rect:
         serializedVersion: 2
-        x: 100
-        y: 10
+        x: 99
+        y: 6
         width: 27
         height: 36
       alignment: 0
