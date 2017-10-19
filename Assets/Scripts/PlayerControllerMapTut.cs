@@ -25,7 +25,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
         // Input(Keyboard and Mouse)
         if (Input.GetMouseButtonDown(0)) gun.isFiring = true;
         if (Input.GetMouseButtonUp(0)) gun.isFiring = false;
-
     }
 
 	void FixedUpdate(){

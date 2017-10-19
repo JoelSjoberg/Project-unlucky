@@ -6,11 +6,15 @@ public class GunController : MonoBehaviour {
 
     public Camera mainCamera;
     public bool isFiring;
+    public float bulletSpeed;
     public Vector3 offset;
+    public Transform firePoint;
+    public BulletController bulletPrefab;
 
     private Ray cameraRay;
     private Plane groundPlane;
     private float rayLength;
+
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +34,11 @@ public class GunController : MonoBehaviour {
 
             // rotate the gun towards ray point
             transform.LookAt(new Vector3(pointToLook.x + offset.x, transform.position.y + offset.y, pointToLook.z + offset.z));
+        }
+        if (isFiring)
+        {
+            BulletController newBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation) as BulletController;
+            newBullet.speed = bulletSpeed;
         }
     }
 }
