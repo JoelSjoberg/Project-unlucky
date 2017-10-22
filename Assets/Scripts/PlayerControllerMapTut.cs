@@ -45,6 +45,18 @@ public class PlayerControllerMapTut : MonoBehaviour {
 		 getComponent<DoorScript> blablabla something 
 
 		In reality too complicated...
+
+        Or we could create a door class which holds the instance of the paired door object, like so:
+        (pseudocode)
+        class Door
+            Vector3 position (x, 0, z);
+            Door pair;
+        void onCollision() 
+        { 
+            player_transform_position = pair_transform_position
+        
+        }
+
 		 */
 
 		Vector3 currentPosition = transform.position;
@@ -75,6 +87,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
 		}
 
 		transform.position = currentPosition;
+       
 	}
 
 }

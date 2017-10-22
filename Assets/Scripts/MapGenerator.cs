@@ -13,13 +13,35 @@ public class MapGenerator : MonoBehaviour {
 	float caveWidth;
 	float caveHeight;
 
-	// Use this for initialization
-	void Start () {
+
+    // for map generator
+    private List<Room> graph = new List<Room>();
+    private List<Room> tree = new List<Room>();
+    public float minWidth = 60, minHeight = 60, maxWidth = 120, maxHeight = 120;
+    public int minRooms = 6, maxRooms = 10;
+    private int num_rooms;
+    public int iterations = 60;
+
+    // Use this for initialization
+    void Start () {
 		//cubes
 		for (int i = 0; i < 10; i++) {
 			Instantiate(prefab, new Vector3(i * 2f, 0, 27), Quaternion.identity);
 		}
         makeMap();
+        graph[0].visited = true; // initialize visited value from the start
+        tree.Add(graph[0]); // add spawnroom to tree before algorithm begins
+        connectMapWithPrims(); // excecute prims algorithm to create map connections
+        // each connection now exists in each rooms adjList(i.e. if you want to know which room is connected to which)
+        //  simply check the adjList
+        print(graph.Count + " rooms generated");
+        print("Printing rooms in spanning tree");
+
+        foreach (Room r in tree)
+        {
+            print("Room " + r.pos.x + ", " + r.pos.z + " exists");
+        }
+
 		spawnRooms ();
 		spawnDoors ();
 
@@ -48,7 +70,7 @@ public class MapGenerator : MonoBehaviour {
             caveGenerator.GetComponent<CellularAutomata>().width = Mathf.RoundToInt(r.width);
             caveGenerator.GetComponent<CellularAutomata>().height = Mathf.RoundToInt(r.height);
             caveGenerator.GetComponent<CellularAutomata>().randomFillPercent = 30;
-            Instantiate(caveGenerator, new Vector3((r.x - 200), 0, r.z), Quaternion.identity);
+            Instantiate(caveGenerator, new Vector3((r.pos.x), 0, r.pos.z), Quaternion.identity);
         }
 	}
 
@@ -61,18 +83,13 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
-    public float minWidth = 60, minHeight = 60, maxWidth = 120, maxHeight = 120;
-    public int minRooms = 6, maxRooms = 10;
-    private int num_rooms;
-    private List<Room> graph = new List<Room>();
-    public int iterations = 60;
-
     // Make initial spawn room
     private void makeSpawnRoom()
     {
         Room spawnRoom = new Room(0, 0, Random.Range(minWidth, maxWidth + 1), Random.Range(minHeight, maxHeight + 1));
         graph.Add(spawnRoom);
     }
+
     // Make a room in a given direction from parent room
     private void makeRoomInDirection(Room parent, int direction)
     {
@@ -89,23 +106,23 @@ public class MapGenerator : MonoBehaviour {
             // add 1 at the end of the longer equations or else every room will always collide
             if (direction == 1) // UP
             {
-                x = parent.x;
-                z = parent.z - height - 1;
+                x = parent.pos.x;
+                z = parent.pos.z - height - 1;
             }
             else if (direction == 2) // RIGHT
             {
-                x = parent.x + parent.width + 1;
-                z = parent.z;
+                x = parent.pos.x + parent.width + 1;
+                z = parent.pos.z;
             }
             else if (direction == 3) // DOWN
             {
-                x = parent.x;
-                z = parent.z + parent.height + 1;
+                x = parent.pos.x;
+                z = parent.pos.z + parent.height + 1;
             }
             else if (direction == 4) // LEFT
             {
-                x = parent.x - width + 1;
-                z = parent.z;
+                x = parent.pos.x - width + 1;
+                z = parent.pos.z;
             }
 
             newRoom = new Room(x, z, width, height);
@@ -142,17 +159,45 @@ public class MapGenerator : MonoBehaviour {
             }
             if (graph.Count == num_rooms) break;
         }
-        print(graph.Count + " rooms generated");
+    }
+
+    // Connect rooms in a maze like structure
+    private void connectMapWithPrims()
+    {
+        float shortestDistance = Mathf.Infinity;
+        Room roomToConnect = graph[0];
+        Room parentRoom = graph[0];
+        foreach (Room room in tree)
+        {
+            for (int j = 0; j < graph.Count; j++)
+            {
+                // count the distance from every node in tree to every node on map
+               float distFromCurrentToTree = Mathf.Sqrt(Mathf.Pow((graph[j].pos.x + (graph[j].width / 2) - room.pos.x + (room.width / 2)), 2) + Mathf.Pow((graph[j].pos.z + (graph[j].height / 2) - room.pos.z + (room.height / 2)), 2));
+               if (!graph[j].visited && shortestDistance >= distFromCurrentToTree)
+               {
+                    shortestDistance = distFromCurrentToTree;
+                    roomToConnect = graph[j];
+                    parentRoom = room;
+               }
+            }
+        }
+        roomToConnect.visited = true;
+        parentRoom.adjList.Add(roomToConnect);
+        roomToConnect.adjList.Add(parentRoom);
+        tree.Add(roomToConnect);
+        
+        while (graph.Count > tree.Count) connectMapWithPrims();
     }
 
     class Room
     {
-        public float x, z, width, height;
-
+        public Vector3 pos;
+        public float width, height;
+        public List<Room> adjList = new List<Room>();
+        public bool visited = false;
         public Room(float x, float z, float width, float height)
         {
-            this.x = x;
-            this.z = z;
+            pos = new Vector3(x, 0, z);
             this.width = width;
             this.height = height;
         }
@@ -167,9 +212,9 @@ public class MapGenerator : MonoBehaviour {
         public bool isRoomColliding(Room room)
         {
             // if one room-edge is between the others x-values and
-            bool xOverlap = valueInRange(x, room.x, room.x + room.width) || valueInRange(room.x, x, x + width);
+            bool xOverlap = valueInRange(pos.x, room.pos.x, room.pos.x + room.width) || valueInRange(room.pos.x, pos.x, pos.x + width);
             // if one room-edge is between the others y-values
-            bool yOverlap = valueInRange(z, room.z, room.z + room.height) || valueInRange(room.z, z, z + height);
+            bool yOverlap = valueInRange(pos.z, room.pos.z, room.pos.z + room.height) || valueInRange(room.pos.z, pos.z, pos.z + height);
 
             return xOverlap && yOverlap;
         }
