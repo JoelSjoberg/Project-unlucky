@@ -33,4 +33,3 @@ sysinfo.txt
 *.apk
 *.unitypackage
 Assets/Scripts/MapGenerator.cs
-Assets/Audio/SoundEffects.meta
