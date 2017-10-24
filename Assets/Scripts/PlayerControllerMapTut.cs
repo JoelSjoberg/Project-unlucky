@@ -53,7 +53,33 @@ public class PlayerControllerMapTut : MonoBehaviour {
         rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
 	}
 
-	void OnTriggerEnter(Collider other){		
+	void OnTriggerEnter(Collider other){
+		/*
+
+		~~~~~~Brainstorming regarding teh m0vem3nt between d0orz~~~~
+		 
+		-I was thinking about spawning doors in pairs.
+		-On collision compare the X-coordinates of the doors to determine whether
+		 the player should be moved in a positive or negative direction
+		-translate to the position of the other door
+		-every door needs a door script which holds their x,y coordinates
+		-door scripts can be accessed from the PlayerController through gameObject 
+		 getComponent<DoorScript> blablabla something 
+
+		In reality too complicated...
+
+        Or we could create a door class which holds the instance of the paired door object, like so:
+        (pseudocode)
+        class Door
+            Vector3 position (x, 0, z);
+            Door pair;
+        void onCollision() 
+        { 
+            player_transform_position = pair_transform_position
+        
+        }
+
+		 */
 
 		Vector3 currentPosition = transform.position;
 
