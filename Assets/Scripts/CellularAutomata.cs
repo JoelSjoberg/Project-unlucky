@@ -31,6 +31,8 @@ public class CellularAutomata : MonoBehaviour {
 		}
 	}
 
+
+
 	void GenerateMap() {
 		map = new int[width,height];
 		RandomFillMap();

@@ -8,27 +8,25 @@ public class MapGenerator : MonoBehaviour {
 	public Transform prefab;
 	public Transform caveGenerator;
 	public Transform doorParent;
-	public int xNumberRooms = 5;
-	public int yNumberRooms = 3;
-	float caveWidth;
-	float caveHeight;
 
+    public GameObject wallThingy;
 
     // for map generator
     private List<Room> graph = new List<Room>();
     private List<Room> tree = new List<Room>();
     public float minWidth = 60, minHeight = 60, maxWidth = 120, maxHeight = 120;
     public int minRooms = 6, maxRooms = 10;
-    private int num_rooms;
+    private int num_rooms = 7;
     public int iterations = 60;
 
     // Use this for initialization
     void Start () {
 		//cubes
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 4; i++) {
 			Instantiate(prefab, new Vector3(i * 2f, 0, 27), Quaternion.identity);
 		}
         makeMap();
+
         graph[0].visited = true; // initialize visited value from the start
         tree.Add(graph[0]); // add spawnroom to tree before algorithm begins
         connectMapWithPrims(); // excecute prims algorithm to create map connections
@@ -43,7 +41,6 @@ public class MapGenerator : MonoBehaviour {
         }
 
 		spawnRooms ();
-		spawnDoors ();
 
 	}
 	
@@ -55,38 +52,27 @@ public class MapGenerator : MonoBehaviour {
 	void spawnRooms(){
 		//access script before initiation
 		GameObject gameObject = caveGenerator.GetComponent<CellularAutomata> ().gameObject;
-		CellularAutomata script = gameObject.GetComponent<CellularAutomata> ();
-		caveWidth = script.width + 5f;
-		caveHeight = script.height + 5f;
+		//CellularAutomata script = gameObject.GetComponent<CellularAutomata> ();
 		//caves
-		for (int x = 0; x < xNumberRooms; x++) {
-			for (int y = 0; y < yNumberRooms; y++) {
-				//Instantiate (caveGenerator, new Vector3 (x * caveWidth, 0, y * caveHeight), Quaternion.identity);
-			}
 
-		}
+
         foreach (Room r in graph)
         {
             caveGenerator.GetComponent<CellularAutomata>().width = Mathf.RoundToInt(r.width);
             caveGenerator.GetComponent<CellularAutomata>().height = Mathf.RoundToInt(r.height);
-            caveGenerator.GetComponent<CellularAutomata>().randomFillPercent = 30;
+            caveGenerator.GetComponent<CellularAutomata>().randomFillPercent = 0;
             Instantiate(caveGenerator, new Vector3((r.pos.x), 0, r.pos.z), Quaternion.identity);
+            for(float w = r.pos.x; w < r.width + r.pos.x; w += wallThingy.transform.localScale.x)
+            {
+                Instantiate(wallThingy, new Vector3(w, 0, r.pos.z), Quaternion.identity);
+            }
         }
-	}
-
-	void spawnDoors(){
-		for (int x = 0; x < xNumberRooms; x++) {
-			for (int y = 0; y < yNumberRooms; y++) {
-				//Instantiate (doorParent, new Vector3 (x * 80, 2 , y * 60), Quaternion.identity);
-			}
-
-		}
 	}
 
     // Make initial spawn room
     private void makeSpawnRoom()
     {
-        Room spawnRoom = new Room(0, 0, Random.Range(minWidth, maxWidth + 1), Random.Range(minHeight, maxHeight + 1));
+        Room spawnRoom = new Room(0, 0, minWidth + 20, minHeight + 20);
         graph.Add(spawnRoom);
     }
 
@@ -148,13 +134,14 @@ public class MapGenerator : MonoBehaviour {
         // create spawn room
         makeSpawnRoom();
         num_rooms = Random.Range(minRooms, maxRooms);
+        //while(graph.Count < num_rooms)
         for (int i = 0; i < iterations; i++)
         {
             int n = Random.Range(1, 5); // 5 is excluded so the real range is from 1 - 4
             
             for (int j = 1; j <= n; j++)
             {
-                makeRoomInDirection(graph[i], j);
+                makeRoomInDirection(graph[graph.Count - 1], j);
                 if (graph.Count == num_rooms) break;
             }
             if (graph.Count == num_rooms) break;
@@ -203,7 +190,7 @@ public class MapGenerator : MonoBehaviour {
         }
 
         // check if value is between min and max
-        bool valueInRange(float value, float min, float max)
+        public bool valueInRange(float value, float min, float max)
         {
             return (value >= min) && (value <= max);
         }
