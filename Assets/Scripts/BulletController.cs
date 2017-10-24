@@ -20,7 +20,9 @@ public class BulletController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {	
-		Debug.Log (other.name);
-        Destroy(gameObject);
+        if(other.name != "Ground")
+        {
+            Destroy(gameObject);
+        }
     }
 }
