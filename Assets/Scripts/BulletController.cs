@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour {
 
-    public float speed;
+	public float speed = 0.001f;
     public float lifeTime;
 	// Use this for initialization
 	void Start () {
@@ -19,7 +19,8 @@ public class BulletController : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other)
-    {
+    {	
+		Debug.Log (other.name);
         Destroy(gameObject);
     }
 }

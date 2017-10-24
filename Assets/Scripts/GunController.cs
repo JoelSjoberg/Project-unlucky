@@ -14,6 +14,8 @@ public class GunController : MonoBehaviour {
     private Ray cameraRay;
     private Plane groundPlane;
     private float rayLength;
+	private float fireRate = 0.1f;
+	private float nextFire = 0f;
 
 
 	// Use this for initialization
@@ -33,11 +35,12 @@ public class GunController : MonoBehaviour {
             Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);// Draw a line draw the line in blue color
 
             // rotate the gun towards ray point
-            transform.LookAt(new Vector3(pointToLook.x + offset.x, transform.position.y + offset.y, pointToLook.z + offset.z));
+            transform.LookAt(new Vector3(pointToLook.x + offset.x, transform.position.y, pointToLook.z + offset.z));
         }
-        if (isFiring)
+		if (isFiring && Time.time > nextFire)
         {
-            BulletController newBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation) as BulletController;
+			nextFire = Time.time + fireRate;
+			BulletController newBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation) as BulletController;
             newBullet.speed = bulletSpeed;
         }
     }
