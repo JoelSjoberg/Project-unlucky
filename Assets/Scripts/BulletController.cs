@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour {
 
-    public float speed;
+	public float speed;
     public float lifeTime;
 	// Use this for initialization
 	void Start () {
@@ -19,7 +19,10 @@ public class BulletController : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other)
-    {
-        Destroy(gameObject);
+    {	
+        if(other.name != "Ground")
+        {
+            Destroy(gameObject);
+        }
     }
 }
