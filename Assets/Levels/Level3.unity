@@ -888,6 +888,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  evadeTime: 0.2
+  evadeSpeed: 100
+  evading: 0
   gun: {fileID: 1713204323}
 --- !u!54 &1669910980
 Rigidbody:
