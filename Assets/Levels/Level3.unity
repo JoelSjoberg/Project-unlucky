@@ -951,7 +951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 426238359}
   isFiring: 0
-  bulletSpeed: 100
+  bulletSpeed: 30
   offset: {x: 0, y: 0, z: 0}
   firePoint: {fileID: 1845733798}
   bulletPrefab: {fileID: 114838025328538006, guid: 0ec354cb29662fe44b80900b7c7f50a6,
