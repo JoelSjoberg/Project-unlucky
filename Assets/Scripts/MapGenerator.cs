@@ -18,7 +18,7 @@ public class MapGenerator : MonoBehaviour {
     public int minRooms = 6, maxRooms = 10;
     private int num_rooms = 7;
     public int iterations = 60;
-
+    public float space = 15;
     // Use this for initialization
     void Start () {
 		//cubes
@@ -62,12 +62,9 @@ public class MapGenerator : MonoBehaviour {
             caveGenerator.GetComponent<CellularAutomata>().height = Mathf.RoundToInt(r.height);
             caveGenerator.GetComponent<CellularAutomata>().randomFillPercent = 0;
             Instantiate(caveGenerator, new Vector3((r.pos.x), 0, r.pos.z), Quaternion.identity);
-            for(float w = r.pos.x; w < r.width + r.pos.x; w += wallThingy.transform.localScale.x)
-            {
-                Instantiate(wallThingy, new Vector3(w, 0, r.pos.z), Quaternion.identity);
-            }
         }
-	}
+        
+    }
 
     // Make initial spawn room
     private void makeSpawnRoom()
@@ -93,21 +90,21 @@ public class MapGenerator : MonoBehaviour {
             if (direction == 1) // UP
             {
                 x = parent.pos.x;
-                z = parent.pos.z - height - 1;
+                z = parent.pos.z - height - space;
             }
             else if (direction == 2) // RIGHT
             {
-                x = parent.pos.x + parent.width + 1;
+                x = parent.pos.x + parent.width + space;
                 z = parent.pos.z;
             }
             else if (direction == 3) // DOWN
             {
                 x = parent.pos.x;
-                z = parent.pos.z + parent.height + 1;
+                z = parent.pos.z + parent.height + space;
             }
             else if (direction == 4) // LEFT
             {
-                x = parent.pos.x - width + 1;
+                x = parent.pos.x - width + space;
                 z = parent.pos.z;
             }
 
