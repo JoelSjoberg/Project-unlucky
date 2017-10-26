@@ -247,6 +247,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633e6212998ca0e48b22436cf1f1e481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartAmount: 3
+  currentHealth: 0
+  healthImages: []
+  healthSprites: []
 --- !u!1 &124809108
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +664,7 @@ GameObject:
   - component: {fileID: 256101352}
   - component: {fileID: 256101354}
   - component: {fileID: 256101353}
+  - component: {fileID: 256101355}
   m_Layer: 5
   m_Name: Heart 3
   m_TagString: Untagged
@@ -717,6 +722,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 256101351}
+--- !u!114 &256101355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 256101351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633e6212998ca0e48b22436cf1f1e481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartAmount: 3
+  currentHealth: 0
+  healthImages: []
+  healthSprites: []
 --- !u!1 &257647589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1222,7 @@ GameObject:
   - component: {fileID: 654445334}
   - component: {fileID: 654445336}
   - component: {fileID: 654445335}
+  - component: {fileID: 654445337}
   m_Layer: 5
   m_Name: Heart 1
   m_TagString: Untagged
@@ -1259,6 +1280,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 654445333}
+--- !u!114 &654445337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 654445333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633e6212998ca0e48b22436cf1f1e481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartAmount: 3
+  currentHealth: 0
+  healthImages: []
+  healthSprites: []
 --- !u!1 &887903314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,6 +1305,7 @@ GameObject:
   - component: {fileID: 887903315}
   - component: {fileID: 887903317}
   - component: {fileID: 887903316}
+  - component: {fileID: 887903318}
   m_Layer: 5
   m_Name: Heart 2
   m_TagString: Untagged
@@ -1326,6 +1363,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 887903314}
+--- !u!114 &887903318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 887903314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633e6212998ca0e48b22436cf1f1e481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartAmount: 3
+  currentHealth: 0
+  healthImages: []
+  healthSprites: []
 --- !u!1 &1171969278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,7 +1636,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1365058596}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.71, z: 2.01}
@@ -1821,6 +1873,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633e6212998ca0e48b22436cf1f1e481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartAmount: 3
+  currentHealth: 0
+  healthImages: []
+  healthSprites: []
 --- !u!1 &1713204321
 GameObject:
   m_ObjectHideFlags: 0

@@ -108,12 +108,13 @@ public class PlayerControllerMapTut : MonoBehaviour {
 			currentPosition.z = currentPosition.z - 20f;
 
 		}
-
         if (other.tag == "Enemy")
         {
-            Debug.Log("Collision with enemy");
+            currentPosition = transform.position;
+            currentPosition.x = currentPosition.x + (EnemyAI.direction.x * 10);
+            currentPosition.z = currentPosition.z + (EnemyAI.direction.z * 10);
+            transform.position = currentPosition;
         }
-
 		transform.position = currentPosition;
        
 	}

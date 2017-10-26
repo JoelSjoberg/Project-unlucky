@@ -5,16 +5,16 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour {
 
     public float speed;
+    public static Rigidbody enemyRigidbody;
 
     private float movementSpeed;
-    private Rigidbody rigidbody;
     private Vector3 velocity;
-    private Vector3 direction;
+    public static Vector3 direction;
     private int health;
 
     // Use this for initialization
     void Start () {
-        rigidbody = GetComponent<Rigidbody>();
+        enemyRigidbody = GetComponent<Rigidbody>();
         movementSpeed = speed;
         health = 50;
     }
@@ -30,25 +30,33 @@ public class EnemyAI : MonoBehaviour {
         velocity = direction * speed;
         velocity.y = 0;
 
-        rigidbody.velocity = velocity;
+        enemyRigidbody.velocity = velocity;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if (health > 0)
+        if (other.tag == "Player")
         {
             Vector3 currentPosition = transform.position;
-            currentPosition.x = currentPosition.x - (direction.x * 2) ;
-            currentPosition.z = currentPosition.z - (direction.z * 2) ;
+            currentPosition.x = currentPosition.x - (direction.x * 10);
+            currentPosition.z = currentPosition.z - (direction.z * 10);
             transform.position = currentPosition;
-
-
-            health--;
         }
         else
         {
-
-            Destroy(gameObject);
+            if (health > 0)
+            {
+                Vector3 currentPosition = transform.position;
+                currentPosition.x = currentPosition.x - (direction.x * 2);
+                currentPosition.z = currentPosition.z - (direction.z * 2);
+                transform.position = currentPosition;
+                health--;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
+        
     }
 }

@@ -29,7 +29,6 @@ public class Ammo : MonoBehaviour
     void Awake()
     {
         text = GetComponent<Text>();
-
         ammo = setAmmo;
         maxAmmo = setMaxAmmo;
         ammoEmpty = false;

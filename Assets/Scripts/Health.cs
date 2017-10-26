@@ -8,32 +8,52 @@ public class Health : MonoBehaviour
 
     public static int health;
     Text text;
-    Rigidbody rigidbody;
-    Rigidbody pr = PlayerControllerMapTut.playerRigidbody;
+
+    public int heartAmount = 3;
+    public int currentHealth;
+
+    public Image[] healthImages;
+    public Sprite[] healthSprites;
+
+
     void Awake()
     {
         text = GetComponent<Text>();
-
         health = 3;
     }
     // Use this for initialization
     void Start()
     {
+        currentHealth = heartAmount;
+        checkHeartAmount();
 
+    }
+
+    void checkHeartAmount()
+    {
+        for(int i = 0; i < heartAmount; i++)
+        {
+            healthImages[i].enabled = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-
+        text.text = "Health: " + health;
     }
 
-    void OnCollisionEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.tag == "Enemy")
         {
-            text.text = "Health: " + 1;
+            health--;
+
+
+            if (health == 0)
+            {
+                Application.LoadLevel("Level3");
+            }
         }
     }
 }
