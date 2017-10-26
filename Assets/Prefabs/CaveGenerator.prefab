@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 23669367500922644}
   - component: {fileID: 64356552356248062}
   - component: {fileID: 114968440855551490}
-  - component: {fileID: 114953883214678554}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -196,7 +195,7 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_InflateMesh: 1
-  m_SkinWidth: 0.01
+  m_SkinWidth: 5
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &114608963403593792
 MonoBehaviour:
@@ -209,8 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c40011ea01f9949bf05c70d0a73ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 63
-  height: 103
+  width: 153
+  height: 63
   seed: 1vt2hp2evdlfp81z2p09yusfmslzp3xptmv6ahoevgvvqccig31crkq6vplh64ymtf7otq2kuzh1bixcrr6hu737dtcin8ka6c9m8wldm79k53mx51d1aj1f5deoa4agw6tmsbxwuga5f3ezefcjf1ml95ox25937k0eyqdbxyxpacksnysvgz9lbsmagh2nt1xy91m3fznaenq1
   caveXPos: 0
   caveYPos: 0
@@ -231,17 +230,6 @@ MonoBehaviour:
   walls: {fileID: 33884693358120596}
   cave: {fileID: 33474968010816352}
   is2D: 0
---- !u!114 &114953883214678554
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1082341302612540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d51a95cdcb41bda45b41426649b9d58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114968440855551490
 MonoBehaviour:
   m_ObjectHideFlags: 1

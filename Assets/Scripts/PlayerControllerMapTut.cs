@@ -30,7 +30,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
 	void Update () {
 		velocity = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical")).normalized * movementSpeed;
         velocity *= Time.deltaTime;
-        //rigidbody.AddForce(velocity);
         transform.Translate(velocity.x, 0, velocity.z);
 
         // Input(Keyboard and Mouse)
@@ -57,11 +56,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
 
 
     void OnTriggerEnter(Collider other){
-        if(other.name == "WallThing")
-        {
-            Debug.Log("PLAYER: "  + other.name);
-
-        }
+        Debug.Log("PLAYER: "  + other.name);
 	}
 
 }
