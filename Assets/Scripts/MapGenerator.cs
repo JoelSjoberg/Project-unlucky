@@ -5,26 +5,18 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour {
 	//Creates CaveGenerators
 
-	public Transform prefab;
-	public Transform caveGenerator;
-	public Transform doorParent;
-
-    public GameObject wallThingy;
+	public Transform prefab, caveGenerator, wall, doorParent, plane;
 
     // for map generator
     private List<Room> graph = new List<Room>();
     private List<Room> tree = new List<Room>();
-    public float minWidth = 60, minHeight = 60, maxWidth = 120, maxHeight = 120;
+
+    public float minWidth = 60, minHeight = 60, maxWidth = 120, maxHeight = 120, space = 15;
     public int minRooms = 6, maxRooms = 10;
-    private int num_rooms = 7;
-    public int iterations = 60;
-    public float space = 15;
+    private int num_rooms = 7, iterations = 60;
     // Use this for initialization
     void Start () {
-		//cubes
-		for (int i = 0; i < 4; i++) {
-			Instantiate(prefab, new Vector3(i * 2f, 0, 27), Quaternion.identity);
-		}
+
         makeMap();
 
         graph[0].visited = true; // initialize visited value from the start
@@ -35,35 +27,42 @@ public class MapGenerator : MonoBehaviour {
         print(graph.Count + " rooms generated");
         print("Printing rooms in spanning tree");
 
-        foreach (Room r in tree)
-        {
-            print("Room " + r.pos.x + ", " + r.pos.z + " exists");
-        }
-
-		spawnRooms ();
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-	void spawnRooms(){
-		//access script before initiation
-		GameObject gameObject = caveGenerator.GetComponent<CellularAutomata> ().gameObject;
-		//CellularAutomata script = gameObject.GetComponent<CellularAutomata> ();
-		//caves
-
+        //access script before initiation
+        GameObject gameObject = caveGenerator.GetComponent<CellularAutomata>().gameObject;
+        //CellularAutomata script = gameObject.GetComponent<CellularAutomata> ();
+        //caves
 
         foreach (Room r in graph)
         {
             caveGenerator.GetComponent<CellularAutomata>().width = Mathf.RoundToInt(r.width);
             caveGenerator.GetComponent<CellularAutomata>().height = Mathf.RoundToInt(r.height);
             caveGenerator.GetComponent<CellularAutomata>().randomFillPercent = 0;
-            Instantiate(caveGenerator, new Vector3((r.pos.x), 0, r.pos.z), Quaternion.identity);
+
+            // make cave-room at room position
+            //Instantiate(caveGenerator, new Vector3(r.pos.x, 0, r.pos.z), Quaternion.identity);
+
+            // create wall to each room
+            // lower wall
+            wall.GetComponent<RoomWall>().makeSize(r.width, space);
+            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z - space / 2), Quaternion.identity);
+
+            // upper Wall
+            wall.GetComponent<RoomWall>().makeSize(r.width, space);
+            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z + r.height + space / 2), Quaternion.identity);
+
+            // left wall
+            wall.GetComponent<RoomWall>().makeSize(space, r.height);
+            Instantiate(wall, new Vector3(r.pos.x - space / 2, 0 , r.pos.z + r.height / 2), Quaternion.identity);
+
+            // right wall
+            wall.GetComponent<RoomWall>().makeSize(space, r.height);
+            Instantiate(wall, new Vector3(r.pos.x + r.width + space / 2, 0, r.pos.z + r.height / 2), Quaternion.identity);
+
+            // create panel showing the room area
+            plane.transform.localScale = new Vector3(r.width / 10, 0.1f, r.height / 10);
+            Instantiate(plane, new Vector3(r.pos.x + r.width / 2, -4.9f, r.pos.z + r.height / 2), Quaternion.identity);
         }
-        
+
     }
 
     // Make initial spawn room
@@ -123,6 +122,7 @@ public class MapGenerator : MonoBehaviour {
         if(attempts > 0)
         {
             graph.Add(newRoom);
+            
         }
     }
 
@@ -189,7 +189,7 @@ public class MapGenerator : MonoBehaviour {
         // check if value is between min and max
         public bool valueInRange(float value, float min, float max)
         {
-            return (value >= min) && (value <= max);
+            return (value >= min) && (value <= max );
         }
 
         // Rooms are colliding if one edge is inside the other room
