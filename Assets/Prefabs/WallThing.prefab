@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1112271241155180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 415.125, y: 0, z: -334.2372}
-  m_LocalScale: {x: 15, y: 10, z: 83.77849}
+  m_LocalScale: {x: 7.5, y: 10, z: 66.24618}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -97,7 +97,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!64 &64650454195773464
 MeshCollider:
   m_ObjectHideFlags: 1

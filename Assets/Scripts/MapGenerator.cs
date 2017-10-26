@@ -6,7 +6,7 @@ public class MapGenerator : MonoBehaviour {
 	//Creates CaveGenerators
 
 	public Transform prefab, caveGenerator, wall, doorParent, plane;
-
+    public PlayerControllerMapTut player;
     // for map generator
     private List<Room> graph = new List<Room>();
     private List<Room> tree = new List<Room>();
@@ -20,6 +20,7 @@ public class MapGenerator : MonoBehaviour {
         makeMap();
 
         graph[0].visited = true; // initialize visited value from the start
+        player.currentRoom = graph[0];
         tree.Add(graph[0]); // add spawnroom to tree before algorithm begins
         connectMapWithPrims(); // excecute prims algorithm to create map connections
         // each connection now exists in each rooms adjList(i.e. if you want to know which room is connected to which)
@@ -38,31 +39,32 @@ public class MapGenerator : MonoBehaviour {
             caveGenerator.GetComponent<CellularAutomata>().height = Mathf.RoundToInt(r.height);
             caveGenerator.GetComponent<CellularAutomata>().randomFillPercent = 0;
 
+            /*
             // make cave-room at room position
             //Instantiate(caveGenerator, new Vector3(r.pos.x, 0, r.pos.z), Quaternion.identity);
-
+            float roomspace = space / 2;
             // create wall to each room
             // lower wall
-            wall.GetComponent<RoomWall>().makeSize(r.width, space);
-            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z - space / 2), Quaternion.identity);
+            wall.GetComponent<RoomWall>().makeSize(r.width, roomspace);
+            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z - roomspace / 2), Quaternion.identity);
 
             // upper Wall
-            wall.GetComponent<RoomWall>().makeSize(r.width, space);
-            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z + r.height + space / 2), Quaternion.identity);
+            wall.GetComponent<RoomWall>().makeSize(r.width, roomspace);
+            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z + r.height + roomspace / 2), Quaternion.identity);
 
             // left wall
-            wall.GetComponent<RoomWall>().makeSize(space, r.height);
-            Instantiate(wall, new Vector3(r.pos.x - space / 2, 0 , r.pos.z + r.height / 2), Quaternion.identity);
+            wall.GetComponent<RoomWall>().makeSize(roomspace, r.height);
+            Instantiate(wall, new Vector3(r.pos.x - roomspace / 2, 0 , r.pos.z + r.height / 2), Quaternion.identity);
 
             // right wall
-            wall.GetComponent<RoomWall>().makeSize(space, r.height);
-            Instantiate(wall, new Vector3(r.pos.x + r.width + space / 2, 0, r.pos.z + r.height / 2), Quaternion.identity);
-
+            wall.GetComponent<RoomWall>().makeSize(roomspace, r.height);
+            Instantiate(wall, new Vector3(r.pos.x + r.width + roomspace / 2, 0, r.pos.z + r.height / 2), Quaternion.identity);
+            */
             // create panel showing the room area
             plane.transform.localScale = new Vector3(r.width / 10, 0.1f, r.height / 10);
             Instantiate(plane, new Vector3(r.pos.x + r.width / 2, -4.9f, r.pos.z + r.height / 2), Quaternion.identity);
-        }
 
+        }
     }
 
     // Make initial spawn room
@@ -171,36 +173,5 @@ public class MapGenerator : MonoBehaviour {
         tree.Add(roomToConnect);
         
         while (graph.Count > tree.Count) connectMapWithPrims();
-    }
-
-    class Room
-    {
-        public Vector3 pos;
-        public float width, height;
-        public List<Room> adjList = new List<Room>();
-        public bool visited = false;
-        public Room(float x, float z, float width, float height)
-        {
-            pos = new Vector3(x, 0, z);
-            this.width = width;
-            this.height = height;
-        }
-
-        // check if value is between min and max
-        public bool valueInRange(float value, float min, float max)
-        {
-            return (value >= min) && (value <= max );
-        }
-
-        // Rooms are colliding if one edge is inside the other room
-        public bool isRoomColliding(Room room)
-        {
-            // if one room-edge is between the others x-values and
-            bool xOverlap = valueInRange(pos.x, room.pos.x, room.pos.x + room.width) || valueInRange(room.pos.x, pos.x, pos.x + width);
-            // if one room-edge is between the others y-values
-            bool yOverlap = valueInRange(pos.z, room.pos.z, room.pos.z + room.height) || valueInRange(room.pos.z, pos.z, pos.z + height);
-
-            return xOverlap && yOverlap;
-        }
     }
 }

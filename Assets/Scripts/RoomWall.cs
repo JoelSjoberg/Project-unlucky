@@ -16,9 +16,15 @@ public class RoomWall : MonoBehaviour {
         transform.position = new Vector3(x, 0, z);
     }
 
+    PlayerControllerMapTut player;
     private void OnTriggerEnter(Collider other)
     {
         positionOnTrigger = other.transform.position;
-        Debug.Log(positionOnTrigger);
+        Vector3 reverseVelocity = Vector3.zero;
+        if(other.name == "Player")
+        {
+            player = other.GetComponent<PlayerControllerMapTut>();
+            Debug.Log(positionOnTrigger);
+        }
     }
 }
