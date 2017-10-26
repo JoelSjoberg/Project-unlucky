@@ -151,16 +151,16 @@ MonoBehaviour:
   prefab: {fileID: 4742327637928188, guid: 8f0222fa31e971142ba06b9ae87cbaa4, type: 2}
   caveGenerator: {fileID: 4024036019546674, guid: 7f76a8baddb507944a1c67dab222e8f7,
     type: 2}
+  wall: {fileID: 4876888085803292, guid: d755e98388411084b9be0269a63a3223, type: 2}
   doorParent: {fileID: 4187949809039662, guid: 6443d2aa8d4a30542972d762337257ef, type: 2}
-  wallThingy: {fileID: 1651170031127540, guid: fa42d26110de71a418c5698d8451a018, type: 2}
+  plane: {fileID: 4225764821498152, guid: 6442191bb59199843aa6826f4bad8570, type: 2}
   minWidth: 50
   minHeight: 50
   maxWidth: 160
   maxHeight: 160
+  space: 15
   minRooms: 6
   maxRooms: 10
-  iterations: 5
-  space: 15
 --- !u!1 &124809108
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,9 +705,9 @@ GameObject:
   - component: {fileID: 1669910978}
   - component: {fileID: 1669910977}
   - component: {fileID: 1669910976}
+  - component: {fileID: 1669910975}
   - component: {fileID: 1669910979}
   - component: {fileID: 1669910981}
-  - component: {fileID: 1669910975}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -725,10 +725,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 126
   m_CollisionDetection: 1
 --- !u!65 &1669910976
 BoxCollider:
@@ -776,7 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9953af02bb1803641b553e87fe1d76f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 200
   evadeTime: 0.2
   evadeSpeed: 100
   evading: 0
