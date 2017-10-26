@@ -442,7 +442,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 32 / 256
+  m_Text: 30 / 60
 --- !u!222 &235319898
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef02d099cf2852f45bea69736e15c030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoEmpty: 0
 --- !u!1 &256101351
 GameObject:
   m_ObjectHideFlags: 0
