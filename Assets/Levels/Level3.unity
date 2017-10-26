@@ -951,7 +951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 426238359}
   isFiring: 0
-  bulletSpeed: 30
+  bulletSpeed: 70
   offset: {x: 0, y: 0, z: 0}
   firePoint: {fileID: 1845733798}
   bulletPrefab: {fileID: 114838025328538006, guid: 0ec354cb29662fe44b80900b7c7f50a6,
@@ -1010,7 +1010,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1845733797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.41, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 0.2, y: 0.14, z: 0.2}
   m_Children:
   - {fileID: 1521518542}

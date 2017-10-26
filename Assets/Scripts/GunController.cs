@@ -14,7 +14,7 @@ public class GunController : MonoBehaviour {
     private Ray cameraRay;
     private Plane groundPlane;
     private float rayLength;
-	private float fireRate = 0.1f;
+	private float fireRate = 0.4f;
 	private float nextFire = 0f;
 
 
