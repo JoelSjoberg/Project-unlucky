@@ -16,12 +16,13 @@ public class PlayerControllerMapTut : MonoBehaviour {
     private float movementSpeed;
     private float timer;
 
-	private Rigidbody rigidbody;
-	private Vector3 velocity;
+    //private Rigidbody rigidbody;
+    public static Rigidbody playerRigidbody;
+    private Vector3 velocity;
 
 	// Use this for initialization
 	void Start () {
-		rigidbody = GetComponent<Rigidbody> ();
+		playerRigidbody = GetComponent<Rigidbody> ();
         movementSpeed = speed;
         timer = evadeTime;
 	}
@@ -50,7 +51,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
     }
 
 	void FixedUpdate(){
-        rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
+        playerRigidbody.MovePosition(GetComponent<Rigidbody>().position + velocity * Time.fixedDeltaTime);
 	}
 
 	void OnTriggerEnter(Collider other){
@@ -107,6 +108,11 @@ public class PlayerControllerMapTut : MonoBehaviour {
 			currentPosition.z = currentPosition.z - 20f;
 
 		}
+
+        if (other.tag == "Enemy")
+        {
+            Debug.Log("Collision with enemy");
+        }
 
 		transform.position = currentPosition;
        

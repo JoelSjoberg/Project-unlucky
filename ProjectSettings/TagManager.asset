@@ -9,6 +9,7 @@ TagManager:
   - DoorTop
   - DoorDown
   - Walls
+  - Enemy
   layers:
   - Default
   - TransparentFX
