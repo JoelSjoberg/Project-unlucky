@@ -83,7 +83,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
         }
 
         if (evading) timer -= Time.deltaTime;
-
         if (timer <= 0)
         {
             evading = false;

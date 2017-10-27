@@ -148,6 +148,7 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
+    // make rooms in succession
     private void makeMap()
     {
         // create spawn room
@@ -195,6 +196,7 @@ public class MapGenerator : MonoBehaviour {
         while (graph.Count > tree.Count) connectMapWithPrims();
     }
 
+    // Show how the minimum spanning tree is built up
     void drawRoomConnectors()
     {
         /*
