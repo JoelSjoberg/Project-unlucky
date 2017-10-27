@@ -18,8 +18,16 @@ public class BulletController : MonoBehaviour {
         if (lifeTime <= 0) Destroy(gameObject);
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log(other.name);
+        
+        if (other.name != "Player") Destroy(gameObject);
+    }
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        Debug.Log(other.name);
+
+        if (other.name == "WallThingy") Destroy(gameObject);
     }
 }

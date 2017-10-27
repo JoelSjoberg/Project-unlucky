@@ -7,6 +7,8 @@ public class MapGenerator : MonoBehaviour {
 
 	public Transform prefab, caveGenerator, wall, doorParent, plane;
     public PlayerControllerMapTut player;
+    public Door door;
+
     // for map generator
     private List<Room> graph = new List<Room>();
     private List<Room> tree = new List<Room>();
@@ -21,6 +23,7 @@ public class MapGenerator : MonoBehaviour {
 
         graph[0].visited = true; // initialize visited value from the start
         player.currentRoom = graph[0];
+        player.spawn(player.currentRoom.width / 2, player.currentRoom.height / 2);
         tree.Add(graph[0]); // add spawnroom to tree before algorithm begins
         connectMapWithPrims(); // excecute prims algorithm to create map connections
         // each connection now exists in each rooms adjList(i.e. if you want to know which room is connected to which)
@@ -39,7 +42,7 @@ public class MapGenerator : MonoBehaviour {
             caveGenerator.GetComponent<CellularAutomata>().height = Mathf.RoundToInt(r.height);
             caveGenerator.GetComponent<CellularAutomata>().randomFillPercent = 0;
 
-            /*
+            
             // make cave-room at room position
             //Instantiate(caveGenerator, new Vector3(r.pos.x, 0, r.pos.z), Quaternion.identity);
             float roomspace = space / 2;
@@ -59,14 +62,31 @@ public class MapGenerator : MonoBehaviour {
             // right wall
             wall.GetComponent<RoomWall>().makeSize(roomspace, r.height);
             Instantiate(wall, new Vector3(r.pos.x + r.width + roomspace / 2, 0, r.pos.z + r.height / 2), Quaternion.identity);
-            */
+            
             // create panel showing the room area
             plane.transform.localScale = new Vector3(r.width / 10, 0.1f, r.height / 10);
             Instantiate(plane, new Vector3(r.pos.x + r.width / 2, -4.9f, r.pos.z + r.height / 2), Quaternion.identity);
 
+
+        }
+
+        Door door1, door2;
+        for(int i = 1; i < tree.Count; i++)
+        {
+            door1 = Instantiate(door, graph[i].getRandomRoomPosition(), Quaternion.identity) as Door;
+            door1.room = graph[i];
+            door2 = Instantiate(door, graph[i - 1].getRandomRoomPosition(), Quaternion.identity) as Door;
+            door2.room = graph[i - 1];
+
+            door1.connectToPair(door2);
+            
         }
     }
 
+    private void Update()
+    {
+        drawRoomConnectors();
+    }
     // Make initial spawn room
     private void makeSpawnRoom()
     {
@@ -173,5 +193,22 @@ public class MapGenerator : MonoBehaviour {
         tree.Add(roomToConnect);
         
         while (graph.Count > tree.Count) connectMapWithPrims();
+    }
+
+    void drawRoomConnectors()
+    {
+        /*
+        foreach( Room r in graph)
+        {
+            foreach(Room n in r.adjList)
+            {
+                Debug.DrawLine(r.getRoomCenter(), n.getRoomCenter(), Color.red);
+            }
+        }*/
+
+        for (int i = 1; i < graph.Count; i++)
+        {
+            Debug.DrawLine(graph[i].getRoomCenter(), graph[i - 1].getRoomCenter(), Color.red);
+        }
     }
 }

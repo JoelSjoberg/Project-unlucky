@@ -31,5 +31,14 @@ public class Room : MonoBehaviour {
 
             return xOverlap && yOverlap;
         }
+    public Vector3 getRoomCenter()
+    {
+        return new Vector3(pos.x + width / 2, pos.y, pos.z + height / 2);
+    }
+
+    public Vector3 getRandomRoomPosition()
+    {
+        return new Vector3(Random.Range(pos.x, pos.x + width), 0, Random.Range(pos.z, pos.z + height));
+    }
     
 }

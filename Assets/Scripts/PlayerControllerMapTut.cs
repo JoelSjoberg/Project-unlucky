@@ -10,19 +10,27 @@ public class PlayerControllerMapTut : MonoBehaviour {
     public bool evading = false;
 
     public GunController gun;
-    public Room currentRoom;
+    public int offset = 5;
 
     private float movementSpeed, timer;
 
     private bool up = true, down = true, left = true, right = true;
     private float xAxis, zAxis = 0;
+    public Room currentRoom;
 
 	private Rigidbody rigidbody;
 	private Vector3 velocity;
 
-
-	// Use this for initialization
-	void Start () {
+    public void spawn(float x, float z)
+    {
+        transform.position = new Vector3(x, transform.position.y, z);
+    }
+    public void setRoom(Room r)
+    {
+        currentRoom = r;
+    }
+    // Use this for initialization
+    void Start () {
 		rigidbody = GetComponent<Rigidbody> ();
         movementSpeed = speed;
         timer = evadeTime;
@@ -33,21 +41,25 @@ public class PlayerControllerMapTut : MonoBehaviour {
         xAxis = Input.GetAxisRaw("Horizontal");
         zAxis = Input.GetAxisRaw("Vertical");
 
-        if (transform.position.x < currentRoom.pos.x) left = false;
+        // Collision with walls in current room
+
+        // collision with left wall
+        if (transform.position.x < currentRoom.pos.x + offset) left = false;
         else left = true;
 
-
-        if (transform.position.x > currentRoom.pos.x + currentRoom.width) right = false;
+        // collision with right wall
+        if (transform.position.x > currentRoom.pos.x + currentRoom.width - offset) right = false;
         else right = true;
 
-
-        if (transform.position.z < currentRoom.pos.z + 10) down = false;
+        // colliion with lower wall
+        if (transform.position.z < currentRoom.pos.z + offset) down = false;
         else down = true;
 
-
-        if (transform.position.z > currentRoom.pos.z + currentRoom.height) up = false;
+        // collision with upper wall
+        if (transform.position.z > currentRoom.pos.z + currentRoom.height - offset) up = false;
         else up = true;
 
+        // limit players ability to move if colliding with walls
         if (!up && zAxis > 0) zAxis = 0;
         if (!down && zAxis < 0) zAxis = 0;
         if (!left && xAxis < 0) xAxis = 0;
@@ -79,56 +91,12 @@ public class PlayerControllerMapTut : MonoBehaviour {
             timer = evadeTime;
         }
     }
-	void FixedUpdate(){
-        
-	}
-
+    
 
     void OnTriggerEnter(Collider other){
         if(other.name == "WallThing")
         {
             Debug.Log("PLAYER: "  + other.name);
-
         }
 	}
-    public void setUp(bool b)
-    {
-        up = b;
-    }
-    public void setDown(bool b)
-    {
-        down = b;
-    }
-    public void setLeft(bool b)
-    {
-        left = b;
-    }
-    public void setRight(bool b)
-    {
-        right = b;
-    }
-    public bool getUp()
-    {
-        return this.up;
-    }
-    public bool getDown()
-    {
-        return this.down;
-    }
-    public bool getLeft()
-    {
-        return this.left;
-    }
-    public bool getRight()
-    {
-        return this.right;
-    }
-    public float getXAxis()
-    {
-        return this.xAxis;
-    }
-    public float getZAxis()
-    {
-        return this.zAxis;
-    }
 }
