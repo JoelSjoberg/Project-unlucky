@@ -563,7 +563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 60, z: 0}
   focusTarget: {fileID: 1669910978}
-  delay: 3
+  delay: 0.09
 --- !u!1 &575761400
 GameObject:
   m_ObjectHideFlags: 0
