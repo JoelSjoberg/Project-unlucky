@@ -21,6 +21,7 @@ public class EnemyAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
         velocity = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized * movementSpeed;
         direction = PlayerControllerMapTut.playerRigidbody.transform.position - transform.position;
         direction.Normalize();
@@ -42,7 +43,7 @@ public class EnemyAI : MonoBehaviour {
             currentPosition.z = currentPosition.z - (direction.z * 10);
             transform.position = currentPosition;
         }
-        else
+        if(other.tag == "Bullet")
         {
             if (health > 0)
             {
@@ -57,6 +58,14 @@ public class EnemyAI : MonoBehaviour {
                 Destroy(gameObject);
             }
         }
-        
+        if(other.tag == "Walls")
+        {
+            Vector3 currentPosition = transform.position;
+            currentPosition.x = currentPosition.x - direction.x * 3;
+            currentPosition.z = currentPosition.z - direction.z * 3;
+            transform.position = currentPosition;
+        }
+
+
     }
 }

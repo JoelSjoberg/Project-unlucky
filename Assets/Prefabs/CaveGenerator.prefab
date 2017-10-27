@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 64356552356248062}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,8 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c40011ea01f9949bf05c70d0a73ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 1
-  height: 1
+  width: 60
+  height: 133
   seed: 1vt2hp2evdlfp81z2p09yusfmslzp3xptmv6ahoevgvvqccig31crkq6vplh64ymtf7otq2kuzh1bixcrr6hu737dtcin8ka6c9m8wldm79k53mx51d1aj1f5deoa4agw6tmsbxwuga5f3ezefcjf1ml95ox25937k0eyqdbxyxpacksnysvgz9lbsmagh2nt1xy91m3fznaenq1
   caveXPos: 0
   caveYPos: 0

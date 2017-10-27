@@ -20,6 +20,14 @@ public class BulletController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+
+        if (other.tag == "Walls")
+        {
+            Destroy(gameObject);
+        }
+        if (other.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }
