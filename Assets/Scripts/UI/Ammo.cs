@@ -16,7 +16,7 @@ public class Ammo : MonoBehaviour
     private float fireRate = 0.1f;
     private float nextFire = 0f;
 
-    Text text;
+    Text ammoText;
     bool isFiring;
     // Use this for initialization
     void Start()
@@ -28,7 +28,7 @@ public class Ammo : MonoBehaviour
 
     void Awake()
     {
-        text = GetComponent<Text>();
+        ammoText = GetComponent<Text>();
         ammo = setAmmo;
         maxAmmo = setMaxAmmo;
         ammoEmpty = false;
@@ -58,18 +58,18 @@ public class Ammo : MonoBehaviour
         {
 
             //Checks if ammo is less than 10 to use more spacing to make the counter look better
-            if (ammo < 10)
+            if (ammo <= 10)
             {
 
                 ammo--;
                 nextFire = Time.time + fireRate;
-                text.text = "  " + ammo + " / " + maxAmmo;
+                ammoText.text = " " + ammo + "    " + maxAmmo;
             }
             else
             {
                 ammo--;
                 nextFire = Time.time + fireRate;
-                text.text = ammo + " / " + maxAmmo;
+                ammoText.text = ammo + "   " + maxAmmo;
             }
         }
 
@@ -83,8 +83,8 @@ public class Ammo : MonoBehaviour
                 ammoEmpty = false;
                 ammo = setAmmo;
                 maxAmmo -= setAmmo;
-                text.text = ammo + " / " + maxAmmo;
-               
+                ammoText.text = ammo + "   " + maxAmmo;
+
             }
         }
 
@@ -103,7 +103,7 @@ public class Ammo : MonoBehaviour
                 {
                     maxAmmo -= remainderAmmo;
                     ammo = setAmmo;
-                    text.text = ammo + " / " + maxAmmo;
+                    ammoText.text = ammo + "   " + maxAmmo;
                 }
 
                 //If maxAmmo is less than the maximum amount in the magazine, but larger than the remainder
@@ -111,7 +111,7 @@ public class Ammo : MonoBehaviour
                 {
                     ammo = setAmmo;
                     maxAmmo -= remainderAmmo;
-                    text.text = ammo + " / " + maxAmmo;
+                    ammoText.text = ammo + "   " + maxAmmo;
                 }
 
                 //If remainder is larger than maxAmmo, the rest of the ammo is reloaded int the magazine
@@ -119,7 +119,7 @@ public class Ammo : MonoBehaviour
                 {
                     ammo += maxAmmo;
                     maxAmmo = 0;
-                    text.text = ammo + " / " + maxAmmo;
+                    ammoText.text = ammo + "   " + maxAmmo;
                 }
             }
         }
