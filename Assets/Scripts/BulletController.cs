@@ -20,13 +20,13 @@ public class BulletController : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
         
         if (other.name != "Player") Destroy(gameObject);
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
 
         if (other.name == "WallThingy") Destroy(gameObject);
     }

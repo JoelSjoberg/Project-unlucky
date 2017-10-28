@@ -14,7 +14,7 @@ public class MapGenerator : MonoBehaviour {
     private List<Room> tree = new List<Room>();
 
     public float minWidth = 60, minHeight = 60, maxWidth = 120, maxHeight = 120, space = 15;
-    public int minRooms = 6, maxRooms = 10;
+    public int minRooms = 6, maxRooms = 10, doorOffset = 0;
     private int num_rooms = 7, iterations = 60;
     // Use this for initialization
     void Start () {
@@ -40,7 +40,7 @@ public class MapGenerator : MonoBehaviour {
         {
             caveGenerator.GetComponent<CellularAutomata>().width = Mathf.RoundToInt(r.width);
             caveGenerator.GetComponent<CellularAutomata>().height = Mathf.RoundToInt(r.height);
-            caveGenerator.GetComponent<CellularAutomata>().randomFillPercent = 0;
+            //caveGenerator.GetComponent<CellularAutomata>().randomFillPercent = 30;
 
             
             // make cave-room at room position
@@ -67,19 +67,31 @@ public class MapGenerator : MonoBehaviour {
             plane.transform.localScale = new Vector3(r.width / 10, 0.1f, r.height / 10);
             Instantiate(plane, new Vector3(r.pos.x + r.width / 2, -4.9f, r.pos.z + r.height / 2), Quaternion.identity);
 
-
         }
 
         Door door1, door2;
-        for(int i = 1; i < tree.Count; i++)
+       /* for(int i = 1; i < tree.Count; i++)
         {
-            door1 = Instantiate(door, graph[i].getRandomRoomPosition(), Quaternion.identity) as Door;
+            door1 = Instantiate(door, graph[i].getDoorPosition(graph[i - 1].getRoomCenter(), doorOffset), Quaternion.identity) as Door;
             door1.room = graph[i];
-            door2 = Instantiate(door, graph[i - 1].getRandomRoomPosition(), Quaternion.identity) as Door;
+            door2 = Instantiate(door, graph[i - 1].getDoorPosition(graph[i].getRoomCenter(), doorOffset), Quaternion.identity) as Door;
             door2.room = graph[i - 1];
 
             door1.connectToPair(door2);
             
+        }*/
+        // this is buggy
+        foreach(Room r in graph)
+        {
+            foreach(Room n in r.adjList)
+            {
+                door1 = Instantiate(door, r.getDoorPosition(n.getRoomCenter(), doorOffset), Quaternion.identity) as Door;
+                door1.room = r;
+                door2 = Instantiate(door, n.getDoorPosition(r.getRoomCenter(), doorOffset), Quaternion.identity) as Door;
+                door2.room = n;
+
+                door1.connectToPair(door2);
+            }
         }
     }
 
@@ -197,20 +209,23 @@ public class MapGenerator : MonoBehaviour {
     }
 
     // Show how the minimum spanning tree is built up
+
+        // buggy connections
     void drawRoomConnectors()
     {
-        /*
+        
         foreach( Room r in graph)
         {
             foreach(Room n in r.adjList)
             {
                 Debug.DrawLine(r.getRoomCenter(), n.getRoomCenter(), Color.red);
             }
-        }*/
+        }
 
-        for (int i = 1; i < graph.Count; i++)
+        // linear connections
+        /*for (int i = 1; i < graph.Count; i++)
         {
             Debug.DrawLine(graph[i].getRoomCenter(), graph[i - 1].getRoomCenter(), Color.red);
-        }
+        }*/
     }
 }

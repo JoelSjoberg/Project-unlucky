@@ -95,7 +95,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
     void OnTriggerEnter(Collider other){
         if(other.name == "WallThing")
         {
-            Debug.Log("PLAYER: "  + other.name);
+            //Debug.Log("PLAYER: "  + other.name);
         }
 	}
 }

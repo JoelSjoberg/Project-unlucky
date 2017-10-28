@@ -24,7 +24,6 @@ public class RoomWall : MonoBehaviour {
         if(other.name == "Player")
         {
             player = other.GetComponent<PlayerControllerMapTut>();
-            Debug.Log(positionOnTrigger);
         }
     }
 }

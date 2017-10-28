@@ -19,7 +19,7 @@ public class RoomArea : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Player EXITED");
+
         if (other.name == "Player")
         {
             other.GetComponent<PlayerControllerMapTut>().transform.position = new Vector3(0, 0, 0);

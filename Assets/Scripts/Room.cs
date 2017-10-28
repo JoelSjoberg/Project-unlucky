@@ -21,24 +21,49 @@ public class Room : MonoBehaviour {
             return (value >= min) && (value <= max);
         }
 
-        // Rooms are colliding if one edge is inside the other room
+    // Rooms are colliding if one edge is inside the other room
+        private bool xOverlap, yOverlap;
         public bool isRoomColliding(Room room)
         {
             // if one room-edge is between the others x-values and
-            bool xOverlap = valueInRange(pos.x, room.pos.x, room.pos.x + room.width) || valueInRange(room.pos.x, pos.x, pos.x + width);
+            xOverlap = valueInRange(pos.x, room.pos.x, room.pos.x + room.width) || valueInRange(room.pos.x, pos.x, pos.x + width);
             // if one room-edge is between the others y-values
-            bool yOverlap = valueInRange(pos.z, room.pos.z, room.pos.z + room.height) || valueInRange(room.pos.z, pos.z, pos.z + height);
+            yOverlap = valueInRange(pos.z, room.pos.z, room.pos.z + room.height) || valueInRange(room.pos.z, pos.z, pos.z + height);
 
             return xOverlap && yOverlap;
         }
-    public Vector3 getRoomCenter()
-    {
-        return new Vector3(pos.x + width / 2, pos.y, pos.z + height / 2);
-    }
 
-    public Vector3 getRandomRoomPosition()
-    {
-        return new Vector3(Random.Range(pos.x, pos.x + width), 0, Random.Range(pos.z, pos.z + height));
-    }
+
+        private bool xCol, yCol;
+        public bool vectorInRoom(Vector3 v, int offset)
+        {
+            xCol = valueInRange(v.x, pos.x + offset, pos.x + width - offset);
+            yCol = valueInRange(v.z, pos.z + offset, pos.z + height - offset);
+
+            return xCol && yCol;
+        }
+
+        public Vector3 getRoomCenter()
+        {
+            return new Vector3(pos.x + width / 2, pos.y, pos.z + height / 2);
+        }
+
+        public Vector3 getRandomRoomPosition()
+        {
+            return new Vector3(Random.Range(pos.x, pos.x + width), 0, Random.Range(pos.z, pos.z + height));
+        }
+
+        private Vector3 v, searcher;
+        public Vector3 getDoorPosition(Vector3 adjRoom, int offset)
+        {
+            v = (adjRoom - this.getRoomCenter()).normalized; // get vector between rooms
+            searcher = this.getRoomCenter();
+            while (vectorInRoom(searcher, offset))
+            {
+                searcher += v; // Add unit to vector untill it is outside the room
+            }
+            return searcher;
+
+        }
     
 }
