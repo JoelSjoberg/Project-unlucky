@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour {
 	//Creates CaveGenerators
 
-	public Transform prefab, caveGenerator, wall, doorParent, plane;
+	public Transform prefab, caveGenerator, wall, doorParent, plane, roof;
     public PlayerControllerMapTut player;
     public Door door;
 
@@ -66,6 +66,8 @@ public class MapGenerator : MonoBehaviour {
             // create panel showing the room area
             plane.transform.localScale = new Vector3(r.width / 10, 0.1f, r.height / 10);
             Instantiate(plane, new Vector3(r.pos.x + r.width / 2, -4.9f, r.pos.z + r.height / 2), Quaternion.identity);
+            roof.transform.localScale = new Vector3(r.width / 10 + 2, 20f, r.height / 10 + 2);
+            Instantiate(roof, new Vector3(r.pos.x + r.width / 2, 5.2f, r.pos.z + r.height / 2), Quaternion.identity);
 
         }
 
