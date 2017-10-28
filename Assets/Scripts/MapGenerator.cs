@@ -24,8 +24,10 @@ public class MapGenerator : MonoBehaviour {
         graph[0].visited = true; // initialize visited value from the start
         player.currentRoom = graph[0];
         player.spawn(player.currentRoom.width / 2, player.currentRoom.height / 2);
-        tree.Add(graph[0]); // add spawnroom to tree before algorithm begins
-        connectMapWithPrims(); // excecute prims algorithm to create map connections
+        //tree.Add(graph[0]); // add spawnroom to tree before algorithm begins
+        //connectMapWithPrims(); // excecute prims algorithm to create map connections
+        Debug.Log("starting prims");
+        prims();
         // each connection now exists in each rooms adjList(i.e. if you want to know which room is connected to which)
         //  simply check the adjList
         print(graph.Count + " rooms generated");
@@ -208,6 +210,41 @@ public class MapGenerator : MonoBehaviour {
         tree.Add(roomToConnect);
         
         while (graph.Count > tree.Count) connectMapWithPrims();
+    }
+
+    private void prims()
+    {
+        Room roomToConnect = graph[0];
+        Room parentRoom = graph[0];
+        float temp;
+        tree.Add(graph[0]);
+        //for(int x = 0; x < 10; x++)
+        while (graph.Count > tree.Count)
+        {
+            float shortest = Mathf.Infinity;
+
+            foreach(Room n in tree)
+            {
+
+                for(int i = 0; i < graph.Count; i++)
+                {
+                    if (!graph[i].visited)
+                    {
+                        temp = (graph[i].getRoomCenter() - n.getRoomCenter()).magnitude;
+                        if (temp < shortest)
+                        {
+                            shortest = temp;
+                            roomToConnect = graph[i];
+                            parentRoom = n;
+                        }
+                    }
+                }
+            }
+            roomToConnect.visited = true;
+            parentRoom.adjList.Add(roomToConnect);
+            roomToConnect.adjList.Add(parentRoom);
+            tree.Add(roomToConnect);
+        }
     }
 
     // Show how the minimum spanning tree is built up
