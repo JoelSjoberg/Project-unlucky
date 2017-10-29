@@ -6,6 +6,7 @@ public class BulletController : MonoBehaviour {
 
     public float speed;
     public float lifeTime;
+    public float SpeedOverTime;
 	// Use this for initialization
 	void Start () {
 		
@@ -13,21 +14,22 @@ public class BulletController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        increaseSpeedOverTime(SpeedOverTime);
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         lifeTime -= Time.deltaTime;
         if (lifeTime <= 0) Destroy(gameObject);
     }
-
-    private void OnTriggerExit(Collider other)
+    private void increaseSpeedOverTime(float increaser)
     {
-        //Debug.Log(other.name);
-        
+        this.speed += increaser;
+    }
+    private void OnTriggerExit(Collider other)
+    { 
         if (other.name != "Player") Destroy(gameObject);
     }
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.name);
-
         if (other.name == "WallThingy") Destroy(gameObject);
     }
 }

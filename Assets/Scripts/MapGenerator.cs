@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour {
 	//Creates CaveGenerators
 
-	public Transform prefab, caveGenerator, wall, doorParent, plane, roof;
+	public Transform prefab, caveGenerator, wall, doorParent, plane, roof, Portal;
     public PlayerControllerMapTut player;
     public Door door;
 
@@ -95,6 +95,28 @@ public class MapGenerator : MonoBehaviour {
                 door1.connectToPair(door2);
             }
         }
+        PrepareForDfs(graph);
+
+        int itteration = 0; // depth-first index for each room
+        DFS(graph, graph[0], itteration);
+
+        int biggestDFI = 0;
+        foreach(Room r in graph)
+        {
+            if (biggestDFI < r.DFI);
+        }
+
+        Room roomContainingPortal = null;
+
+        foreach (Room r in graph)
+        {
+            if ((biggestDFI - 2) <= r.DFI)
+            {
+                roomContainingPortal = r;
+            }
+        }
+
+        Instantiate(Portal, roomContainingPortal.getRandomRoomPosition(), Quaternion.identity);
     }
 
     private void Update()
@@ -213,6 +235,28 @@ public class MapGenerator : MonoBehaviour {
             parentRoom.adjList.Add(roomToConnect);
             roomToConnect.adjList.Add(parentRoom);
             tree.Add(roomToConnect);
+        }
+    }
+
+    // prepare for dfs algorithm by preparing the list
+    private void PrepareForDfs(List<Room> graph)
+    {
+        foreach(Room r in graph)
+        {
+            r.visited = false;
+        }
+    }
+
+    
+    //depth-first traversal to find where to place portal to next level
+    private void DFS(List<Room> graph, Room room, int itteration)
+    {
+        room.visited = true;
+        room.DFI = itteration;
+        itteration += 1;
+        foreach(Room r in room.adjList)
+        {
+            if (!r.visited) DFS(graph, r, itteration);
         }
     }
 

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Room : MonoBehaviour {
     
-        public Vector3 pos;
-        public float width, height;
-        public List<Room> adjList = new List<Room>();
-        public bool visited = false;
+    public Vector3 pos;
+    public float width, height;
+    public List<Room> adjList = new List<Room>();
+    public bool visited = false;
+    public int DFI = -1;
         public Room(float x, float z, float width, float height)
         {
             pos = new Vector3(x, 0, z);
@@ -48,9 +49,11 @@ public class Room : MonoBehaviour {
             return new Vector3(pos.x + width / 2, pos.y, pos.z + height / 2);
         }
 
+        float offset = 10; 
         public Vector3 getRandomRoomPosition()
         {
-            return new Vector3(Random.Range(pos.x, pos.x + width), 0, Random.Range(pos.z, pos.z + height));
+        // avoid the exact edges by using the offset
+            return new Vector3(Random.Range(pos.x + offset, pos.x + width - offset), 0, Random.Range(pos.z + offset, pos.z + height - offset));
         }
 
         private Vector3 v, searcher;
@@ -65,5 +68,4 @@ public class Room : MonoBehaviour {
             return searcher;
 
         }
-    
 }
