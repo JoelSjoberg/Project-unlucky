@@ -162,9 +162,9 @@ MonoBehaviour:
   maxWidth: 160
   maxHeight: 160
   space: 15
-  minRooms: 14
-  maxRooms: 21
-  doorOffset: 7
+  minRooms: 30
+  maxRooms: 40
+  doorOffset: 2
 --- !u!1 &124809108
 GameObject:
   m_ObjectHideFlags: 0

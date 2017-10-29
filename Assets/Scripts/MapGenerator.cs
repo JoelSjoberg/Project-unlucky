@@ -118,7 +118,9 @@ public class MapGenerator : MonoBehaviour {
         {
             for (int i = 0; i < graph.Count; i++)
             {
+                if (graph.Count > 2 && i == graph.Count - 1) break;
                 makeNewRoom(graph[i]);
+
                 if (graph.Count == num_rooms) break;
             }
 
