@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Door : MonoBehaviour {
 
+    [HideInInspector]
     public Door pair;
+    [HideInInspector]
     public Room room; // room in which room resides
     private bool closed;
     

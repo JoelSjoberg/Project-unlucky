@@ -47,8 +47,8 @@ public class PlayerControllerMapTut : MonoBehaviour {
 
         // rigidbody.AddForce(velocity);
         // if (xAxis == 0 && zAxis == 0) rigidbody.velocity = Vector3.zero;
-        transform.Translate(velocity.x, 0, velocity.z);
         //rigidbody.velocity = velocity;
+        transform.Translate(velocity.x, 0, velocity.z);
 
         // Input(Keyboard and Mouse)
         if (Input.GetMouseButtonDown(0)) gun.isFiring = true;
@@ -68,6 +68,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
         }
     }
     
+    // keep player inside room
     void checkCollision()
     {
         xAxis = Input.GetAxisRaw("Horizontal");
