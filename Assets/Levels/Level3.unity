@@ -159,11 +159,12 @@ MonoBehaviour:
   Portal: {fileID: 4076353412156324, guid: d00ef995e79e1c34ea606365959dcbec, type: 2}
   player: {fileID: 1669910979}
   door: {fileID: 114800002514512268, guid: 7fae2a90fb0950f428ce3c41cdeba658, type: 2}
+  slime: {fileID: 114276375828816148, guid: 2e37fd5f9485f844dbc89ac4fa28fd0e, type: 2}
   minWidth: 80
   minHeight: 80
   maxWidth: 160
   maxHeight: 160
-  space: 15
+  space: 25
   minRooms: 5
   maxRooms: 8
   doorOffset: 2
@@ -839,7 +840,6 @@ MonoBehaviour:
   evading: 0
   gun: {fileID: 1713204323}
   offset: 4
-  currentRoom: {fileID: 0}
 --- !u!114 &1669910981
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,18 +6,9 @@ public class DoorController : MonoBehaviour {
 
 	Vector3 currentPosition;
 
-
-
-
-
 	// Use this for initialization
 	void Start () {
 		currentPosition = transform.position;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	void OnTriggerEnter(Collider other){
@@ -25,9 +16,5 @@ public class DoorController : MonoBehaviour {
 			Debug.Log ("Door colliding with wall");
 
 		}
-
 	}
-
-
-
 }

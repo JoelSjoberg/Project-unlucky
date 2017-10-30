@@ -30,7 +30,6 @@ public class Door : MonoBehaviour {
     {
         if(other.name == "Player")
         {
-            Debug.Log(this.name + " Collided with player ENTER");
             if (!pair.closed && !closed)
             {
                 pair.closed = true;

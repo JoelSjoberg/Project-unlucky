@@ -8,6 +8,7 @@ public class MapGenerator : MonoBehaviour {
 	public Transform prefab, caveGenerator, wall, doorParent, plane, roof, Portal;
     public PlayerControllerMapTut player;
     public Door door;
+    public EnemyBehaviour slime;
 
     // for map generator
     private List<Room> graph = new List<Room>();
@@ -18,12 +19,17 @@ public class MapGenerator : MonoBehaviour {
     private int num_rooms = 7, iterations = 60;
     // Use this for initialization
     void Start () {
+        
 
         makeNewMap();
 
         graph[0].visited = true; // initialize visited value from the start
         player.currentRoom = graph[0];
         player.spawn(player.currentRoom.width / 2, player.currentRoom.height / 2);
+
+        slime.setCurrentRoom(graph[0]);
+        Instantiate(slime, slime.currentRoom.getRandomRoomPosition(), Quaternion.identity);
+
         prims();
         // each connection now exists in each rooms adjList(i.e. if you want to know which room is connected to which)
         //  simply check the adjList
@@ -33,7 +39,7 @@ public class MapGenerator : MonoBehaviour {
         // GameObject gameObject = caveGenerator.GetComponent<CellularAutomata>().gameObject;
         //CellularAutomata script = gameObject.GetComponent<CellularAutomata> ();
         //caves
-
+        float roomspace = (space / 3);
         foreach (Room r in graph)
         {
             // caveGenerator.GetComponent<CellularAutomata>().width = Mathf.RoundToInt(r.width);
@@ -43,22 +49,22 @@ public class MapGenerator : MonoBehaviour {
             
             // make cave-room at room position
             //Instantiate(caveGenerator, new Vector3(r.pos.x, 0, r.pos.z), Quaternion.identity);
-            float roomspace = space / 2;
+
             // create wall to each room
             // lower wall
-            wall.GetComponent<RoomWall>().makeSize(r.width, roomspace);
+            wall.GetComponent<RoomWall>().makeSize(r.width + space/2, roomspace);
             Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z - roomspace / 2), Quaternion.identity);
 
             // upper Wall
-            wall.GetComponent<RoomWall>().makeSize(r.width, roomspace);
+            wall.GetComponent<RoomWall>().makeSize(r.width + space/2, roomspace);
             Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z + r.height + roomspace / 2), Quaternion.identity);
 
             // left wall
-            wall.GetComponent<RoomWall>().makeSize(roomspace, r.height);
+            wall.GetComponent<RoomWall>().makeSize(roomspace, r.height + space/2);
             Instantiate(wall, new Vector3(r.pos.x - roomspace / 2, 0 , r.pos.z + r.height / 2), Quaternion.identity);
 
             // right wall
-            wall.GetComponent<RoomWall>().makeSize(roomspace, r.height);
+            wall.GetComponent<RoomWall>().makeSize(roomspace, r.height + space/2);
             Instantiate(wall, new Vector3(r.pos.x + r.width + roomspace / 2, 0, r.pos.z + r.height / 2), Quaternion.identity);
             
             // create panel showing the room area
@@ -117,8 +123,10 @@ public class MapGenerator : MonoBehaviour {
         }
 
         Instantiate(Portal, roomContainingPortal.getRandomRoomPosition(), Quaternion.identity);
-    }
 
+        
+    }
+// ---- end of start method
     private void Update()
     {
         drawRoomConnectors();
@@ -192,7 +200,6 @@ public class MapGenerator : MonoBehaviour {
                 if (room.isRoomColliding(newRoom))
                 {
                     collision = true;
-                    Debug.Log("make a new room and try again...");
                     break;
                 }
                 else collision = false;

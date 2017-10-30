@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room : MonoBehaviour {
+public class Room {
     
     public Vector3 pos;
     public float width, height;
