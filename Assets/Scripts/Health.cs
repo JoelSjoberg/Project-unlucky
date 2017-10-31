@@ -83,7 +83,7 @@ public class Health : MonoBehaviour
 
             if (currentHealth == 0)
             {
-                Application.LoadLevel("Level3");
+                //Application.LoadLevel("Level3");
                 text.text = "You have died!";
             }
         }
