@@ -39,13 +39,13 @@ public class SlimeBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        // primary states in hierarchy(die > attack > follow > idle)
         if(basicBehaviour.health <= 0)
         {
             setStateFalse();
             die = true;
         }
-        else if(collidingWithPlayer)
+        else if(collidingWithPlayer && basicBehaviour.health > 1)
         {
             setStateFalse();
             attack = true;
@@ -53,7 +53,6 @@ public class SlimeBehaviour : MonoBehaviour {
         }
         else if (basicBehaviour.inSameRoomAsPlayer())
         {
-            Debug.Log("true");
             if(basicBehaviour.getDistanceFromPlayer() <= followDistance)
             {
                 setStateFalse();
@@ -63,8 +62,9 @@ public class SlimeBehaviour : MonoBehaviour {
             if (basicBehaviour.health == 1)
             {
                 followPlayer = false;
-                moveAwayFromPlayer();
                 renderer.material.color = Color.red;
+                if (basicBehaviour.getDistanceFromPlayer() <= followDistance) moveAwayFromPlayer();
+                if (collidingWithPlayer) basicBehaviour.health = 0;
             }
         }
         else
@@ -72,10 +72,7 @@ public class SlimeBehaviour : MonoBehaviour {
             setStateFalse();
             idle = true;
         }
-
-
         manageStateMachine();
-
 	}
 
     void setStateFalse()
@@ -83,6 +80,7 @@ public class SlimeBehaviour : MonoBehaviour {
         followPlayer = false; idle = false; die = false; attack = false;
     }
 
+    // act according to the current state
     void manageStateMachine()
     {
         if (die) Destroy(gameObject);
@@ -99,7 +97,8 @@ public class SlimeBehaviour : MonoBehaviour {
     }
     public void moveAwayFromPlayer()
     {
-        transform.Translate(basicBehaviour.getVelocity() * -1);
+        basicBehaviour.inverseAxes();
+        transform.Translate(basicBehaviour.getVelocity());
     }
 
     private void OnCollisionEnter(Collision col)

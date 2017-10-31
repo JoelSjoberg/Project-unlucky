@@ -8,19 +8,18 @@ public class MapGenerator : MonoBehaviour {
 	public Transform prefab, caveGenerator, wall, doorParent, plane, roof, Portal;
     public PlayerControllerMapTut player;
     public Door door;
-    public EnemyBehaviour slime;
+    public EnemyBehaviour enemy;
 
     // for map generator
     private List<Room> graph = new List<Room>();
     private List<Room> tree = new List<Room>();
 
     public float minWidth = 60, minHeight = 60, maxWidth = 120, maxHeight = 120, space = 15;
-    public int minRooms = 6, maxRooms = 10, doorOffset = 0;
-    private int num_rooms = 7, iterations = 60;
+    public int minRooms = 6, maxRooms = 10, doorOffset = 0, num_rooms = 7, iterations = 60;
+
     // Use this for initialization
     void Start () {
         
-
         makeNewMap();
 
         graph[0].visited = true; // initialize visited value from the start
@@ -29,8 +28,14 @@ public class MapGenerator : MonoBehaviour {
 
         //slime.setCurrentRoom(graph[0]);
         //Instantiate(slime, slime.getRoom().getRandomRoomPosition(), Quaternion.identity);
-        EnemyBehaviour sli = Instantiate(slime, graph[0].getRandomRoomPosition(), Quaternion.identity);
-        sli.setCurrentRoom(graph[0]);
+        for (int i = 1; i < graph.Count; i++)
+        {
+            for(int j = 0; j < Random.Range(0, 3); j++)
+            {
+                EnemyBehaviour slime = Instantiate(enemy, graph[i].getRandomRoomPosition(), Quaternion.identity);
+                slime.setCurrentRoom(graph[i]);
+            }
+        }
 
         prims();
         // each connection now exists in each rooms adjList(i.e. if you want to know which room is connected to which)

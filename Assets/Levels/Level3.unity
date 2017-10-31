@@ -159,7 +159,7 @@ MonoBehaviour:
   Portal: {fileID: 4076353412156324, guid: d00ef995e79e1c34ea606365959dcbec, type: 2}
   player: {fileID: 1669910979}
   door: {fileID: 114800002514512268, guid: 7fae2a90fb0950f428ce3c41cdeba658, type: 2}
-  slime: {fileID: 114276375828816148, guid: 2e37fd5f9485f844dbc89ac4fa28fd0e, type: 2}
+  enemy: {fileID: 114276375828816148, guid: 2e37fd5f9485f844dbc89ac4fa28fd0e, type: 2}
   minWidth: 80
   minHeight: 80
   maxWidth: 160
@@ -168,6 +168,8 @@ MonoBehaviour:
   minRooms: 5
   maxRooms: 8
   doorOffset: 2
+  num_rooms: 7
+  iterations: 60
 --- !u!1 &124809108
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,8 +783,8 @@ Rigidbody:
   m_GameObject: {fileID: 1669910974}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: Infinity
+  m_AngularDrag: Infinity
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0

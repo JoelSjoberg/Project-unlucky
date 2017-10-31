@@ -26,8 +26,6 @@ public class EnemyBehaviour : MonoBehaviour {
 	void Update ()
     {
         checkCollision();
-
-        Debug.Log(player.getRoom().DFI + ", " + currentRoom.DFI);
 	}
 
     // keep Enemy inside room
@@ -69,24 +67,29 @@ public class EnemyBehaviour : MonoBehaviour {
 
         // collision with upper wall
         if (transform.position.z > currentRoom.pos.z + currentRoom.height - offset) up = false;
-        else up = true;
-        
-        // limit players ability to move if colliding with walls
+        else up = true; 
+    }
+    public Vector3 getVelocity()
+    {
+        // limit players ability to move if colliding with walls, do it here to make inverseAxes work
         if (!up && zAxis > 0) zAxis = 0;
         if (!down && zAxis < 0) zAxis = 0;
         if (!left && xAxis < 0) xAxis = 0;
         if (!right && xAxis > 0) xAxis = 0;
+
+        velocity = new Vector3(xAxis, 0, zAxis);
+        return velocity.normalized * speed * Time.deltaTime;
     }
-    public Vector3 getVelocity()
+
+    public void inverseAxes()
     {
-        this.velocity = new Vector3(xAxis, 0, zAxis);
-        return this.velocity.normalized * speed * Time.deltaTime;
+        xAxis *= -1;
+        zAxis *= -1;
     }
     public void takeDamage(int damage)
     {
         health -= damage;
     }
-
     public bool inSameRoomAsPlayer()
     {
         return this.currentRoom == player.getRoom();
