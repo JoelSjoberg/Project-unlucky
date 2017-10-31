@@ -82,8 +82,16 @@ public class PlayerControllerMapTut : MonoBehaviour {
 
 		}
 
+		if (other.tag == "Pickable") {
+			Debug.Log ("Collision with pickable");
+			Destroy (other.gameObject);
+
+		}
+
 		transform.position = currentPosition;
        
 	}
+
+
 
 }
