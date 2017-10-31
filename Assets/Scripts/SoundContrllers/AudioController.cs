@@ -15,7 +15,6 @@ public class AudioController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(audio.time);
         if (audio.time > 106)
         {
             audio.Stop();

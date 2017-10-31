@@ -6,7 +6,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
 
     private Room currentRoom;
-    public int health = 4, speed = 100, offset = 5;
+    public int health = 4, speed = 100, offset = 5, damage = 1;
 
     float xAxis, zAxis;
 

@@ -85,6 +85,8 @@ public class SlimeBehaviour : MonoBehaviour {
     {
         if (die) Destroy(gameObject);
 
+        if (attack) basicBehaviour.player.takeDamage(basicBehaviour.damage);
+
         if(followPlayer)
         {
             moveTowardsPlayer();
