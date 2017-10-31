@@ -15,6 +15,10 @@ public class ButtonManager : MonoBehaviour {
 		Application.Quit ();
 	}
 
+	public void Menu(string menuLevel){
+		SceneManager.LoadScene (menuLevel);
+		Debug.Log ("Menu button pressed");
+	}
 }
 
 
