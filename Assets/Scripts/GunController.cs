@@ -20,23 +20,10 @@ public class GunController : MonoBehaviour {
     private Plane groundPlane;
     private float rayLength;
 
-	public AudioClip shootSound;
-
-	private AudioSource source;
-	private float volLowRange = .5f;
-	private float volHighRange = 1.0f;
-
 
 	// Use this for initialization
-	/*
 	void Start () {
 		
-	}
-	*/
-
-	void Awake(){
-	
-		source = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -61,9 +48,6 @@ public class GunController : MonoBehaviour {
                 BulletController newBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation) as BulletController;
                 newBullet.speed = bulletSpeed;
                 newBullet.damage = damage;
-
-				float vol = Random.Range (volLowRange, volHighRange);
-				source.PlayOneShot (shootSound, vol);
 
                 timeSinceLastShot = 0;
             }
