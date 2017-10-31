@@ -23,6 +23,12 @@ public class PlayerControllerMapTut : MonoBehaviour {
 	private Rigidbody rigidbody;
 	private Vector3 velocity;
 
+	public AudioClip hurtSound;
+
+	private AudioSource source;
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
+
     public void spawn(float x, float z)
     {
         transform.position = new Vector3(x, transform.position.y, z);
@@ -40,6 +46,9 @@ public class PlayerControllerMapTut : MonoBehaviour {
 
     public void takeDamage(int d)
     {
+		float vol = Random.Range (volLowRange, volHighRange);
+		source.PlayOneShot (hurtSound, vol);
+
         this.health -= d;
     }
 
@@ -79,6 +88,11 @@ public class PlayerControllerMapTut : MonoBehaviour {
 		rigidbody = GetComponent<Rigidbody> ();
         movementSpeed = speed;
         timer = evadeTime;
+	}
+
+	void Awake(){
+
+		source = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
