@@ -98,4 +98,10 @@ public class EnemyBehaviour : MonoBehaviour {
     {
         return this.currentRoom;
     }
+
+    private void OnTriggernEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+    }
+
 }
