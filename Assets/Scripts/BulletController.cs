@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour {
 
+    [HideInInspector]
     public float speed;
     public float lifeTime;
     public float SpeedOverTime;
+    public int damage;
 	// Use this for initialization
 	void Start () {
 		
@@ -31,5 +33,11 @@ public class BulletController : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "WallThingy") Destroy(gameObject);
+
+        if(other.tag == "Enemy")
+        {
+            other.GetComponent<EnemyBehaviour>().takeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

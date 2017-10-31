@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour {
 
 
-    public Room currentRoom;
+    private Room currentRoom;
     public int health = 4, speed = 100, offset = 5;
 
     float xAxis, zAxis;
@@ -20,13 +20,14 @@ public class EnemyBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         player = FindObjectOfType<PlayerControllerMapTut>();
-        this.currentRoom = new Room(0, 0, 100, 100);
     }
 
 	// Update is called once per frame
 	void Update ()
     {
         checkCollision();
+
+        Debug.Log(player.getRoom().DFI + ", " + currentRoom.DFI);
 	}
 
     // keep Enemy inside room
@@ -80,5 +81,18 @@ public class EnemyBehaviour : MonoBehaviour {
     {
         this.velocity = new Vector3(xAxis, 0, zAxis);
         return this.velocity.normalized * speed * Time.deltaTime;
+    }
+    public void takeDamage(int damage)
+    {
+        health -= damage;
+    }
+
+    public bool inSameRoomAsPlayer()
+    {
+        return this.currentRoom == player.getRoom();
+    }
+    public Room getRoom()
+    {
+        return this.currentRoom;
     }
 }

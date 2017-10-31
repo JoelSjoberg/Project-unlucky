@@ -12,6 +12,8 @@ public class PlayerControllerMapTut : MonoBehaviour {
     public GunController gun;
     public int offset = 5;
 
+    public int health = 3;
+
     private float movementSpeed, timer;
 
     private bool up = true, down = true, left = true, right = true;
@@ -34,6 +36,11 @@ public class PlayerControllerMapTut : MonoBehaviour {
     public Room getRoom()
     {
         return this.currentRoom;
+    }
+
+    public void takeDamage(int d)
+    {
+        this.health -= d;
     }
 
     // keep player inside room

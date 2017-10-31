@@ -5,8 +5,13 @@ using UnityEngine;
 public class GunController : MonoBehaviour {
 
     public Camera mainCamera;
+    public int damage;
     public bool isFiring;
     public float bulletSpeed;
+    public float shotIntervall = 0.5f;
+
+    private float timeSinceLastShot = 0;
+
     public Vector3 offset;
     public Transform firePoint;
     public BulletController bulletPrefab;
@@ -37,8 +42,19 @@ public class GunController : MonoBehaviour {
         }
         if (isFiring)
         {
-            BulletController newBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation) as BulletController;
-            newBullet.speed = bulletSpeed;
+            timeSinceLastShot += Time.deltaTime;
+            if(shotIntervall <= timeSinceLastShot)
+            {
+                BulletController newBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation) as BulletController;
+                newBullet.speed = bulletSpeed;
+                newBullet.damage = damage;
+
+                timeSinceLastShot = 0;
+            }
+        }
+        else
+        {
+            timeSinceLastShot = shotIntervall;
         }
     }
 }

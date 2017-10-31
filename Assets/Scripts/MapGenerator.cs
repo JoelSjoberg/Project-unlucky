@@ -27,8 +27,10 @@ public class MapGenerator : MonoBehaviour {
         player.currentRoom = graph[0];
         player.spawn(player.currentRoom.width / 2, player.currentRoom.height / 2);
 
-        slime.setCurrentRoom(graph[0]);
-        Instantiate(slime, slime.currentRoom.getRandomRoomPosition(), Quaternion.identity);
+        //slime.setCurrentRoom(graph[0]);
+        //Instantiate(slime, slime.getRoom().getRandomRoomPosition(), Quaternion.identity);
+        EnemyBehaviour sli = Instantiate(slime, graph[0].getRandomRoomPosition(), Quaternion.identity);
+        sli.setCurrentRoom(graph[0]);
 
         prims();
         // each connection now exists in each rooms adjList(i.e. if you want to know which room is connected to which)
@@ -39,7 +41,7 @@ public class MapGenerator : MonoBehaviour {
         // GameObject gameObject = caveGenerator.GetComponent<CellularAutomata>().gameObject;
         //CellularAutomata script = gameObject.GetComponent<CellularAutomata> ();
         //caves
-        float roomspace = (space / 3);
+        float roomspace = (space / 5);
         foreach (Room r in graph)
         {
             // caveGenerator.GetComponent<CellularAutomata>().width = Mathf.RoundToInt(r.width);

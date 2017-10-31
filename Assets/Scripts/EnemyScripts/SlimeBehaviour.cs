@@ -29,11 +29,12 @@ public class SlimeBehaviour : MonoBehaviour {
 
     public float followDistance;
     EnemyBehaviour basicBehaviour;
-
+    Renderer renderer;
 	// Use this for initialization
 	void Start () {
         idle = true;
         basicBehaviour = GetComponent<EnemyBehaviour>();
+        renderer = GetComponent<Renderer>();
 	}
 	
 	// Update is called once per frame
@@ -50,12 +51,20 @@ public class SlimeBehaviour : MonoBehaviour {
             attack = true;
             
         }
-        else if (basicBehaviour.currentRoom.getRoomCenter() ==basicBehaviour.player.getRoom().getRoomCenter())
+        else if (basicBehaviour.inSameRoomAsPlayer())
         {
+            Debug.Log("true");
             if(basicBehaviour.getDistanceFromPlayer() <= followDistance)
             {
                 setStateFalse();
                 followPlayer = true;
+            }
+
+            if (basicBehaviour.health == 1)
+            {
+                followPlayer = false;
+                moveAwayFromPlayer();
+                renderer.material.color = Color.red;
             }
         }
         else
@@ -64,16 +73,8 @@ public class SlimeBehaviour : MonoBehaviour {
             idle = true;
         }
 
-        if (basicBehaviour.health == 1)
-        {
-            followPlayer = false;
-            moveAwayFromPlayer();
-        }
 
-        if(followPlayer)
-        {
-            moveTowardsPlayer();
-        }
+        manageStateMachine();
 
 	}
 
@@ -82,6 +83,15 @@ public class SlimeBehaviour : MonoBehaviour {
         followPlayer = false; idle = false; die = false; attack = false;
     }
 
+    void manageStateMachine()
+    {
+        if (die) Destroy(gameObject);
+
+        if(followPlayer)
+        {
+            moveTowardsPlayer();
+        }
+    }
 
     public void moveTowardsPlayer()
     {
@@ -91,6 +101,7 @@ public class SlimeBehaviour : MonoBehaviour {
     {
         transform.Translate(basicBehaviour.getVelocity() * -1);
     }
+
     private void OnCollisionEnter(Collision col)
     {
         if( col.gameObject.name == "Player")
@@ -98,6 +109,7 @@ public class SlimeBehaviour : MonoBehaviour {
             collidingWithPlayer = true;
         }
     }
+
     private void OnCollisionExit(Collision col)
     {
         if (col.gameObject.name == "Player")
