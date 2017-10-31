@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
 
+    public Ammo ammo;
+    public bool shotFired;
+    public int gunAmmo;
+    public int gunMaxAmmo;
+
     public Camera mainCamera;
     public int damage;
     public bool isFiring;
@@ -11,6 +16,7 @@ public class GunController : MonoBehaviour {
     public float shotIntervall = 0.5f;
 
     private float timeSinceLastShot = 0;
+    
 
     public Vector3 offset;
     public Transform firePoint;
@@ -35,6 +41,7 @@ public class GunController : MonoBehaviour {
 	void Awake(){
 
 		source = GetComponent<AudioSource> ();
+
 	}
 	
 	// Update is called once per frame
@@ -51,7 +58,7 @@ public class GunController : MonoBehaviour {
             // rotate the gun towards ray point
             transform.LookAt(new Vector3(pointToLook.x + offset.x, transform.position.y + offset.y, pointToLook.z + offset.z));
         }
-        if (isFiring)
+        if (isFiring && !ammo.ammoEmpty)
         {
             timeSinceLastShot += Time.deltaTime;
             if(shotIntervall <= timeSinceLastShot)
@@ -64,6 +71,8 @@ public class GunController : MonoBehaviour {
 				source.PlayOneShot (shootSound, vol);
 
                 timeSinceLastShot = 0;
+
+                shotFired = true;
             }
         }
         else
