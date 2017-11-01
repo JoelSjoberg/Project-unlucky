@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour {
 	//Creates CaveGenerators
 
-	public Transform prefab, caveGenerator, wall, doorParent, plane, roof, Portal;
+	public Transform prefab, caveGenerator, wall, doorParent, plane, roof, Portal, Scrap;
     public PlayerControllerMapTut player;
     public Door door;
     public EnemyBehaviour enemy;
@@ -119,8 +119,8 @@ public class MapGenerator : MonoBehaviour {
             if (biggestDFI < r.DFI);
         }
 
+        // find room to spawn portal
         Room roomContainingPortal = null;
-
         foreach (Room r in graph)
         {
             if ((biggestDFI - 2) <= r.DFI)
@@ -128,8 +128,17 @@ public class MapGenerator : MonoBehaviour {
                 roomContainingPortal = r;
             }
         }
-
         Instantiate(Portal, roomContainingPortal.getRandomRoomPosition(), Quaternion.identity);
+
+        // spawn scrap in rooms
+
+        foreach(Room r in graph)
+        {
+            for(int i = 0; i < Random.Range(0, 10); i++)
+            {
+                Instantiate(Scrap, r.getRandomRoomPosition(), Quaternion.identity);
+            }
+        }
 
         
     }
