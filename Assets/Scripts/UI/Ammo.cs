@@ -32,6 +32,7 @@ public class Ammo : MonoBehaviour
         ammo = setAmmo;
         maxAmmo = setMaxAmmo;
         ammoEmpty = false;
+        ammoText.text = ammo + "   " + maxAmmo;
     }
     
 
