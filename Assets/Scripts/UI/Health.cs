@@ -74,31 +74,17 @@ public class Health : MonoBehaviour
         UpdateHearts();
     }
 
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            DamageTaken(1);
-
-            if (currentHealth == 0)
-            {
-                Application.LoadLevel("Level3");
-                text.text = "You have died!";
-            }
-        }
-    }
+    
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.name == "Slime")
+        if (other.gameObject.tag == "Enemy")
         {
             DamageTaken(1);
 
             if (currentHealth == 0)
             {
                 Application.LoadLevel("Level3");
-                text.text = "You have died!";
             }
         }
     }

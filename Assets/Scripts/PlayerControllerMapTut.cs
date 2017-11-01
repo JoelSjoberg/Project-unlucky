@@ -26,7 +26,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
 	public AudioClip hurtSound;
 
 	private AudioSource source;
-	private float volLowRange = .5f;
+	private float volLowRange = .75f;
 	private float volHighRange = 1.0f;
 
     public void spawn(float x, float z)
