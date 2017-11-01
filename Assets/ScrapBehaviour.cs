@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ScrapBehaviour : MonoBehaviour {
 
+    AudioSource audio;
+    public AudioClip clip;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -14,12 +17,19 @@ public class ScrapBehaviour : MonoBehaviour {
 		
 	}
 
+    void Awake()
+    {
+        audio = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.name == "Player")
         {
+            audio.PlayOneShot(clip, 1);
             Destroy(gameObject);
             other.GetComponent<PlayerControllerMapTut>().gun.ammoBuffer ++;
+
         }
     }
 }
