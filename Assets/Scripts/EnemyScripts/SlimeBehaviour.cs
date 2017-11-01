@@ -27,14 +27,29 @@ public class SlimeBehaviour : MonoBehaviour {
     // secondary states
     bool collidingWithPlayer = false;
 
+	public float offset = 0.0f;
+	public float degrees;
     public float followDistance;
     EnemyBehaviour basicBehaviour;
-    Renderer renderer;
+
+	float rotation;
+	Vector3 difference;
+	Vector3 enemyPos;
+
+    SpriteRenderer renderer;
+	Animator anim;
 	// Use this for initialization
 	void Start () {
         idle = true;
         basicBehaviour = GetComponent<EnemyBehaviour>();
-        renderer = GetComponent<Renderer>();
+        
+		anim = GetComponent<Animator>();
+		renderer = GetComponent<SpriteRenderer>();
+
+		//Rotate the object 45 degrees around the x axis so the sprite is visible
+		transform.rotation = Quaternion.Euler(45, 0, 0);
+		//enlarge enemy by 3 units
+		transform.localScale = new Vector3(10,10,10);
 	}
 	
 	// Update is called once per frame
@@ -52,11 +67,52 @@ public class SlimeBehaviour : MonoBehaviour {
             
         }
         else if (basicBehaviour.inSameRoomAsPlayer())
-        {
+        {	
+			// Take enemy position
+			enemyPos = Input.mousePosition;
+
+			// Vector from player to enemy
+			difference = Camera.main.ScreenToWorldPoint(enemyPos) - transform.position;
+			difference.Normalize();
+
+			// get angle of vector from player to cursor
+			rotation = Mathf.Atan2(difference.z, difference.x) * Mathf.Rad2Deg + offset;
+			if (rotation < 0) rotation += 360;  // Keep rotation in range 0 - 360
+
+			degrees = rotation;
+
+			if (degrees < 90 || degrees > 270) renderer.flipX = false;
+			else renderer.flipX = true;
+
+			// Play different anmations depending on player position
+			if ((degrees < 45 || degrees >= 315) || (degrees >= 135 && degrees < 225))
+				// Look to the side
+			{
+				anim.SetBool("Side", true);
+				anim.SetBool("Up", false);
+				anim.SetBool("Down", false);
+			}
+			else if (degrees >= 45 && degrees < 135)
+				// Look up
+			{
+				anim.SetBool("Side", false);
+				anim.SetBool("Up", true);
+				anim.SetBool("Down", false);
+			}
+			else if (degrees >= 225 && degrees < 315)
+				// Look Down
+			{
+				anim.SetBool("Side", false);
+				anim.SetBool("Up", false);
+				anim.SetBool("Down", true);
+			}
+
             if(basicBehaviour.getDistanceFromPlayer() <= followDistance)
             {
                 setStateFalse();
                 followPlayer = true;
+				//Play walking animation
+				anim.SetBool("Walking", true);
             }
 
             if (basicBehaviour.health == 1)
@@ -71,6 +127,8 @@ public class SlimeBehaviour : MonoBehaviour {
         {
             setStateFalse();
             idle = true;
+			//Play Idle animation
+			anim.SetBool("Walking", false);
         }
         manageStateMachine();
 	}
