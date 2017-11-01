@@ -126,9 +126,9 @@ public class PlayerControllerMapTut : MonoBehaviour {
             timer = evadeTime;
         }
 
-		if (health <= 0) {
+		//if (health <= 0) {
 			//index of the end game scene in build settings
-			SceneManager.LoadScene (2);
-		}
+		//	SceneManager.LoadScene (2);
+		//}
     }
 }
