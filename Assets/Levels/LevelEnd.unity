@@ -260,7 +260,7 @@ Prefab:
     - target: {fileID: 114838767857611554, guid: c0c4a30803c751540a71090f247f2670,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: LevelStartMenu
+      value: LevelStart
       objectReference: {fileID: 0}
     - target: {fileID: 114479934055921622, guid: c0c4a30803c751540a71090f247f2670,
         type: 2}
