@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//comment
 public class PlayerControllerMapTut : MonoBehaviour {
 
-    public float speed, evadeTime, evadeSpeed = 100;
-    public bool evading = false;
-
-    public GunController gun;
-    public int offset = 5;
-
+    // Status variables
     public int health = 3;
-
+    public bool evading = false;
+    public float speed, evadeTime, evadeSpeed = 100;
     private float movementSpeed, timer;
 
+    public GunController gun;
+
+    // for collision detection
+    public int offset = 5;
     private bool up = true, down = true, left = true, right = true;
     private float xAxis, zAxis = 0;
     public Room currentRoom;
@@ -23,27 +22,31 @@ public class PlayerControllerMapTut : MonoBehaviour {
 	private Rigidbody rigidbody;
 	private Vector3 velocity;
 
+    // sound
 	public AudioClip hurtSound;
-
 	private AudioSource source;
 	private float volLowRange = .75f;
 	private float volHighRange = 1.0f;
 
+    // place player on given cordinates
     public void spawn(float x, float z)
     {
         transform.position = new Vector3(x, transform.position.y, z);
     }
 
+    // Change the room thich the collsion works with
     public void setRoom(Room r)
     {
         currentRoom = r;
     }
 
+    // get the room the player is assigned
     public Room getRoom()
     {
         return this.currentRoom;
     }
 
+    // take damage equal to given amount and play hurt sound
     public void takeDamage(int d)
     {
 		float vol = Random.Range (volLowRange, volHighRange);

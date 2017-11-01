@@ -25,9 +25,7 @@ public class MapGenerator : MonoBehaviour {
         graph[0].visited = true; // initialize visited value from the start
         player.currentRoom = graph[0];
         player.spawn(player.currentRoom.width / 2, player.currentRoom.height / 2);
-
-        //slime.setCurrentRoom(graph[0]);
-        //Instantiate(slime, slime.getRoom().getRandomRoomPosition(), Quaternion.identity);
+        // spawn enemies
         for (int i = 1; i < graph.Count; i++)
         {
             for(int j = 0; j < Random.Range(0, 3); j++)
@@ -41,21 +39,10 @@ public class MapGenerator : MonoBehaviour {
         // each connection now exists in each rooms adjList(i.e. if you want to know which room is connected to which)
         //  simply check the adjList
         print(graph.Count + " rooms generated");
-
-        //access script before initiation
-        // GameObject gameObject = caveGenerator.GetComponent<CellularAutomata>().gameObject;
-        //CellularAutomata script = gameObject.GetComponent<CellularAutomata> ();
         //caves
         float roomspace = (space / 5);
         foreach (Room r in graph)
         {
-            // caveGenerator.GetComponent<CellularAutomata>().width = Mathf.RoundToInt(r.width);
-            // caveGenerator.GetComponent<CellularAutomata>().height = Mathf.RoundToInt(r.height);
-            // caveGenerator.GetComponent<CellularAutomata>().randomFillPercent = 30;
-
-            
-            // make cave-room at room position
-            //Instantiate(caveGenerator, new Vector3(r.pos.x, 0, r.pos.z), Quaternion.identity);
 
             // create wall to each room
             // lower wall
@@ -84,6 +71,7 @@ public class MapGenerator : MonoBehaviour {
 
         Door door1, door2;
         // this is too linear
+        // but save it in case we want that kind of structure now and then
        /* for(int i = 1; i < tree.Count; i++)
         {
             door1 = Instantiate(door, graph[i].getDoorPosition(graph[i - 1].getRoomCenter(), doorOffset), Quaternion.identity) as Door;
@@ -110,6 +98,7 @@ public class MapGenerator : MonoBehaviour {
         }
         PrepareForDfs(graph);
 
+        // give rooms values that indicate distance from spawn room
         int itteration = 0; // depth-first index for each room
         DFS(graph, graph[0], itteration);
 
@@ -130,8 +119,7 @@ public class MapGenerator : MonoBehaviour {
         }
         Instantiate(Portal, roomContainingPortal.getRandomRoomPosition(), Quaternion.identity);
 
-        // spawn scrap in rooms
-
+        // spawn scrap in all rooms
         foreach(Room r in graph)
         {
             for(int i = 0; i < Random.Range(0, 10); i++)
@@ -145,7 +133,7 @@ public class MapGenerator : MonoBehaviour {
 // ---- end of start method
     private void Update()
     {
-        drawRoomConnectors();
+        drawRoomConnectors(); // draws a line in the scene view displaying the connections between them
     }
 
     // Make initial spawn room
@@ -211,6 +199,7 @@ public class MapGenerator : MonoBehaviour {
 
             newRoom = new Room(x, z, width, height);
             
+            // re-itterate if the new room collides with any of the other rooms
             foreach (Room room in graph)
             {
                 if (room.isRoomColliding(newRoom))
@@ -221,7 +210,6 @@ public class MapGenerator : MonoBehaviour {
                 else collision = false;
             }
         }
-        //newRoom = new Room(parent.pos.x, parent.pos.z - parent.height - space, Random.Range(minWidth, maxWidth + 1), Random.Range(minHeight, maxHeight + 1));
         graph.Add(newRoom);
     }
 

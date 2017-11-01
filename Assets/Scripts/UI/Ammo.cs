@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class Ammo : MonoBehaviour
 {
+    // PROPOSAL(take it or leave it) since the game is mostly played by colecting and using ammo, no reload or clip size is needed! 
+    // Instead the player simply has every bullet available dirrectly, let's reduce the starting ammount and have the player collect amunition.
+    // as stated this is a proposal, please come with suggestions on why this would be a stupid idea!(this would also reduce the visual need immensly so there would be less
+    // text to place on screen and less code to deal with!)
     public GunController gun;
 
     public int ammo;

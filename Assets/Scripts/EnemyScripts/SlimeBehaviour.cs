@@ -9,15 +9,16 @@ using UnityEngine;
     - for each state we create a function that in depth describes the behaviour for said state
     - each state is sorted in a hierarchy in a if - else if - else statement,
         where the most important state is on top and least important is at the bottom
-    - after excecuting the death method, this enemy will be Destroyed and deleted from its room
+    - after excecuting the die method, this enemy will be Destroyed and deleted from its room
     - this is the basic slime ai hierarchy,
         it dies if health >= 0,
         it attacks if it collides with the player and deals damage,
         it follows the player if he/she enters within a given radius,
         if none of these states are true: it's idle
-I also propose that we make it possible for the player to have a set of sub states outside of the hierarchy
- e.g. this enemy will begin running from the player if its health == 1 and it will get a red color.
+I also propose that we make it possible for the enemy to have a set of sub states outside of the hierarchy
+ e.g. this enemy will begin running away from the player if its health == 1 and the enemy will get a change in color.
     should the player collide with this slime the player will "eat" it up an recieve a slight boost in health or ammo
+    if collision occurs within the bleemTime, or else the enemy will bleed out and die
 */ 
 public class SlimeBehaviour : MonoBehaviour {
 
@@ -32,6 +33,7 @@ public class SlimeBehaviour : MonoBehaviour {
 
     EnemyBehaviour basicBehaviour;
     Renderer renderer;
+
 	// Use this for initialization
 	void Start () {
         idle = true;
@@ -64,12 +66,12 @@ public class SlimeBehaviour : MonoBehaviour {
             if (basicBehaviour.health == 1)
             {
                 followPlayer = false;
-                renderer.material.color = Color.red;
+                // set sprite color to blue
+                transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.blue;
                 bleedBuffer += Time.deltaTime;
                 if (bleedBuffer >= bleedTimer) basicBehaviour.health = 0;
                 if (basicBehaviour.getDistanceFromPlayer() <= followDistance) moveAwayFromPlayer();
                 if (collidingWithPlayer) basicBehaviour.health = 0;
-
             }
         }
         else
@@ -80,6 +82,7 @@ public class SlimeBehaviour : MonoBehaviour {
         manageStateMachine();
 	}
 
+    // Set every primary state to false
     void setStateFalse()
     {
         followPlayer = false; idle = false; die = false; attack = false;
@@ -98,6 +101,8 @@ public class SlimeBehaviour : MonoBehaviour {
         }
     }
 
+    // In all farness these should probably not be here. These methods are a biproduct of the admittedly poor colision detection I wrote
+    // in desperation when the physics-engine started letting the player leave the rooms if it went fast enough.
     public void moveTowardsPlayer()
     {
         transform.Translate(basicBehaviour.getVelocity());
@@ -108,6 +113,10 @@ public class SlimeBehaviour : MonoBehaviour {
         transform.Translate(basicBehaviour.getVelocity());
     }
 
+
+    // TODO: implement these in the enemyBehaviour instead so we don't have to define collision behavour for every enemy!
+    // (collision should still be possible to implement if a certain enemy should react in a certain way that differst from enemyBehaviour)
+    // This method is used to see if the object is coliding with the player.
     private void OnCollisionEnter(Collision col)
     {
         if( col.gameObject.name == "Player")
@@ -115,7 +124,8 @@ public class SlimeBehaviour : MonoBehaviour {
             collidingWithPlayer = true;
         }
     }
-
+    
+    // collision signal if the player no longer touches the agent
     private void OnCollisionExit(Collision col)
     {
         if (col.gameObject.name == "Player")

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
 
+    // Take health from the player class instead, saves time and resources
     public static int health;
     public Text text;
     public Image[] healthImages;
@@ -24,6 +25,7 @@ public class Health : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // take player health here instead
         currentHealth = heartAmount * healthPerHeart;
         checkHeartAmount();
 
@@ -68,6 +70,7 @@ public class Health : MonoBehaviour
 
     }
 
+    // Method already exists in player, also instead of clomping and dealing with damage-values like 0.5 dmg. Let's scale up health and deal 1 damage!
     public void DamageTaken(int amount)
     {
         currentHealth -= amount;
@@ -77,6 +80,9 @@ public class Health : MonoBehaviour
 
     
 
+    // DO NOT do this here! The PlayerControllerMapTut already has its own takeDamage() method for health manipulation!
+    // Doing this here will make it harder to write state machines
+    // and the UI should not controll the player and/or level state! It should ONLY display it!
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Enemy")

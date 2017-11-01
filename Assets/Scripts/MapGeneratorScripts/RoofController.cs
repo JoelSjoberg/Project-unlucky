@@ -7,13 +7,14 @@ public class RoofController : MonoBehaviour {
     [Range (0.1f, 1.0f)]
     public float fadeSpeed = 1f;
 
-    private Material mater;
+    public Material fadeMaterial;
+    private Renderer renderer;
     private Color color;
     private bool looping;
 	// Use this for initialization
 	void Start () {
-        mater = GetComponent<Renderer>().material;
-        color = mater.color;
+        renderer = GetComponent<Renderer>();
+        color = renderer.material.color;
 
 	}
 
@@ -24,7 +25,7 @@ public class RoofController : MonoBehaviour {
         if (looping)
         {
             alpha -= fadeSpeed * Time.deltaTime;
-            mater.color = new Color(color.r, color.g, color.b, alpha);
+            renderer.material.color = new Color(color.r, color.g, color.b, alpha);
 
             if(alpha <= 0.1f)
             {
@@ -36,6 +37,15 @@ public class RoofController : MonoBehaviour {
     {
         if(other.name == "Player")
         {
+            renderer.material = fadeMaterial;
+            looping = true;
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.name == "Player")
+        {
+            renderer.material = fadeMaterial;
             looping = true;
         }
     }

@@ -28,21 +28,24 @@ public class EnemyBehaviour : MonoBehaviour {
         checkCollision();
 	}
 
-    // keep Enemy inside room
+    // return distance from player
     public float getDistanceFromPlayer()
     {
         return (player.transform.position - transform.position).magnitude;
     }
+    // spawn enemy in room
     public void spawnInRoom(Room room)
     {
         transform.position = room.getRandomRoomPosition();
         this.currentRoom= room;
     }
+    // set current room(for collision and if enemy ever wants to leave room)
     public void setCurrentRoom (Room r)
     {
         currentRoom = r;
     }
 
+    // collision similar to the one in playerControllerMapTut.cs
     Vector3 towardsPlayer;
     private void checkCollision()
     {
@@ -69,6 +72,8 @@ public class EnemyBehaviour : MonoBehaviour {
         if (transform.position.z > currentRoom.pos.z + currentRoom.height - offset) up = false;
         else up = true; 
     }
+
+    // returns velocity of movement vector(0 if not moving at all)
     public Vector3 getVelocity()
     {
         // limit players ability to move if colliding with walls, do it here to make inverseAxes work
@@ -81,24 +86,32 @@ public class EnemyBehaviour : MonoBehaviour {
         return velocity.normalized * speed * Time.deltaTime;
     }
 
+    // inverse the movement axes(x, z)
     public void inverseAxes()
     {
         xAxis *= -1;
         zAxis *= -1;
     }
+
+    // Take damage
     public void takeDamage(int damage)
     {
         health -= damage;
     }
+
+    // Returns true if it is in the same room as the player
     public bool inSameRoomAsPlayer()
     {
         return this.currentRoom == player.getRoom();
     }
+
+    // get current room
     public Room getRoom()
     {
         return this.currentRoom;
     }
 
+    // TODO: place collision from slime behaviour here and make getter for it. save time and resourcs!
     private void OnTriggernEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.name);
