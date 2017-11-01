@@ -48,6 +48,7 @@ public class Ammo : MonoBehaviour
 
                 ammo--;
                 ammoText.text = " " + ammo + "    " + maxAmmo;
+                
             }
             else
             {
@@ -68,6 +69,7 @@ public class Ammo : MonoBehaviour
                 ammo = setAmmo;
                 maxAmmo -= setAmmo;
                 ammoText.text = ammo + "   " + maxAmmo;
+
             }
         }
 
