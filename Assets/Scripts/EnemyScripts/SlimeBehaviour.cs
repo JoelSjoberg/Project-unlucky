@@ -47,7 +47,7 @@ public class SlimeBehaviour : MonoBehaviour {
 		renderer = GetComponent<SpriteRenderer>();
 
 		//Rotate the object 45 degrees around the x axis so the sprite is visible
-		transform.rotation = Quaternion.Euler(45, 0, 0);
+		//transform.rotation = Quaternion.Euler(45, 0, 0);
 		//enlarge enemy by 3 units
 		transform.localScale = new Vector3(10,10,10);
 	}
