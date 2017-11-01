@@ -12,6 +12,7 @@ public class GunController : MonoBehaviour {
     [HideInInspector]
     public int ammoBuffer = 0;
     public int ammoBufferGoal = 3;
+    public bool ammoAdded;
 
 
     public Camera mainCamera;
@@ -54,8 +55,9 @@ public class GunController : MonoBehaviour {
         // add ammo when ammoBuffer >= ammoBufferGoal
         if(ammoBuffer >= ammoBufferGoal)
         {
-            gunAmmo++;
             Debug.Log("ammo added");
+            ammoAdded = true;
+            ammoBuffer = 0;
         }
 
         // rotate with mouse

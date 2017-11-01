@@ -157,6 +157,7 @@ MonoBehaviour:
   plane: {fileID: 4225764821498152, guid: 6442191bb59199843aa6826f4bad8570, type: 2}
   roof: {fileID: 4876543726649250, guid: 3e898126ccb53fd4da8e5bb3d8d262d3, type: 2}
   Portal: {fileID: 4076353412156324, guid: d00ef995e79e1c34ea606365959dcbec, type: 2}
+  Scrap: {fileID: 0}
   player: {fileID: 1669910979}
   door: {fileID: 114800002514512268, guid: 7fae2a90fb0950f428ce3c41cdeba658, type: 2}
   enemy: {fileID: 114276375828816148, guid: 2e37fd5f9485f844dbc89ac4fa28fd0e, type: 2}
@@ -976,6 +977,7 @@ MonoBehaviour:
   setAmmo: 30
   setMaxAmmo: 60
   ammoEmpty: 0
+  ammoText: {fileID: 0}
 --- !u!114 &617213412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1647,7 +1649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9953af02bb1803641b553e87fe1d76f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 30
   evadeTime: 0.2
   evadeSpeed: 100
   evading: 0
@@ -1912,6 +1914,7 @@ MonoBehaviour:
   gunMaxAmmo: 70
   ammoBuffer: 0
   ammoBufferGoal: 3
+  ammoAdded: 0
   mainCamera: {fileID: 426238359}
   damage: 1
   isFiring: 0

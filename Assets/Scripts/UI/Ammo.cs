@@ -58,6 +58,22 @@ public class Ammo : MonoBehaviour
             }
             gun.shotFired = false;
         }
+        //If enough scrap is collected, 1 ammo is added
+        if (gun.ammoAdded)
+        {
+            if (ammo <= 10)
+            {
+                maxAmmo++;
+                ammoText.text = " " + ammo + "    " + maxAmmo;
+
+            }
+            else
+            {
+                maxAmmo++;
+                ammoText.text = ammo + "   " + maxAmmo;
+            }
+            gun.ammoAdded = false;
+        }
 
 
         //If reloading when ammo is empty
