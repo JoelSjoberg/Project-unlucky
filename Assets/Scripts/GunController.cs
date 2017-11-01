@@ -9,11 +9,16 @@ public class GunController : MonoBehaviour {
     public int gunAmmo;
     public int gunMaxAmmo;
 
+    [HideInInspector]
+    public int ammoBuffer = 0;
+    public int ammoBufferGoal = 3;
+
+
     public Camera mainCamera;
     public int damage;
     public bool isFiring;
     public float bulletSpeed;
-    public float shotIntervall = 0.5f;
+    public float shotIntervall = 0.1f;
 
     private float timeSinceLastShot = 0;
     
@@ -46,6 +51,13 @@ public class GunController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // add ammo when ammoBuffer >= ammoBufferGoal
+        if(ammoBuffer >= ammoBufferGoal)
+        {
+            gunAmmo++;
+            Debug.Log("ammo added");
+        }
+
         // rotate with mouse
         cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition); // Cast a "ray" from mainCamera to the cursor position
         groundPlane = new Plane(Vector3.up, Vector3.zero);            // A "mathematical" plane representing the ground

@@ -93,7 +93,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
 	void Awake(){
 
 		source = GetComponent<AudioSource> ();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {

@@ -10,7 +10,7 @@ using UnityEngine;
     - each state is sorted in a hierarchy in a if - else if - else statement,
         where the most important state is on top and least important is at the bottom
     - after excecuting the death method, this enemy will be Destroyed and deleted from its room
-    - this is the basic slime ai,
+    - this is the basic slime ai hierarchy,
         it dies if health >= 0,
         it attacks if it collides with the player and deals damage,
         it follows the player if he/she enters within a given radius,
@@ -27,7 +27,9 @@ public class SlimeBehaviour : MonoBehaviour {
     // secondary states
     bool collidingWithPlayer = false;
 
-    public float followDistance;
+    public float followDistance, bleedTimer = 1.5f;
+    private float bleedBuffer = 0;
+
     EnemyBehaviour basicBehaviour;
     Renderer renderer;
 	// Use this for initialization
@@ -63,8 +65,11 @@ public class SlimeBehaviour : MonoBehaviour {
             {
                 followPlayer = false;
                 renderer.material.color = Color.red;
+                bleedBuffer += Time.deltaTime;
+                if (bleedBuffer >= bleedTimer) basicBehaviour.health = 0;
                 if (basicBehaviour.getDistanceFromPlayer() <= followDistance) moveAwayFromPlayer();
                 if (collidingWithPlayer) basicBehaviour.health = 0;
+
             }
         }
         else

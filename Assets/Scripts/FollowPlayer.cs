@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour {
 
-    public Vector3 offset;
-    public float offsetYoff = 70, offsetYon = 400;
     public Transform focusTarget;
+    public Vector3 offset;
+    public float offsetYon = 400;
     public float delay = 0.3f;
+
     private Vector3 velocity = Vector3.zero;
     private Vector3 target;
     private bool toggle = false;
+    private float offsetYoff;
+
 	// Use this for initialization
 	void Start () {
-		
+        offsetYoff = offset.y;
 	}
 	
 	// Update is called once per frame

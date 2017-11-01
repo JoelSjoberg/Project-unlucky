@@ -30,14 +30,15 @@ public class BulletController : MonoBehaviour {
     { 
         if (other.name != "Player") Destroy(gameObject);
     }
+
     private void OnTriggerEnter(Collider other)
     {
+        Destroy(gameObject);
         if (other.name == "WallThingy") Destroy(gameObject);
 
         if(other.tag == "Enemy")
         {
             other.GetComponent<EnemyBehaviour>().takeDamage(damage);
-            Destroy(gameObject);
         }
     }
 }
