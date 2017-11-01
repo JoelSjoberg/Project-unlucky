@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 //comment
 public class PlayerControllerMapTut : MonoBehaviour {
@@ -125,5 +125,10 @@ public class PlayerControllerMapTut : MonoBehaviour {
             movementSpeed = speed;
             timer = evadeTime;
         }
+
+		if (health <= 0) {
+			//index of the end game scene in build settings
+			SceneManager.LoadScene (2);
+		}
     }
 }
