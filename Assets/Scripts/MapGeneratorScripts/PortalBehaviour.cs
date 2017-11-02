@@ -5,21 +5,14 @@ using UnityEngine;
 
 public class PortalBehaviour : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+    // Load a new map
     private void OnTriggerEnter(Collider other)
     {
         if(other.name == "Player")
         {
+            //FindObjectOfType<MapGenerator>().makeDungeon();
             SceneManager.LoadScene("Level3");
+            Debug.Log("makeDungeon");
         }
     }
 

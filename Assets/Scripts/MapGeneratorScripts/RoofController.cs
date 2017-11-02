@@ -11,6 +11,7 @@ public class RoofController : MonoBehaviour {
     private Renderer renderer;
     private Color color;
     private bool looping;
+
 	// Use this for initialization
 	void Start () {
         renderer = GetComponent<Renderer>();
@@ -22,6 +23,7 @@ public class RoofController : MonoBehaviour {
     float alpha = 1.0f;
 	void Update () {
 		
+        // for fading
         if (looping)
         {
             alpha -= fadeSpeed * Time.deltaTime;
@@ -33,6 +35,7 @@ public class RoofController : MonoBehaviour {
             }
         }
 	}
+    // deelte roof if player collides with it
     private void OnTriggerEnter(Collider other)
     {
         if(other.name == "Player")
@@ -41,6 +44,7 @@ public class RoofController : MonoBehaviour {
             looping = true;
         }
     }
+    // delete roof in spawn room
     private void OnTriggerStay(Collider other)
     {
         if (other.name == "Player")

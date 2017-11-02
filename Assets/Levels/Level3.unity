@@ -168,7 +168,7 @@ MonoBehaviour:
   space: 25
   minRooms: 5
   maxRooms: 8
-  doorOffset: 2
+  doorOffset: 5
   num_rooms: 7
   iterations: 60
 --- !u!1 &114659759
@@ -1654,7 +1654,7 @@ MonoBehaviour:
   evadeTime: 0.2
   evadeSpeed: 100
   gun: {fileID: 1713204323}
-  offset: 4
+  offset: 8
   hurtSound: {fileID: 8300000, guid: 34f5acc926c7ca14e953c7eb47d4fb8a, type: 3}
 --- !u!82 &1669910980
 AudioSource:

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour {
-	//Creates CaveGenerators
 
+	//Creates CaveGenerators
 	public Transform prefab, caveGenerator, wall, doorParent, plane, roof, Portal, Scrap;
     public PlayerControllerMapTut player;
     public Door door;
@@ -14,12 +14,24 @@ public class MapGenerator : MonoBehaviour {
     private List<Room> graph = new List<Room>();
     private List<Room> tree = new List<Room>();
 
+    // variables to use for dungeon manipulation
     public float minWidth = 60, minHeight = 60, maxWidth = 120, maxHeight = 120, space = 15;
     public int minRooms = 6, maxRooms = 10, doorOffset = 0, num_rooms = 7, iterations = 60;
 
     // Use this for initialization
     void Start () {
-        
+        makeDungeon(); 
+    }
+// ---- end of start method
+    private void Update()
+    {
+        drawRoomConnectors(); // draws a line in the scene view displaying the connections between them
+    }
+
+    // method for creating the whole dungeon
+    public void makeDungeon()
+    {
+
         makeNewMap();
 
         graph[0].visited = true; // initialize visited value from the start
@@ -28,7 +40,7 @@ public class MapGenerator : MonoBehaviour {
         // spawn enemies
         for (int i = 1; i < graph.Count; i++)
         {
-            for(int j = 0; j < Random.Range(0, 3); j++)
+            for (int j = 0; j < Random.Range(0, 3); j++)
             {
                 EnemyBehaviour slime = Instantiate(enemy, graph[i].getRandomRoomPosition(), Quaternion.identity);
                 slime.setCurrentRoom(graph[i]);
@@ -43,24 +55,23 @@ public class MapGenerator : MonoBehaviour {
         float roomspace = (space / 5);
         foreach (Room r in graph)
         {
-
             // create wall to each room
             // lower wall
-            wall.GetComponent<RoomWall>().makeSize(r.width + space/2, roomspace);
-            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z - roomspace / 2), Quaternion.identity);
+            wall.GetComponent<RoomWall>().makeSize(r.width, roomspace);
+            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z + roomspace / 2), Quaternion.identity);
 
             // upper Wall
-            wall.GetComponent<RoomWall>().makeSize(r.width + space/2, roomspace);
-            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z + r.height + roomspace / 2), Quaternion.identity);
+            wall.GetComponent<RoomWall>().makeSize(r.width, roomspace);
+            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z + r.height - roomspace / 2), Quaternion.identity);
 
             // left wall
-            wall.GetComponent<RoomWall>().makeSize(roomspace, r.height + space/2);
-            Instantiate(wall, new Vector3(r.pos.x - roomspace / 2, 0 , r.pos.z + r.height / 2), Quaternion.identity);
+            wall.GetComponent<RoomWall>().makeSize(roomspace, r.height);
+            Instantiate(wall, new Vector3(r.pos.x + roomspace / 2, 0, r.pos.z + r.height / 2), Quaternion.identity);
 
             // right wall
-            wall.GetComponent<RoomWall>().makeSize(roomspace, r.height + space/2);
-            Instantiate(wall, new Vector3(r.pos.x + r.width + roomspace / 2, 0, r.pos.z + r.height / 2), Quaternion.identity);
-            
+            wall.GetComponent<RoomWall>().makeSize(roomspace, r.height);
+            Instantiate(wall, new Vector3(r.pos.x + r.width - roomspace / 2, 0, r.pos.z + r.height / 2), Quaternion.identity);
+
             // create panel showing the room area
             plane.transform.localScale = new Vector3(r.width / 10, 0.1f, r.height / 10);
             Instantiate(plane, new Vector3(r.pos.x + r.width / 2, -4.9f, r.pos.z + r.height / 2), Quaternion.identity);
@@ -72,21 +83,21 @@ public class MapGenerator : MonoBehaviour {
         Door door1, door2;
         // this is too linear
         // but save it in case we want that kind of structure now and then
-       /* for(int i = 1; i < tree.Count; i++)
-        {
-            door1 = Instantiate(door, graph[i].getDoorPosition(graph[i - 1].getRoomCenter(), doorOffset), Quaternion.identity) as Door;
-            door1.room = graph[i];
-            door2 = Instantiate(door, graph[i - 1].getDoorPosition(graph[i].getRoomCenter(), doorOffset), Quaternion.identity) as Door;
-            door2.room = graph[i - 1];
+        /* for(int i = 1; i < tree.Count; i++)
+         {
+             door1 = Instantiate(door, graph[i].getDoorPosition(graph[i - 1].getRoomCenter(), doorOffset), Quaternion.identity) as Door;
+             door1.room = graph[i];
+             door2 = Instantiate(door, graph[i - 1].getDoorPosition(graph[i].getRoomCenter(), doorOffset), Quaternion.identity) as Door;
+             door2.room = graph[i - 1];
 
-            door1.connectToPair(door2);
-            
-        }*/
+             door1.connectToPair(door2);
+
+         }*/
 
         // this is buggy, as some rooms will be given a connection when distance is too big i.e. big gaps between rooms may occur 
-        foreach(Room r in graph)
+        foreach (Room r in graph)
         {
-            foreach(Room n in r.adjList)
+            foreach (Room n in r.adjList)
             {
                 door1 = Instantiate(door, r.getDoorPosition(n.getRoomCenter(), doorOffset), Quaternion.identity) as Door;
                 door1.room = r;
@@ -103,9 +114,9 @@ public class MapGenerator : MonoBehaviour {
         DFS(graph, graph[0], itteration);
 
         int biggestDFI = 0;
-        foreach(Room r in graph)
+        foreach (Room r in graph)
         {
-            if (biggestDFI < r.DFI);
+            if (biggestDFI < r.DFI) ;
         }
 
         // find room to spawn portal
@@ -117,23 +128,17 @@ public class MapGenerator : MonoBehaviour {
                 roomContainingPortal = r;
             }
         }
-        Instantiate(Portal, roomContainingPortal.getRandomRoomPosition(), Quaternion.identity);
+        // Spawn portal in center of room
+        Instantiate(Portal, roomContainingPortal.getRoomCenter(), Quaternion.identity);
 
         // spawn scrap in all rooms
-        foreach(Room r in graph)
+        foreach (Room r in graph)
         {
-            for(int i = 0; i < Random.Range(0, 10); i++)
+            for (int i = 0; i < Random.Range(0, 10); i++)
             {
                 Instantiate(Scrap, r.getRandomRoomPosition(), Quaternion.identity);
             }
         }
-
-        
-    }
-// ---- end of start method
-    private void Update()
-    {
-        drawRoomConnectors(); // draws a line in the scene view displaying the connections between them
     }
 
     // Make initial spawn room
