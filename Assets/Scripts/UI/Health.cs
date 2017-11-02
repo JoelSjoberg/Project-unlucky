@@ -13,10 +13,11 @@ public class Health : MonoBehaviour
     public Image[] healthImages;
     public Sprite[] healthSprites;
 
-    public int heartAmount = 3;
+    private int heartAmount = 3;
     public int currentHealth;
     public int healthPerHeart = 2;
 
+    PlayerControllerMapTut player;
 
     void Awake()
     {
@@ -26,11 +27,17 @@ public class Health : MonoBehaviour
     void Start()
     {
         // take player health here instead
-        currentHealth = heartAmount * healthPerHeart;
         checkHeartAmount();
-
+        player = GetComponent<PlayerControllerMapTut>();
+        currentHealth = player.health;
+        heartAmount = currentHealth;
     }
 
+    private void Update()
+    {
+        currentHealth = player.health;
+        UpdateHearts();
+    }
     void checkHeartAmount()
     {
         for (int i = 0; i < heartAmount; i++)
@@ -68,31 +75,5 @@ public class Health : MonoBehaviour
             }
         }
 
-    }
-
-    // Method already exists in player, also instead of clomping and dealing with damage-values like 0.5 dmg. Let's scale up health and deal 1 damage!
-    public void DamageTaken(int amount)
-    {
-        currentHealth -= amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, heartAmount * healthPerHeart);
-        UpdateHearts();
-    }
-
-    
-
-    // DO NOT do this here! The PlayerControllerMapTut already has its own takeDamage() method for health manipulation!
-    // Doing this here will make it harder to write state machines
-    // and the UI should not controll the player and/or level state! It should ONLY display it!
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            DamageTaken(1);
-
-            if (currentHealth == 0)
-            {
-                SceneManager.LoadScene(2); 
-            }
-        }
     }
 }

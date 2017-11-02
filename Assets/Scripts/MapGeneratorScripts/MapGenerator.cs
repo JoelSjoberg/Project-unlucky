@@ -16,7 +16,7 @@ public class MapGenerator : MonoBehaviour {
 
     // variables to use for dungeon manipulation
     public float minWidth = 60, minHeight = 60, maxWidth = 120, maxHeight = 120, space = 15;
-    public int minRooms = 6, maxRooms = 10, doorOffset = 0, num_rooms = 7, iterations = 60;
+    public int minRooms = 6, maxRooms = 10, doorOffset = 0, num_rooms = 7, iterations = 60, maxEnemies = 3;
 
     // Use this for initialization
     void Start () {
@@ -40,9 +40,9 @@ public class MapGenerator : MonoBehaviour {
         // spawn enemies
         for (int i = 1; i < graph.Count; i++)
         {
-            for (int j = 0; j < Random.Range(0, 3); j++)
+            for (int j = 0; j < Random.Range(0, maxEnemies); j++)
             {
-                EnemyBehaviour slime = Instantiate(enemy, graph[i].getRandomRoomPosition(), Quaternion.identity);
+                EnemyBehaviour slime = Instantiate(enemy, graph[i].getRandomRoomPosition(20), Quaternion.identity);
                 slime.setCurrentRoom(graph[i]);
             }
         }
@@ -136,7 +136,7 @@ public class MapGenerator : MonoBehaviour {
         {
             for (int i = 0; i < Random.Range(0, 10); i++)
             {
-                Instantiate(Scrap, r.getRandomRoomPosition(), Quaternion.identity);
+                Instantiate(Scrap, r.getRandomRoomPosition(10), Quaternion.identity);
             }
         }
     }

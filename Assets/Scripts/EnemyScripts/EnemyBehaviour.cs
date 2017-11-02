@@ -7,7 +7,8 @@ public class EnemyBehaviour : MonoBehaviour {
 
     private Room currentRoom;
     public int health = 4, speed = 100, offset = 5, damage = 1;
-
+    [HideInInspector]
+    public bool collidingWithPlayer;
     float xAxis, zAxis;
 
     [HideInInspector]
@@ -36,7 +37,7 @@ public class EnemyBehaviour : MonoBehaviour {
     // spawn enemy in room
     public void spawnInRoom(Room room)
     {
-        transform.position = room.getRandomRoomPosition();
+        transform.position = room.getRandomRoomPosition(0);
         this.currentRoom= room;
     }
     // set current room(for collision and if enemy ever wants to leave room)
@@ -111,10 +112,22 @@ public class EnemyBehaviour : MonoBehaviour {
         return this.currentRoom;
     }
 
-    // TODO: place collision from slime behaviour here and make getter for it. save time and resourcs!
-    private void OnTriggernEnter(Collision collision)
+    // if player collides with enemy
+    private void OnCollisionEnter(Collision col)
     {
-        Debug.Log(collision.gameObject.name);
+        if (col.gameObject.name == "Player")
+        {
+            collidingWithPlayer = true;
+        }
+    }
+
+    // collision signal if the player no longer touches the agent
+    private void OnCollisionExit(Collision col)
+    {
+        if (col.gameObject.name == "Player")
+        {
+            collidingWithPlayer = false;
+        }
     }
 
 }

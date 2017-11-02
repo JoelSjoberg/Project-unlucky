@@ -26,8 +26,6 @@ public class SlimeBehaviour : MonoBehaviour {
     // primary states
     bool followPlayer = false, idle = false, die = false, attack = false, bleed;
 
-    // secondary states
-    bool collidingWithPlayer = false;
 
     public float followDistance, bleedTimer = 1.5f;
     private float bleedBuffer = 0;
@@ -55,7 +53,7 @@ public class SlimeBehaviour : MonoBehaviour {
             setStateFalse();
             die = true;
         }
-        else if(collidingWithPlayer && basicBehaviour.health > 1)
+        else if(basicBehaviour.collidingWithPlayer && basicBehaviour.health > 1)
         {
             setStateFalse();
             attack = true;
@@ -102,7 +100,7 @@ public class SlimeBehaviour : MonoBehaviour {
             bleedBuffer += Time.deltaTime;
             if (bleedBuffer >= bleedTimer) basicBehaviour.health = 0;
             if (basicBehaviour.getDistanceFromPlayer() <= followDistance) moveAwayFromPlayer();
-            if (collidingWithPlayer) basicBehaviour.health = 0;
+            if (basicBehaviour.collidingWithPlayer) basicBehaviour.health = 0;
         }
     }
 
@@ -116,25 +114,5 @@ public class SlimeBehaviour : MonoBehaviour {
     {
         basicBehaviour.inverseAxes();
         transform.Translate(basicBehaviour.getVelocity());
-    }
-
-    // TODO: implement these in the enemyBehaviour instead so we don't have to define collision behavour for every enemy!
-    // (collision should still be possible to implement if a certain enemy should react in a certain way that differst from enemyBehaviour)
-    // This method is used to see if the object is coliding with the player.
-    private void OnCollisionEnter(Collision col)
-    {
-        if( col.gameObject.name == "Player")
-        {
-            collidingWithPlayer = true;
-        }
-    }
-    
-    // collision signal if the player no longer touches the agent
-    private void OnCollisionExit(Collision col)
-    {
-        if (col.gameObject.name == "Player")
-        {
-            collidingWithPlayer = false;
-        }
     }
 }

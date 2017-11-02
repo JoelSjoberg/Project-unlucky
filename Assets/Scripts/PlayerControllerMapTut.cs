@@ -9,7 +9,13 @@ public class PlayerControllerMapTut : MonoBehaviour {
     public int health = 3;
     public bool evading = false;
     public float speed, evadeTime, evadeSpeed = 100;
-    private float movementSpeed, timer;
+    private float movementSpeed, evadeTimer = 0;
+
+    //invulnerability
+    public float invulnerableTime = 0.5f;
+    private float invulnerableTimer = 0;
+    private bool invulnerable = false;
+
 
     public GunController gun;
 
@@ -20,6 +26,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
     public Room currentRoom;
 
 	private Rigidbody rigidbody;
+    private SpriteRenderer renderer;
 	private Vector3 velocity;
 
     // sound
@@ -46,13 +53,23 @@ public class PlayerControllerMapTut : MonoBehaviour {
         return this.currentRoom;
     }
 
-    // take damage equal to given amount and play hurt sound
+    // take damage equal to given amount and play hurt sound, if you die: load game over scene
     public void takeDamage(int d)
     {
-		float vol = Random.Range (volLowRange, volHighRange);
-		source.PlayOneShot (hurtSound, vol);
+        if(!invulnerable)
+        {
+            invulnerable = true;
+            renderer.color = new Color(255, 255, 255, 0.5f);
+		    float vol = Random.Range (volLowRange, volHighRange);
+		    source.PlayOneShot (hurtSound, vol);
 
-        this.health -= d;
+            this.health -= d;
+            // if you die
+            if (health <= 0)
+            {
+                SceneManager.LoadScene(2);
+            }
+        }
     }
 
     // keep player inside room
@@ -89,8 +106,8 @@ public class PlayerControllerMapTut : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		rigidbody = GetComponent<Rigidbody> ();
+        renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         movementSpeed = speed;
-        timer = evadeTime;
 	}
 
 	void Awake(){
@@ -121,17 +138,22 @@ public class PlayerControllerMapTut : MonoBehaviour {
             evading = true;
         }
 
-        if (evading) timer -= Time.deltaTime;
-        if (timer <= 0)
+        // evading
+        if (evading) evadeTimer += Time.deltaTime;
+        if (evadeTimer >= evadeTime)
         {
             evading = false;
             movementSpeed = speed;
-            timer = evadeTime;
+            evadeTimer = 0;
         }
 
-		//if (health <= 0) {
-			//index of the end game scene in build settings
-		//	SceneManager.LoadScene (2);
-		//}
+        // invulnerability
+        if (invulnerable) invulnerableTimer += Time.deltaTime;
+        if (invulnerableTimer >= invulnerableTime)
+        {
+            renderer.color = new Color(255, 255, 255, 255);
+            invulnerable = false;
+            invulnerableTimer = 0;
+        }
     }
 }

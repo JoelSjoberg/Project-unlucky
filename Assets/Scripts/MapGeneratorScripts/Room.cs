@@ -49,12 +49,13 @@ public class Room {
             return new Vector3(pos.x + width / 2, pos.y, pos.z + height / 2);
         }
 
-        float offset = 10; 
-        public Vector3 getRandomRoomPosition()
+        public Vector3 getRandomRoomPosition(float offset)
         {
         // avoid the exact edges by using the offset
             return new Vector3(Random.Range(pos.x + offset, pos.x + width - offset), 0, Random.Range(pos.z + offset, pos.z + height - offset));
         }
+
+        
 
         private Vector3 v, searcher;
         public Vector3 getDoorPosition(Vector3 adjRoom, int offset)
