@@ -74,7 +74,7 @@ public class SlimeBehaviour : MonoBehaviour {
             {
                 setStateFalse();
                 
-                if(previousState != followPlayer) FindObjectOfType<AudioController>().play("EnemyCry"); // notice player
+                if(previousState == idle) FindObjectOfType<AudioController>().play("EnemyCry"); // notice player from idle state
                 followPlayer.active = true;
                 previousState = followPlayer;
             }

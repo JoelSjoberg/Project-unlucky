@@ -75,7 +75,7 @@ public class MapGenerator : MonoBehaviour {
             // create panel showing the room area
             plane.transform.localScale = new Vector3(r.width / 10, 0.1f, r.height / 10);
             Instantiate(plane, new Vector3(r.pos.x + r.width / 2, -4.9f, r.pos.z + r.height / 2), Quaternion.identity);
-            roof.transform.localScale = new Vector3(r.width / 10 + 2, 20f, r.height / 10 + 2);
+            roof.transform.localScale = new Vector3(r.width / 10, 20f, r.height / 10); // this math makes no sense, but it works
             Instantiate(roof, new Vector3(r.pos.x + r.width / 2, 6f, r.pos.z + r.height / 2), Quaternion.identity);
 
         }
