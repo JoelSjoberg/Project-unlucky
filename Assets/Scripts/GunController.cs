@@ -34,20 +34,10 @@ public class GunController : MonoBehaviour {
 
 	public AudioClip shootSound;
 
-	private AudioSource source;
-	private float volLowRange = .75f;
-	private float volHighRange = 1.0f;
-
 
 	// Use this for initialization
 	void Start () {
 		
-	}
-
-	void Awake(){
-
-		source = GetComponent<AudioSource> ();
-
 	}
 	
 	// Update is called once per frame
@@ -81,8 +71,7 @@ public class GunController : MonoBehaviour {
                 newBullet.speed = bulletSpeed;
                 newBullet.damage = damage;
 
-				float vol = Random.Range (volLowRange, volHighRange);
-				source.PlayOneShot (shootSound, vol);
+                FindObjectOfType<AudioController>().play("Shot");
 
                 timeSinceLastShot = 0;
 

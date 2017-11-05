@@ -24,10 +24,16 @@ I also propose that we make it possible for the enemy to have a set of sub state
 public class SlimeBehaviour : MonoBehaviour {
 
     // primary states
-    bool followPlayer = false, idle = false, die = false, attack = false, bleed;
-
+    //bool followPlayer = false, idle = false, die = false, attack = false, bleed;
+    State followPlayer = new State("FollowPlayer");
+    State idle = new State("idle");
+    State die = new State("die");
+    State attack = new State("attack");
+    State bleed = new State("bleed");
+    State previousState;
 
     public float followDistance, bleedTimer = 1.5f;
+    
     private float bleedBuffer = 0;
 
     EnemyBehaviour basicBehaviour;
@@ -35,7 +41,8 @@ public class SlimeBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        idle = true;
+        idle.active = true;
+        previousState = idle;
         basicBehaviour = GetComponent<EnemyBehaviour>();
         renderer = GetComponent<Renderer>();
 	}
@@ -46,61 +53,71 @@ public class SlimeBehaviour : MonoBehaviour {
         if (basicBehaviour.health == 1)
         {
             setStateFalse();
-            bleed = true;
+            bleed.active = true;
+            previousState = bleed;
         }
         else if (basicBehaviour.health <= 0)
         {
             setStateFalse();
-            die = true;
+            die.active = true;
+            previousState = die;
         }
         else if(basicBehaviour.collidingWithPlayer && basicBehaviour.health > 1)
         {
             setStateFalse();
-            attack = true;
-            
+            attack.active = true;
+            previousState = attack;
         }
         else if (basicBehaviour.inSameRoomAsPlayer())
         {
             if(basicBehaviour.getDistanceFromPlayer() <= followDistance)
             {
                 setStateFalse();
-                followPlayer = true;
+                
+                if(previousState != followPlayer) FindObjectOfType<AudioController>().play("EnemyCry"); // notice player
+                followPlayer.active = true;
+                previousState = followPlayer;
             }
         }
         else
         {
             setStateFalse();
-            idle = true;
+            idle.active = true;
+            previousState = idle;
         }
+
         manageStateMachine();
 	}
 
     // Set every primary state to false
     void setStateFalse()
     {
-        followPlayer = false; idle = false; die = false; attack = false; bleed = false;
+        followPlayer.active = false; idle.active = false; die.active = false; attack.active = false; bleed.active = false;
     }
 
     // act according to the current state
     void manageStateMachine()
     {
-        if (die) Destroy(gameObject);
+        if (die.active) Destroy(gameObject);
 
-        if (attack) basicBehaviour.player.takeDamage(basicBehaviour.damage);
+        if (attack.active) basicBehaviour.player.takeDamage(basicBehaviour.damage);
 
-        if(followPlayer)
+        if(followPlayer.active)
         {
             moveTowardsPlayer();
         }
-        if (bleed)
+        if (bleed.active)
         {
-            followPlayer = false;
             // set sprite color to blue
             transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
             bleedBuffer += Time.deltaTime;
             if (bleedBuffer >= bleedTimer) basicBehaviour.health = 0;
             if (basicBehaviour.getDistanceFromPlayer() <= followDistance) moveAwayFromPlayer();
-            if (basicBehaviour.collidingWithPlayer) basicBehaviour.health = 0;
+            if (basicBehaviour.collidingWithPlayer)
+            {
+                basicBehaviour.health = 0;
+                basicBehaviour.player.heal(1);
+            }
         }
     }
 

@@ -4,22 +4,14 @@ using UnityEngine;
 
 public class ScrapBehaviour : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.name == "Player")
         {
+            // play the sound from the audio manager
+            FindObjectOfType<AudioController>().play("Scrap");
             Destroy(gameObject);
-            other.GetComponent<PlayerControllerMapTut>().gun.ammoBuffer ++;
+            other.GetComponent<PlayerControllerMapTut>().gun.ammoBuffer++;
         }
     }
 }

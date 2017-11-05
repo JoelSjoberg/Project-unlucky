@@ -29,12 +29,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
     private SpriteRenderer renderer;
 	private Vector3 velocity;
 
-    // sound
-	public AudioClip hurtSound;
-	private AudioSource source;
-	private float volLowRange = .75f;
-	private float volHighRange = 1.0f;
-
     // place player on given cordinates
     public void spawn(float x, float z)
     {
@@ -60,16 +54,23 @@ public class PlayerControllerMapTut : MonoBehaviour {
         {
             invulnerable = true;
             renderer.color = new Color(255, 255, 255, 0.5f);
-		    float vol = Random.Range (volLowRange, volHighRange);
-		    source.PlayOneShot (hurtSound, vol);
 
             this.health -= d;
+            FindObjectOfType<AudioController>().play("Hurt");
+
             // if you die
             if (health <= 0)
             {
                 SceneManager.LoadScene(2);
             }
         }
+    }
+    
+
+    // recieve health and TODO: play sound
+    public void heal(int h)
+    {
+        health += h;
     }
 
     // keep player inside room
@@ -109,11 +110,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
         renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         movementSpeed = speed;
 	}
-
-	void Awake(){
-
-		source = GetComponent<AudioSource> ();
-    }
 	
 	// Update is called once per frame
 	void Update () {

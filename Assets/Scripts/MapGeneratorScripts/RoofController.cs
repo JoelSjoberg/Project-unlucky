@@ -35,7 +35,7 @@ public class RoofController : MonoBehaviour {
             }
         }
 	}
-    // deelte roof if player collides with it
+    // delete roof if player collides with it
     private void OnTriggerEnter(Collider other)
     {
         if(other.name == "Player")

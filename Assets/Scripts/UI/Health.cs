@@ -7,14 +7,12 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
 
-    // Take health from the player class instead, saves time and resources
-    public static int health;
     public Text text;
     public Image[] healthImages;
     public Sprite[] healthSprites;
 
     private int heartAmount = 3;
-    public int currentHealth;
+    private int currentHealth;
     public int healthPerHeart = 2;
 
     PlayerControllerMapTut player;
