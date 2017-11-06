@@ -31,6 +31,7 @@ public class FollowPlayer : MonoBehaviour {
             if (toggle)
             {
                 offset.y = offsetYon;
+                
             }
             if(!toggle)
             {

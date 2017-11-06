@@ -35,9 +35,9 @@ public class EnemyBehaviour : MonoBehaviour {
         return (player.transform.position - transform.position).magnitude;
     }
     // spawn enemy in room
-    public void spawnInRoom(Room room)
+    public void spawnInRoom(Room room, float y)
     {
-        transform.position = room.getRandomRoomPosition(0);
+        transform.position = room.getRandomRoomPosition(0, y);
         this.currentRoom= room;
     }
     // set current room(for collision and if enemy ever wants to leave room)

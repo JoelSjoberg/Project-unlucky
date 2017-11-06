@@ -44,24 +44,24 @@ public class Room {
             return xCol && yCol;
         }
 
-        public Vector3 getRoomCenter()
+        public Vector3 getRoomCenter(float y)
         {
-            return new Vector3(pos.x + width / 2, pos.y, pos.z + height / 2);
+            return new Vector3(pos.x + width / 2, y, pos.z + height / 2);
         }
 
-        public Vector3 getRandomRoomPosition(float offset)
+        public Vector3 getRandomRoomPosition(float offset, float y)
         {
         // avoid the exact edges by using the offset
-            return new Vector3(Random.Range(pos.x + offset, pos.x + width - offset), 0, Random.Range(pos.z + offset, pos.z + height - offset));
+            return new Vector3(Random.Range(pos.x + offset, pos.x + width - offset), y, Random.Range(pos.z + offset, pos.z + height - offset));
         }
 
         
 
         private Vector3 v, searcher;
-        public Vector3 getDoorPosition(Vector3 adjRoom, int offset)
+        public Vector3 getDoorPosition(Vector3 adjRoom, int offset, float y)
         {
-            v = (adjRoom - this.getRoomCenter()).normalized; // get vector between rooms
-            searcher = this.getRoomCenter();
+            v = (adjRoom - this.getRoomCenter(y)).normalized; // get vector between rooms
+            searcher = this.getRoomCenter(y);
             while (vectorInRoom(searcher, offset))
             {
                 searcher += v; // Add unit to vector untill it is outside the room

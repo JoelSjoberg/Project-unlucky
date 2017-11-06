@@ -49,7 +49,7 @@ public class SlimeBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        // primary states in hierarchy(bleed > die > attack > follow > idle)
+        // primary states in hierarchy(die > bleed > attack > follow > idle)
         if (basicBehaviour.health == 1)
         {
             setStateFalse();
@@ -100,13 +100,7 @@ public class SlimeBehaviour : MonoBehaviour {
     {
         if (die.active) Destroy(gameObject);
 
-        if (attack.active) basicBehaviour.player.takeDamage(basicBehaviour.damage);
-
-        if(followPlayer.active)
-        {
-            moveTowardsPlayer();
-        }
-        if (bleed.active)
+        else if (bleed.active)
         {
             // set sprite color to blue
             transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
@@ -118,6 +112,12 @@ public class SlimeBehaviour : MonoBehaviour {
                 basicBehaviour.health = 0;
                 basicBehaviour.player.heal(1);
             }
+        }
+        else if (attack.active) basicBehaviour.player.takeDamage(basicBehaviour.damage);
+
+        else if(followPlayer.active)
+        {
+            moveTowardsPlayer();
         }
     }
 

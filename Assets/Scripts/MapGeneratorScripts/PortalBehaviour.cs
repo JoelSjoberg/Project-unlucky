@@ -5,14 +5,18 @@ using UnityEngine;
 
 public class PortalBehaviour : MonoBehaviour {
 
+    public Transform plane;
+
     // Load a new map
     private void OnTriggerEnter(Collider other)
     {
         if(other.name == "Player")
         {
-            //FindObjectOfType<MapGenerator>().makeDungeon();
-            SceneManager.LoadScene("Level3");
             Debug.Log("makeDungeon");
+            FindObjectOfType<MapGenerator>().transform.position += new Vector3(0, 400, 0);
+            FindObjectOfType<MapGenerator>().makeDungeon();
+            //Instantiate(plane, FindObjectOfType<MapGenerator>().transform.position, Quaternion.identity);
+            //SceneManager.LoadScene("Level3");
         }
     }
 

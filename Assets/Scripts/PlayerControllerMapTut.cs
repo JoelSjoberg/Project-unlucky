@@ -30,9 +30,9 @@ public class PlayerControllerMapTut : MonoBehaviour {
 	private Vector3 velocity;
 
     // place player on given cordinates
-    public void spawn(float x, float z)
+    public void spawn(Vector3 newPos)
     {
-        transform.position = new Vector3(x, transform.position.y, z);
+        transform.position = newPos;
     }
 
     // Change the room thich the collsion works with
@@ -78,6 +78,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
     {
         xAxis = Input.GetAxisRaw("Horizontal");
         zAxis = Input.GetAxisRaw("Vertical");
+        if (currentRoom == null) return;
 
         // Collision with walls in current room
 
@@ -106,9 +107,11 @@ public class PlayerControllerMapTut : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		rigidbody = GetComponent<Rigidbody> ();
+
+        rigidbody = GetComponent<Rigidbody> ();
         renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         movementSpeed = speed;
+
 	}
 	
 	// Update is called once per frame

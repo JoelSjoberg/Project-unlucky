@@ -7,12 +7,12 @@ public class Door : MonoBehaviour {
     [HideInInspector]
     public Door pair;
     [HideInInspector]
-    public Room room; // room in which room resides
+    public Room room; // room in which door resides
     private bool closed;
     
-    public Door(float x, float z)
+    public Door(Vector3 pos)
     {
-        transform.position = new Vector3(x, 0, z);
+        transform.position = pos;
     }
 
     public void connectToPair(Door p)

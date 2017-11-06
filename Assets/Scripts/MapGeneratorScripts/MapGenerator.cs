@@ -31,18 +31,20 @@ public class MapGenerator : MonoBehaviour {
     // method for creating the whole dungeon
     public void makeDungeon()
     {
+        graph = new List<Room>();
+        tree = new List<Room>();
 
         makeNewMap();
 
         graph[0].visited = true; // initialize visited value from the start
         player.currentRoom = graph[0];
-        player.spawn(player.currentRoom.width / 2, player.currentRoom.height / 2);
+        player.spawn(new Vector3(player.currentRoom.width / 2, transform.position.y, player.currentRoom.height / 2));
         // spawn enemies
         for (int i = 1; i < graph.Count; i++)
         {
             for (int j = 0; j < Random.Range(0, maxEnemies); j++)
             {
-                EnemyBehaviour slime = Instantiate(enemy, graph[i].getRandomRoomPosition(20), Quaternion.identity);
+                EnemyBehaviour slime = Instantiate(enemy, graph[i].getRandomRoomPosition(20, transform.position.y), Quaternion.identity);
                 slime.setCurrentRoom(graph[i]);
             }
         }
@@ -58,28 +60,28 @@ public class MapGenerator : MonoBehaviour {
             // create wall to each room
             // lower wall
             wall.GetComponent<RoomWall>().makeSize(r.width, roomspace);
-            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z + roomspace / 2), Quaternion.identity);
+            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, transform.position.y, r.pos.z + roomspace / 2), Quaternion.identity);
 
             // upper Wall
             wall.GetComponent<RoomWall>().makeSize(r.width, roomspace);
-            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, 0, r.pos.z + r.height - roomspace / 2), Quaternion.identity);
+            Instantiate(wall, new Vector3(r.pos.x + r.width / 2, transform.position.y, r.pos.z + r.height - roomspace / 2), Quaternion.identity);
 
             // left wall
             wall.GetComponent<RoomWall>().makeSize(roomspace, r.height);
-            Instantiate(wall, new Vector3(r.pos.x + roomspace / 2, 0, r.pos.z + r.height / 2), Quaternion.identity);
+            Instantiate(wall, new Vector3(r.pos.x + roomspace / 2, transform.position.y, r.pos.z + r.height / 2), Quaternion.identity);
 
             // right wall
             wall.GetComponent<RoomWall>().makeSize(roomspace, r.height);
-            Instantiate(wall, new Vector3(r.pos.x + r.width - roomspace / 2, 0, r.pos.z + r.height / 2), Quaternion.identity);
+            Instantiate(wall, new Vector3(r.pos.x + r.width - roomspace / 2, transform.position.y, r.pos.z + r.height / 2), Quaternion.identity);
 
             // create panel showing the room area
             plane.transform.localScale = new Vector3(r.width / 10, 0.1f, r.height / 10);
-            Instantiate(plane, new Vector3(r.pos.x + r.width / 2, -4.9f, r.pos.z + r.height / 2), Quaternion.identity);
+            Instantiate(plane, new Vector3(r.pos.x + r.width / 2, -4.9f + transform.position.y, r.pos.z + r.height / 2), Quaternion.identity);
             roof.transform.localScale = new Vector3(r.width / 10, 20f, r.height / 10); // this math makes no sense, but it works
-            Instantiate(roof, new Vector3(r.pos.x + r.width / 2, 6f, r.pos.z + r.height / 2), Quaternion.identity);
+            Instantiate(roof, new Vector3(r.pos.x + r.width / 2, 6f + transform.position.y, r.pos.z + r.height / 2), Quaternion.identity);
 
         }
-
+        print("Walls and roofs generated");
         Door door1, door2;
         // this is too linear
         // but save it in case we want that kind of structure now and then
@@ -99,20 +101,21 @@ public class MapGenerator : MonoBehaviour {
         {
             foreach (Room n in r.adjList)
             {
-                door1 = Instantiate(door, r.getDoorPosition(n.getRoomCenter(), doorOffset), Quaternion.identity) as Door;
+                door1 = Instantiate(door, r.getDoorPosition(n.getRoomCenter(transform.position.y), doorOffset, transform.position.y), Quaternion.identity) as Door;
                 door1.room = r;
-                door2 = Instantiate(door, n.getDoorPosition(r.getRoomCenter(), doorOffset), Quaternion.identity) as Door;
+                door2 = Instantiate(door, n.getDoorPosition(r.getRoomCenter(transform.position.y), doorOffset, transform.position.y), Quaternion.identity) as Door;
                 door2.room = n;
 
                 door1.connectToPair(door2);
             }
         }
+        print("doors generated");
         PrepareForDfs(graph);
 
         // give rooms values that indicate distance from spawn room
         int itteration = 0; // depth-first index for each room
         DFS(graph, graph[0], itteration);
-
+        print("DFS Done");
         int biggestDFI = 0;
         foreach (Room r in graph)
         {
@@ -128,17 +131,19 @@ public class MapGenerator : MonoBehaviour {
                 roomContainingPortal = r;
             }
         }
-        // Spawn portal in center of room
-        Instantiate(Portal, roomContainingPortal.getRoomCenter(), Quaternion.identity);
 
+        // Spawn portal in center of room
+        Instantiate(Portal, roomContainingPortal.getRoomCenter(transform.position.y), Quaternion.identity);
+        print("Portal spawned");
         // spawn scrap in all rooms
         foreach (Room r in graph)
         {
             for (int i = 0; i < Random.Range(0, 10); i++)
             {
-                Instantiate(Scrap, r.getRandomRoomPosition(10), Quaternion.identity);
+                Instantiate(Scrap, r.getRandomRoomPosition(10, transform.position.y), Quaternion.identity);
             }
         }
+        print("Scrap generated");
     }
 
     // Make initial spawn room
@@ -237,7 +242,7 @@ public class MapGenerator : MonoBehaviour {
                 {
                     if (!graph[i].visited)
                     {
-                        temp = (graph[i].getRoomCenter() - n.getRoomCenter()).magnitude;
+                        temp = (graph[i].getRoomCenter(transform.position.y) - n.getRoomCenter(transform.position.y)).magnitude;
                         if (temp < shortest)
                         {
                             shortest = temp;
@@ -285,7 +290,7 @@ public class MapGenerator : MonoBehaviour {
         {
             foreach(Room n in r.adjList)
             {
-                Debug.DrawLine(r.getRoomCenter(), n.getRoomCenter(), Color.red);
+                Debug.DrawLine(r.getRoomCenter(transform.position.y), n.getRoomCenter(transform.position.y), Color.red);
             }
         }
 
