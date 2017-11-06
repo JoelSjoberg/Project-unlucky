@@ -111,8 +111,10 @@ public class SlimeBehaviour : MonoBehaviour {
             {
                 basicBehaviour.health = 0;
                 basicBehaviour.player.heal(1);
+                FindObjectOfType<TimeController>().slowDown(0.3f);
             }
         }
+
         else if (attack.active) basicBehaviour.player.takeDamage(basicBehaviour.damage);
 
         else if(followPlayer.active)
