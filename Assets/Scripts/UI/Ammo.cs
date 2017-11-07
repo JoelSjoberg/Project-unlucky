@@ -50,10 +50,8 @@ public class Ammo : MonoBehaviour
             //Checks if ammo is less than 10 to use more spacing to make the counter look better
             if (ammo <= 10)
             {
-
                 ammo--;
                 ammoText.text = " " + ammo + "    " + maxAmmo;
-                
             }
             else
             {
@@ -62,6 +60,8 @@ public class Ammo : MonoBehaviour
             }
             gun.shotFired = false;
         }
+
+
         //If enough scrap is collected, 1 ammo is added
         if (gun.ammoAdded)
         {
@@ -77,25 +77,37 @@ public class Ammo : MonoBehaviour
                 ammoText.text = ammo + "   " + maxAmmo;
             }
             gun.ammoAdded = false;
+            ammoEmpty = false;
         }
 
 
         //If reloading when ammo is empty
-        if (ammo <= 0 && maxAmmo > 0)
+        if (ammo == 0 && maxAmmo > 0)
         {
             ammoEmpty = true;
             if (Input.GetKeyDown("r"))
             {
+               
+                if (setAmmo >= maxAmmo)
+                {
+                    ammo = maxAmmo;
+                    maxAmmo = 0;
+                    ammoText.text = ammo + "    " + maxAmmo;
+                }
+                else
+                {
+                    remainderAmmo = setAmmo - ammo;
+                    ammo = setAmmo;
+                    maxAmmo -= setAmmo;
+                    ammoText.text = ammo + "   " + maxAmmo;
+                }
                 ammoEmpty = false;
-                ammo = setAmmo;
-                maxAmmo -= setAmmo;
-                ammoText.text = ammo + "   " + maxAmmo;
-
             }
+
         }
 
         //If reloading with ammo left
-        if (ammo > 0 && ammo != setAmmo && maxAmmo > 0)
+        if (ammo > 0 && ammo != setAmmo && maxAmmo > 0 && !ammoEmpty)
         {
 
             if (Input.GetKeyDown("r"))
@@ -111,7 +123,7 @@ public class Ammo : MonoBehaviour
                     ammo = setAmmo;
                     ammoText.text = ammo + "   " + maxAmmo;
                 }
-
+                
                 //If maxAmmo is less than the maximum amount in the magazine, but larger than the remainder
                 else if (maxAmmo < setAmmo && remainderAmmo <= maxAmmo)
                 {
