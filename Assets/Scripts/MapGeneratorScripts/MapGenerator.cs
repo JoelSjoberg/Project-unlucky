@@ -101,7 +101,7 @@ public class MapGenerator : MonoBehaviour {
         {
             foreach (Room n in r.adjList)
             {
-                door1 = Instantiate(door, r.getDoorPosition(n.getRoomCenter(transform.position.y), doorOffset, transform.position.y-5), Quaternion.identity) as Door;
+                door1 = Instantiate(door, r.getDoorPosition(n.getRoomCenter(transform.position.y) , doorOffset, transform.position.y-5), Quaternion.identity) as Door;
                 door1.room = r;
                 door2 = Instantiate(door, n.getDoorPosition(r.getRoomCenter(transform.position.y), doorOffset, transform.position.y-5), Quaternion.identity) as Door;
                 door2.room = n;
