@@ -84,6 +84,7 @@ public class GunController : MonoBehaviour {
 				float vol = Random.Range (volLowRange, volHighRange);
 				source.PlayOneShot (shootSound, vol);
 
+
                 timeSinceLastShot = 0;
 
                 shotFired = true;

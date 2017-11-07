@@ -11,6 +11,12 @@ public class PlayerControllerMapTut : MonoBehaviour {
     public float speed, evadeTime, evadeSpeed = 100;
     private float movementSpeed, timer;
 
+	// Status properties
+	public float Speed {
+        get {return speed;}
+        set { speed = value;}
+    }
+
     public GunController gun;
 
     // for collision detection
@@ -128,6 +134,8 @@ public class PlayerControllerMapTut : MonoBehaviour {
             movementSpeed = speed;
             timer = evadeTime;
         }
+
+       
 
 		//if (health <= 0) {
 			//index of the end game scene in build settings

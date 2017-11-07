@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour {
 
-    AudioSource audio;
+   public AudioSource audio;
 
     public static AudioController instance;
 
@@ -17,8 +17,10 @@ public class AudioController : MonoBehaviour {
 	void Update () {
         if (audio.time > 106)
         {
-            audio.Stop();
-            audio.Play();
+			PlayAudio (-1);
+			PlayAudio (1);
+
+			//PlayAudio (0);
         }
 	}
 
@@ -35,4 +37,22 @@ public class AudioController : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
     }
+
+	public void PlayAudio (int play){
+	
+		if (play == 1) {
+			
+			audio.Stop();
+
+		}
+
+		else if (play == 0) {
+			audio.Pause ();
+		}
+		else {
+			audio.Play();
+		}
+	}
+
 }
+

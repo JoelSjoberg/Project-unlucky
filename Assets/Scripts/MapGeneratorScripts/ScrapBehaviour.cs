@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class ScrapBehaviour : MonoBehaviour {
 
+	public AudioClip sound;
+	private AudioSource source;
+
+	AudioController ac = new AudioController ();
+
+	void Awake(){
+		
+		source = GetComponent<AudioSource> ();
+	}
+
 	// Use this for initialization
 	void Start () {
-		
+		source = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -16,10 +26,15 @@ public class ScrapBehaviour : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name == "Player")
+		if(other.tag == "Player")
         {
+			source.PlayOneShot (sound, 1f);
+
+
+
             Destroy(gameObject);
             other.GetComponent<PlayerControllerMapTut>().gun.ammoBuffer ++;
+			//ac.PlayAudio (0);
         }
     }
 }
