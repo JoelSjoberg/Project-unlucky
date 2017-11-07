@@ -24,12 +24,12 @@ I also propose that we make it possible for the enemy to have a set of sub state
 public class SlimeBehaviour : MonoBehaviour {
 
     // primary states
-    //bool followPlayer = false, idle = false, die = false, attack = false, bleed;
     State followPlayer = new State("FollowPlayer");
     State idle = new State("idle");
     State die = new State("die");
     State attack = new State("attack");
     State bleed = new State("bleed");
+    State staggered = new State("staggered");
     State previousState;
 
     public float followDistance, bleedTimer = 1.5f;
@@ -50,41 +50,13 @@ public class SlimeBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // primary states in hierarchy(die > bleed > attack > follow > idle)
-        if (basicBehaviour.health == 1)
-        {
-            setStateFalse();
-            bleed.active = true;
-            previousState = bleed;
-        }
-        else if (basicBehaviour.health <= 0)
-        {
-            setStateFalse();
-            die.active = true;
-            previousState = die;
-        }
-        else if(basicBehaviour.collidingWithPlayer && basicBehaviour.health > 1)
-        {
-            setStateFalse();
-            attack.active = true;
-            previousState = attack;
-        }
-        else if (basicBehaviour.inSameRoomAsPlayer())
-        {
-            if(basicBehaviour.getDistanceFromPlayer() <= followDistance)
-            {
-                setStateFalse();
-                
-                if(previousState == idle) FindObjectOfType<AudioController>().play("EnemyCry"); // notice player from idle state
-                followPlayer.active = true;
-                previousState = followPlayer;
-            }
-        }
-        else
-        {
-            setStateFalse();
-            idle.active = true;
-            previousState = idle;
-        }
+
+        die.active = basicBehaviour.health <= 0;
+        bleed.active = basicBehaviour.health == 1;
+        attack.active = basicBehaviour.collidingWithPlayer && basicBehaviour.health > 1;
+        followPlayer.active = basicBehaviour.inSameRoomAsPlayer() && basicBehaviour.getDistanceFromPlayer() <= followDistance;
+        staggered.active = basicBehaviour.staggered;
+        idle.active = !die.active && !bleed.active && !attack.active && !followPlayer.active && !staggered.active;
 
         manageStateMachine();
 	}
@@ -111,15 +83,30 @@ public class SlimeBehaviour : MonoBehaviour {
             {
                 basicBehaviour.health = 0;
                 basicBehaviour.player.heal(1);
-                FindObjectOfType<TimeController>().slowDown(0.3f);
+
+                // needs testing
+                //FindObjectOfType<TimeController>().slowDown(0.3f); // slow down time to magnify impact
             }
+            previousState = bleed;
         }
 
-        else if (attack.active) basicBehaviour.player.takeDamage(basicBehaviour.damage);
+        else if(staggered.active)
+        {
+            //transform.position = new Vector3(transform.position.x + Mathf.Sin(Time.deltaTime),transform.position.y, transform.position.z);
+            previousState = staggered;
+        }
+
+        else if (attack.active) basicBehaviour.player.takeDamage(basicBehaviour.damage, transform.position);
 
         else if(followPlayer.active)
         {
+            if (previousState == idle) FindObjectOfType<AudioController>().play("EnemyCry"); // notice player from idle state
             moveTowardsPlayer();
+            previousState = followPlayer;
+        }
+        else if(idle.active)
+        {
+            previousState = idle;
         }
     }
 

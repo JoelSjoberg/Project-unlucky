@@ -174,7 +174,10 @@ MonoBehaviour:
   speed: 15
   offset: 5
   damage: 1
+  staggerDuration: 0.2
+  staggerTimer: 0
   collidingWithPlayer: 0
+  staggered: 0
   player: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &114765701530147712

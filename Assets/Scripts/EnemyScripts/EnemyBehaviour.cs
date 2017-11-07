@@ -7,8 +7,10 @@ public class EnemyBehaviour : MonoBehaviour {
 
     private Room currentRoom;
     public int health = 4, speed = 100, offset = 5, damage = 1;
+    public float staggerDuration = 0.05f, staggerTimer = 0;
     [HideInInspector]
-    public bool collidingWithPlayer;
+    public bool collidingWithPlayer, staggered;
+    [HideInInspector]
     float xAxis, zAxis;
 
     [HideInInspector]
@@ -27,6 +29,16 @@ public class EnemyBehaviour : MonoBehaviour {
 	void Update ()
     {
         checkCollision();
+
+        if (staggered && staggerTimer < staggerDuration)
+        {
+            staggerTimer += Time.deltaTime;
+        }
+        else
+        {
+            staggered = false;
+            staggerTimer = 0;
+        }
 	}
 
     // return distance from player
@@ -98,6 +110,7 @@ public class EnemyBehaviour : MonoBehaviour {
     public void takeDamage(int damage)
     {
         health -= damage;
+        staggered = true;
     }
 
     // Returns true if it is in the same room as the player

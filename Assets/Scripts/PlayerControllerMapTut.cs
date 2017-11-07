@@ -8,14 +8,13 @@ public class PlayerControllerMapTut : MonoBehaviour {
     // Status variables
     public int health = 3;
     public bool evading = false;
-    public float speed, evadeTime, evadeSpeed = 100;
+    public float speed, slowDownSpeed, evadeTime, evadeSpeed = 100;
     private float movementSpeed, evadeTimer = 0;
 
     //invulnerability
     public float invulnerableTime = 0.5f;
     private float invulnerableTimer = 0;
     private bool invulnerable = false;
-
 
     public GunController gun;
 
@@ -48,13 +47,12 @@ public class PlayerControllerMapTut : MonoBehaviour {
     }
 
     // take damage equal to given amount and play hurt sound, if you die: load game over scene
-    public void takeDamage(int d)
+    public void takeDamage(int d, Vector3 damager)
     {
         if(!invulnerable)
         {
             invulnerable = true;
-            renderer.color = new Color(255, 255, 255, 0.5f);
-
+            renderer.color = new Color(255, 255, 255, 0.2f);
             this.health -= d;
             FindObjectOfType<AudioController>().play("Hurt");
 
@@ -66,6 +64,11 @@ public class PlayerControllerMapTut : MonoBehaviour {
         }
     }
     
+    // TODO: make player stagger
+    public void stagger()
+    {
+
+    }
 
     // recieve health and TODO: play sound
     public void heal(int h)
@@ -78,7 +81,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
     {
         xAxis = Input.GetAxisRaw("Horizontal");
         zAxis = Input.GetAxisRaw("Vertical");
-        if (currentRoom == null) return;
+        if (currentRoom == null) return; // avoid errors in case dungeon's not ready yet
 
         // Collision with walls in current room
 
@@ -147,7 +150,10 @@ public class PlayerControllerMapTut : MonoBehaviour {
         }
 
         // invulnerability
-        if (invulnerable) invulnerableTimer += Time.deltaTime;
+        if (invulnerable)
+        {
+            invulnerableTimer += Time.deltaTime;
+        }
         if (invulnerableTimer >= invulnerableTime)
         {
             renderer.color = new Color(255, 255, 255, 255);
