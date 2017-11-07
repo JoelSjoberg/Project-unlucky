@@ -11,6 +11,11 @@ public class PlayerControllerMapTut : MonoBehaviour {
     public float speed, slowDownSpeed, evadeTime, evadeSpeed = 100;
     private float movementSpeed, evadeTimer = 0;
 
+    //Gameover related
+    //menu is not activated util dead = true
+    public bool dead = false;
+    public GameObject gameOverScreen;
+
     //invulnerability
     public float invulnerableTime = 0.5f;
     private float invulnerableTimer = 0;
@@ -59,7 +64,8 @@ public class PlayerControllerMapTut : MonoBehaviour {
             // if you die
             if (health <= 0)
             {
-                SceneManager.LoadScene(2);
+                dead = true;
+                //SceneManager.LoadScene(2);
             }
         }
     }
@@ -114,6 +120,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody> ();
         renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         movementSpeed = speed;
+        gameOverScreen.SetActive(false);
 
 	}
 	
@@ -159,6 +166,12 @@ public class PlayerControllerMapTut : MonoBehaviour {
             renderer.color = new Color(255, 255, 255, 255);
             invulnerable = false;
             invulnerableTimer = 0;
+        }
+
+        if (dead)
+        {
+            gameOverScreen.SetActive(true);
+            Destroy(gameObject);
         }
     }
 }
