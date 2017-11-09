@@ -239,7 +239,7 @@ MonoBehaviour:
   minHeight: 80
   maxWidth: 160
   maxHeight: 160
-  space: 25
+  space: 1
   minRooms: 5
   maxRooms: 9
   doorOffset: 5
@@ -1994,7 +1994,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 1811342995}
   invulnerableTime: 0.7
   gun: {fileID: 1713204323}
-  offset: 8
+  offset: -5
 --- !u!114 &1669910981
 MonoBehaviour:
   m_ObjectHideFlags: 0

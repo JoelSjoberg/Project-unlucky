@@ -6,6 +6,7 @@ public class MapGenerator : MonoBehaviour {
 
 	//Creates CaveGenerators
 	public Transform prefab, caveGenerator, wall, doorParent, plane, roof, Portal, Scrap;
+    [HideInInspector]
     public PlayerControllerMapTut player;
     public Door door;
     public EnemyBehaviour enemy;
@@ -15,17 +16,22 @@ public class MapGenerator : MonoBehaviour {
     private List<Room> tree = new List<Room>();
 
     // variables to use for dungeon manipulation
-    public float minWidth = 60, minHeight = 60, maxWidth = 120, maxHeight = 120, space = 15;
+    public float minWidth = 60, minHeight = 60, maxWidth = 120, maxHeight = 120, space = 0;
     public int minRooms = 6, maxRooms = 10, doorOffset = 0, num_rooms = 7, iterations = 60, maxEnemies = 3;
 
     // Use this for initialization
     void Start () {
-        makeDungeon(); 
+        makeDungeon();
+        player = FindObjectOfType<PlayerControllerMapTut>();
     }
 // ---- end of start method
     private void Update()
     {
         drawRoomConnectors(); // draws a line in the scene view displaying the connections between them
+        foreach(Room r in graph)
+        {
+            if (r.vectorInRoom(player.transform.position, 0)) player.currentRoom = r;
+        }
     }
 
     // method for creating the whole dungeon
@@ -57,6 +63,7 @@ public class MapGenerator : MonoBehaviour {
         float roomspace = (space / 5);
         foreach (Room r in graph)
         {
+            /*
             // create wall to each room
             // lower wall
             wall.GetComponent<RoomWall>().makeSize(r.width, roomspace);
@@ -73,9 +80,9 @@ public class MapGenerator : MonoBehaviour {
             // right wall
             wall.GetComponent<RoomWall>().makeSize(roomspace, r.height);
             Instantiate(wall, new Vector3(r.pos.x + r.width - roomspace / 2, transform.position.y, r.pos.z + r.height / 2), Quaternion.identity);
-
+            */
             // create panel showing the room area
-            plane.transform.localScale = new Vector3(r.width / 10, 0.1f, r.height / 10);
+            plane.transform.localScale = new Vector3((r.width / 10) + 1, 0.1f, (r.height / 10) + 1);
             Instantiate(plane, new Vector3(r.pos.x + r.width / 2, -4.9f + transform.position.y, r.pos.z + r.height / 2), Quaternion.identity);
             roof.transform.localScale = new Vector3(r.width / 10, 20f, r.height / 10); // this math makes no sense, but it works
             Instantiate(roof, new Vector3(r.pos.x + r.width / 2, 6f + transform.position.y, r.pos.z + r.height / 2), Quaternion.identity);
@@ -97,7 +104,7 @@ public class MapGenerator : MonoBehaviour {
          }*/
 
         // this is buggy, as some rooms will be given a connection when distance is too big i.e. big gaps between rooms may occur 
-        foreach (Room r in graph)
+        /*foreach (Room r in graph)
         {
             foreach (Room n in r.adjList)
             {
@@ -109,7 +116,7 @@ public class MapGenerator : MonoBehaviour {
                 door1.connectToPair(door2);
             }
         }
-        print("doors generated");
+        print("doors generated");*/
         PrepareForDfs(graph);
 
         // give rooms values that indicate distance from spawn room
