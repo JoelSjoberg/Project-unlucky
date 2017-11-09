@@ -54,9 +54,6 @@ public class Room {
         // avoid the exact edges by using the offset
             return new Vector3(Random.Range(pos.x + offset, pos.x + width - offset), y, Random.Range(pos.z + offset, pos.z + height - offset));
         }
-
-        
-
         private Vector3 v, searcher;
         public Vector3 getDoorPosition(Vector3 adjRoom, int offset, float y)
         {
@@ -69,4 +66,9 @@ public class Room {
             return searcher;
 
         }
+
+    public float getArea()
+    {
+        return this.width * this.height;
+    }
 }

@@ -6,6 +6,7 @@ public class MapGenerator : MonoBehaviour {
 
 	//Creates CaveGenerators
 	public Transform prefab, caveGenerator, wall, doorParent, plane, roof, Portal, Scrap;
+    [HideInInspector]
     public PlayerControllerMapTut player;
     public Door door;
     public EnemyBehaviour enemy;
@@ -16,10 +17,11 @@ public class MapGenerator : MonoBehaviour {
 
     // variables to use for dungeon manipulation
     public float minWidth = 60, minHeight = 60, maxWidth = 120, maxHeight = 120, space = 15;
-    public int minRooms = 6, maxRooms = 10, doorOffset = 0, num_rooms = 7, iterations = 60, maxEnemies = 3;
+    public int minRooms = 6, maxRooms = 10, doorOffset = 0, num_rooms = 7, iterations = 60;
 
     // Use this for initialization
     void Start () {
+        player = FindObjectOfType<PlayerControllerMapTut>();
         makeDungeon(); 
     }
 // ---- end of start method
@@ -39,10 +41,19 @@ public class MapGenerator : MonoBehaviour {
         graph[0].visited = true; // initialize visited value from the start
         player.currentRoom = graph[0];
         player.spawn(new Vector3(player.currentRoom.width / 2, transform.position.y, player.currentRoom.height / 2));
+        float area;
+        int minEnemies = 0, maxEnemies = 3;
         // spawn enemies
         for (int i = 1; i < graph.Count; i++)
         {
-            for (int j = 0; j < Random.Range(0, maxEnemies); j++)
+            area = graph[i].getArea();
+            // No Enemies
+            if (area < (minWidth + maxWidth / 10) * (minHeight + maxHeight / 10)) { minEnemies = 0; maxEnemies = 1; }
+            else if (area < (minWidth + maxWidth / 5) * (minHeight + maxHeight / 5)) { minEnemies = 1; maxEnemies = 4; }
+            else if (area < (minWidth + maxWidth / 3) * (minHeight + maxHeight / 3)) { minEnemies = 2; maxEnemies = 5; }
+            else { minEnemies = 3; maxEnemies = 7; }
+
+            for (int j = 0; j < Random.Range(minEnemies, maxEnemies); j++)
             {
                 EnemyBehaviour slime = Instantiate(enemy, graph[i].getRandomRoomPosition(20, transform.position.y), Quaternion.identity);
                 slime.setCurrentRoom(graph[i]);
@@ -81,7 +92,6 @@ public class MapGenerator : MonoBehaviour {
             Instantiate(roof, new Vector3(r.pos.x + r.width / 2, 6f + transform.position.y, r.pos.z + r.height / 2), Quaternion.identity);
 
         }
-        print("Walls and roofs generated");
         Door door1, door2;
         // this is too linear
         // but save it in case we want that kind of structure now and then
@@ -109,13 +119,11 @@ public class MapGenerator : MonoBehaviour {
                 door1.connectToPair(door2);
             }
         }
-        print("doors generated");
         PrepareForDfs(graph);
 
         // give rooms values that indicate distance from spawn room
         int itteration = 0; // depth-first index for each room
         DFS(graph, graph[0], itteration);
-        print("DFS Done");
         int biggestDFI = 0;
         foreach (Room r in graph)
         {
@@ -134,7 +142,6 @@ public class MapGenerator : MonoBehaviour {
 
         // Spawn portal in center of room
         Instantiate(Portal, roomContainingPortal.getRoomCenter(transform.position.y), Quaternion.identity);
-        print("Portal spawned");
         // spawn scrap in all rooms
         foreach (Room r in graph)
         {
@@ -143,7 +150,6 @@ public class MapGenerator : MonoBehaviour {
                 Instantiate(Scrap, r.getRandomRoomPosition(10, transform.position.y), Quaternion.identity);
             }
         }
-        print("Scrap generated");
     }
 
     // Make initial spawn room
