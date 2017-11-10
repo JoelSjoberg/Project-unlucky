@@ -12,8 +12,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
     private float movementSpeed, evadeTimer = 0;
 
     //Gameover related
-    //menu is not activated util dead = true
-    public bool dead = false;
     public GameObject gameOverScreen;
 
     //invulnerability
@@ -64,7 +62,9 @@ public class PlayerControllerMapTut : MonoBehaviour {
             // if you die
             if (health <= 0)
             {
-                dead = true;
+                FindObjectOfType<AudioController>().playTheme("LevelEnd");
+                gameOverScreen.SetActive(true);
+                Destroy(gameObject);
                 //SceneManager.LoadScene(2);
             }
         }
@@ -166,12 +166,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
             renderer.color = new Color(255, 255, 255, 255);
             invulnerable = false;
             invulnerableTimer = 0;
-        }
-
-        if (dead)
-        {
-            gameOverScreen.SetActive(true);
-            Destroy(gameObject);
         }
     }
 }

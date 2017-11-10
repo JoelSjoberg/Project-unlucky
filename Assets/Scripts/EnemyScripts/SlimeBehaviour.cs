@@ -50,21 +50,27 @@ public class SlimeBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // primary states in hierarchy(die > bleed > attack > follow > idle)
-
-        die.active = basicBehaviour.health <= 0;
-        bleed.active = basicBehaviour.health == 1;
-        attack.active = basicBehaviour.collidingWithPlayer && basicBehaviour.health > 1;
-        followPlayer.active = basicBehaviour.inSameRoomAsPlayer() && basicBehaviour.getDistanceFromPlayer() <= followDistance;
-        staggered.active = basicBehaviour.staggered;
-        idle.active = !die.active && !bleed.active && !attack.active && !followPlayer.active && !staggered.active;
-
+        if (basicBehaviour.player == null)
+        {
+            setStateFalse();
+            idle.active = true;
+        }
+        else
+        {
+            die.active = basicBehaviour.health <= 0;
+            bleed.active = basicBehaviour.health == 1;
+            attack.active = basicBehaviour.collidingWithPlayer && basicBehaviour.health > 1;
+            followPlayer.active = basicBehaviour.inSameRoomAsPlayer() && basicBehaviour.getDistanceFromPlayer() <= followDistance;
+            staggered.active = basicBehaviour.staggered;
+            idle.active = !die.active && !bleed.active && !attack.active && !followPlayer.active && !staggered.active;
+        }
         manageStateMachine();
 	}
 
     // Set every primary state to false
     void setStateFalse()
     {
-        followPlayer.active = false; idle.active = false; die.active = false; attack.active = false; bleed.active = false;
+        followPlayer.active = false; idle.active = false; die.active = false; attack.active = false; bleed.active = false;  staggered.active = false;
     }
 
     // act according to the current state

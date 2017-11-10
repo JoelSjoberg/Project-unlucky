@@ -62,6 +62,7 @@ public class EnemyBehaviour : MonoBehaviour {
     Vector3 towardsPlayer;
     private void checkCollision()
     {
+        if (player == null) return;
         towardsPlayer = player.transform.position - transform.position;
         xAxis = towardsPlayer.x;
         zAxis = towardsPlayer.z;

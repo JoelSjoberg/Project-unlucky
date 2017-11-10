@@ -49,9 +49,9 @@ public class MapGenerator : MonoBehaviour {
             area = graph[i].getArea();
             // No Enemies
             if (area < (minWidth + maxWidth / 10) * (minHeight + maxHeight / 10)) { minEnemies = 0; maxEnemies = 1; }
-            else if (area < (minWidth + maxWidth / 5) * (minHeight + maxHeight / 5)) { minEnemies = 1; maxEnemies = 4; }
-            else if (area < (minWidth + maxWidth / 3) * (minHeight + maxHeight / 3)) { minEnemies = 2; maxEnemies = 5; }
-            else { minEnemies = 3; maxEnemies = 7; }
+            else if (area < (minWidth + maxWidth / 4) * (minHeight + maxHeight / 4)) { minEnemies = 0; maxEnemies = 3; }
+            else if (area < (minWidth + maxWidth / 3) * (minHeight + maxHeight / 3)) { minEnemies = 1; maxEnemies = 4; }
+            else { minEnemies = 3; maxEnemies = 6; }
 
             for (int j = 0; j < Random.Range(minEnemies, maxEnemies); j++)
             {

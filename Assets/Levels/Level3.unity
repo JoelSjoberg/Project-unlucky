@@ -245,7 +245,6 @@ MonoBehaviour:
   doorOffset: 5
   num_rooms: 7
   iterations: 60
-  maxEnemies: 3
 --- !u!1 &65095144
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +581,7 @@ MonoBehaviour:
     looping: 0
     source: {fileID: 0}
   - name: Hurt
-    clip: {fileID: 8300000, guid: 34f5acc926c7ca14e953c7eb47d4fb8a, type: 3}
+    clip: {fileID: 8300000, guid: bbbd1d0f0f474c04ab248f098d059549, type: 3}
     volume: 1
     pitch: 1
     looping: 0
@@ -1990,7 +1989,6 @@ MonoBehaviour:
   slowDownSpeed: 10
   evadeTime: 0.2
   evadeSpeed: 100
-  dead: 0
   gameOverScreen: {fileID: 1811342995}
   invulnerableTime: 0.7
   gun: {fileID: 1713204323}

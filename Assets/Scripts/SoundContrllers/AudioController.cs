@@ -21,13 +21,13 @@ public class AudioController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        String currentScene = SceneManager.GetActiveScene().name;
+    }
 
-        if(currentSong == null || currentSong.name != currentScene)
-        {
-            fadeOut();
-            fadeIn(currentScene);
-        }
+    private void OnLevelWasLoaded(int level)
+    {
+        String currentScene = SceneManager.GetActiveScene().name;
+        fadeOut();
+        fadeIn(currentScene);
     }
 
     private void Awake()
@@ -53,7 +53,6 @@ public class AudioController : MonoBehaviour {
             return;
         }
         DontDestroyOnLoad(gameObject);
-
     }
 
     public void play(string name)
@@ -66,8 +65,9 @@ public class AudioController : MonoBehaviour {
     public void playTheme(string name)
     {
         // find sound from sounds array to play
-       currentSong = Array.Find(sounds, sound => sound.name == name);
-       currentSong.source.Play();
+        fadeOut();
+        currentSong = Array.Find(sounds, sound => sound.name == name);
+        currentSong.source.Play();
     }
 
     public void stop()
@@ -81,7 +81,6 @@ public class AudioController : MonoBehaviour {
     {
         while(currentSong.volume >= 0) currentSong.volume -= (Time.deltaTime * 0.0001f);
         stop();
-
     }
 
     // need debugging, does not work
