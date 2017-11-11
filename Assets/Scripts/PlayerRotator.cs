@@ -7,9 +7,8 @@ public class PlayerRotator : MonoBehaviour {
 
     public float offset = 0.0f;
     public float degrees;
-    public Camera mainCamera;
 
-
+    private Camera mainCamera;
     private float rotation;
     private Animator anim;
     private Vector3 difference;
@@ -20,7 +19,7 @@ public class PlayerRotator : MonoBehaviour {
     void Start () {
         anim = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
-        
+        mainCamera = FindObjectOfType<Camera>();
     }
 	
 	// Update is called once per frame

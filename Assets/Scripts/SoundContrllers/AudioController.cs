@@ -29,7 +29,6 @@ public class AudioController : MonoBehaviour {
         fadeOut();
         fadeIn(currentScene);
     }
-
     private void Awake()
     {
 

@@ -7,7 +7,9 @@ public class FollowPlayer : MonoBehaviour {
     public Transform focusTarget;
     public Vector3 offset;
     public float offsetYon = 400;
-    public float delay = 0.3f;
+    public float delay = 0.3f, shakeTime = 0f, shakeLimit = 0.2f;
+
+
 
     private Vector3 velocity = Vector3.zero;
     private Vector3 target;
@@ -26,6 +28,15 @@ public class FollowPlayer : MonoBehaviour {
         //transform.position = new Vector3(focusTarget.position.x + offset.x, focusTarget.position.y + offset.y, focusTarget.position.z + offset.z);
         transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, delay);
 
+        // shake the camera when shake method is called
+        if(shakeTime <= shakeLimit)
+        {
+            transform.localPosition = transform.position + Random.insideUnitSphere * 5;
+            shakeTime += Time.deltaTime;
+        }
+
+
+        // Zoom out when m is pressed
         if(Input.GetKeyUp("m"))
         {
             toggle = !toggle;
@@ -40,4 +51,12 @@ public class FollowPlayer : MonoBehaviour {
             }
         }
     }
+
+    // shake is called from outside sources
+    public void shake()
+    {
+        
+        shakeTime = 0;
+    }
+
 }

@@ -9,6 +9,8 @@ public class Ammo : MonoBehaviour
     // Instead the player simply has every bullet available dirrectly, let's reduce the starting ammount and have the player collect amunition.
     // as stated this is a proposal, please come with suggestions on why this would be a stupid idea!(this would also reduce the visual need immensly so there would be less
     // text to place on screen and less code to deal with!)
+
+    [HideInInspector]
     public GunController gun;
 
     public int ammo;
@@ -23,13 +25,14 @@ public class Ammo : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        
     }
 
 
 
     void Awake()
     {
+        gun = FindObjectOfType<PlayerControllerMapTut>().gun;
         ammoText = GetComponent<Text>();
         setAmmo = gun.gunAmmo;
         setMaxAmmo = gun.gunMaxAmmo;

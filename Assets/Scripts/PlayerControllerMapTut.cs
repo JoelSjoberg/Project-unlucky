@@ -58,7 +58,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
             renderer.color = new Color(255, 255, 255, 0.2f);
             this.health -= d;
             FindObjectOfType<AudioController>().play("Hurt");
-
+            stagger();
             // if you die
             if (health <= 0)
             {
@@ -69,11 +69,15 @@ public class PlayerControllerMapTut : MonoBehaviour {
             }
         }
     }
-    
+
     // TODO: make player stagger
+    Vector3 staggerVector;
     public void stagger()
     {
-
+        velocity = new Vector3((xAxis), 0, (zAxis)).normalized * -100;
+        velocity *= Time.deltaTime;
+        transform.Translate(velocity.x, 0, velocity.z); // move player in reverse direction of movement
+        FindObjectOfType<FollowPlayer>().shake(); // shake the camera
     }
 
     // recieve health and TODO: play sound
