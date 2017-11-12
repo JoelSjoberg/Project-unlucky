@@ -20,21 +20,21 @@ public class Health : MonoBehaviour
     void Awake()
     {
         text = GetComponent<Text>();
+        player = GetComponent<GameStateManager>().getPlayer();
     }
     // Use this for initialization
     void Start()
     {
         // take player health here instead
         checkHeartAmount();
-        player = GetComponent<PlayerControllerMapTut>();
         currentHealth = player.health;
         heartAmount = currentHealth;
     }
 
     private void Update()
     {
-        currentHealth = player.health;
-        //UpdateHearts();
+        currentHealth = FindObjectOfType<PlayerControllerMapTut>().health;
+        UpdateHearts();
     }
     void checkHeartAmount()
     {
@@ -72,6 +72,5 @@ public class Health : MonoBehaviour
                 }
             }
         }
-
     }
 }

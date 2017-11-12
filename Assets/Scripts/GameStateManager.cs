@@ -7,6 +7,7 @@ public class GameStateManager : MonoBehaviour {
     public PlayerControllerMapTut player;
     private GameStateManager instance;
 
+
     public void savePLayer(PlayerControllerMapTut p)
     {
         this.player = p;

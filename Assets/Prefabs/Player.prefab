@@ -74,8 +74,6 @@ GameObject:
   - component: {fileID: 65122300062136102}
   - component: {fileID: 54466664084012820}
   - component: {fileID: 114601476393510014}
-  - component: {fileID: 114917285105776688}
-  - component: {fileID: 114776767981216724}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -297,7 +295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a631e998a79e1b47879873487cfdc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: {fileID: 0}
   shotFired: 0
   gunAmmo: 12
   gunMaxAmmo: 12
@@ -347,38 +344,6 @@ MonoBehaviour:
   invulnerableTime: 0.7
   gun: {fileID: 114099140311824092}
   offset: 8
---- !u!114 &114776767981216724
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1528475573503310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114917285105776688
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1528475573503310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9c7890a12cc52743a4ae3db8fdf1c90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  healthImages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  healthSprites:
-  - {fileID: 21300006, guid: dc620dbff4091dc4ab7987208095c55c, type: 3}
-  - {fileID: 21300002, guid: dc620dbff4091dc4ab7987208095c55c, type: 3}
-  - {fileID: 21300000, guid: dc620dbff4091dc4ab7987208095c55c, type: 3}
-  healthPerHeart: 2
 --- !u!212 &212148024475997988
 SpriteRenderer:
   m_ObjectHideFlags: 1

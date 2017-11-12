@@ -27,9 +27,6 @@ public class Ammo : MonoBehaviour
     {
         
     }
-
-
-
     void Awake()
     {
         gun = FindObjectOfType<GameStateManager>().getPlayer().gun;
