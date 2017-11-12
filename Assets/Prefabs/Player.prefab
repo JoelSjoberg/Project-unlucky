@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 114601476393510014}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,13 +334,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9953af02bb1803641b553e87fe1d76f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 3
+  maxHealth: 6
   evading: 0
   speed: 40
   slowDownSpeed: 10
   evadeTime: 0.2
   evadeSpeed: 100
-  gameOverScreen: {fileID: 0}
   invulnerableTime: 0.7
   gun: {fileID: 114099140311824092}
   offset: 8

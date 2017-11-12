@@ -38,7 +38,7 @@ public class RoofController : MonoBehaviour {
     // delete roof if player collides with it
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name == "Player")
+        if(other.tag == "Player")
         {
             renderer.material = fadeMaterial;
             looping = true;
@@ -47,7 +47,7 @@ public class RoofController : MonoBehaviour {
     // delete roof in spawn room
     private void OnTriggerStay(Collider other)
     {
-        if (other.name == "Player")
+        if (other.tag == "Player")
         {
             renderer.material = fadeMaterial;
             looping = true;
