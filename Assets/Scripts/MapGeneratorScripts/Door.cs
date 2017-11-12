@@ -28,7 +28,7 @@ public class Door : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name == "Player")
+        if(other.tag == "Player")
         {
             if (!pair.closed && !closed)
             {
@@ -41,6 +41,6 @@ public class Door : MonoBehaviour {
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.name == "Player") this.closed = false;
+        if (other.tag == "Player") this.closed = false;
     }
 }

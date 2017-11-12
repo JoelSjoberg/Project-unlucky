@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameStateManager : MonoBehaviour {
 
     public PlayerControllerMapTut player;
-    private GameStateManager instance;
+    public static GameStateManager instance;
 
     public void savePLayer(PlayerControllerMapTut p)
     {
