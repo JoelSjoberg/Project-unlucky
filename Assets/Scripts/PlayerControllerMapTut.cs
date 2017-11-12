@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 public class PlayerControllerMapTut : MonoBehaviour {
 
     // Status variables
-    public int health = 3, maxHealth = 6;
+    public int health = 3;
     public bool evading = false;
     public float speed, slowDownSpeed, evadeTime, evadeSpeed = 100;
     private float movementSpeed, evadeTimer = 0;
+
+    //Gameover related
+    public GameObject gameOverScreen;
 
     //invulnerability
     public float invulnerableTime = 0.5f;
@@ -60,6 +63,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
             if (health <= 0)
             {
                 FindObjectOfType<AudioController>().playTheme("LevelEnd");
+                gameOverScreen.SetActive(true);
                 Destroy(gameObject);
                 //SceneManager.LoadScene(2);
             }
@@ -79,8 +83,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
     // recieve health and TODO: play sound
     public void heal(int h)
     {
-        // keep health <= maxHealth and avoid division by 0 by adding 1
-        health += h % (maxHealth - health + 1);
+        health += h;
     }
 
     // keep player inside room
@@ -121,6 +124,8 @@ public class PlayerControllerMapTut : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody> ();
         renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         movementSpeed = speed;
+        gameOverScreen.SetActive(false);
+
 	}
 	
 	// Update is called once per frame

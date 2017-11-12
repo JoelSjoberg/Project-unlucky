@@ -6,7 +6,7 @@ public class ScrapBehaviour : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.name == "Player")
         {
             // play the sound from the audio manager
             FindObjectOfType<AudioController>().play("Scrap");

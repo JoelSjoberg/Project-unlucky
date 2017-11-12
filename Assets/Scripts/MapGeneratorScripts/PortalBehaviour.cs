@@ -10,7 +10,7 @@ public class PortalBehaviour : MonoBehaviour {
     // Load a new map
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.name == "Player")
         {
             Debug.Log("makeDungeon");
             FindObjectOfType<MapGenerator>().transform.position += new Vector3(0, 400, 0);

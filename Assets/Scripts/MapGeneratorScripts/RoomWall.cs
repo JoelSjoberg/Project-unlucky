@@ -21,7 +21,7 @@ public class RoomWall : MonoBehaviour {
     {
         positionOnTrigger = other.transform.position;
         Vector3 reverseVelocity = Vector3.zero;
-        if(other.tag == "Player")
+        if(other.name == "Player")
         {
             player = other.GetComponent<PlayerControllerMapTut>();
         }

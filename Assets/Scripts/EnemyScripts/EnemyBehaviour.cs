@@ -129,7 +129,7 @@ public class EnemyBehaviour : MonoBehaviour {
     // if player collides with enemy
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.name == "Player")
         {
             collidingWithPlayer = true;
         }
@@ -138,7 +138,7 @@ public class EnemyBehaviour : MonoBehaviour {
     // collision signal if the player no longer touches the agent
     private void OnCollisionExit(Collision col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.name == "Player")
         {
             collidingWithPlayer = false;
         }

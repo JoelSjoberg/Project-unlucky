@@ -15,16 +15,12 @@ public class Health : MonoBehaviour
     private int currentHealth;
     public int healthPerHeart = 2;
 
-    //Gameover related
-    public GameObject gameOverScreen;
-
     PlayerControllerMapTut player;
 
     void Awake()
     {
         text = GetComponent<Text>();
-        gameOverScreen.SetActive(false);
-        player = FindObjectOfType<PlayerControllerMapTut>();
+        player = GetComponent<GameStateManager>().getPlayer();
     }
     // Use this for initialization
     void Start()
@@ -32,14 +28,13 @@ public class Health : MonoBehaviour
         // take player health here instead
         checkHeartAmount();
         currentHealth = player.health;
+        heartAmount = currentHealth;
     }
 
     private void Update()
     {
-        currentHealth = player.health;
-        if(currentHealth <= 0) gameOverScreen.SetActive(true);
+        currentHealth = FindObjectOfType<PlayerControllerMapTut>().health;
         UpdateHearts();
-        
     }
     void checkHeartAmount()
     {
