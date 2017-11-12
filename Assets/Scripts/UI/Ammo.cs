@@ -32,7 +32,7 @@ public class Ammo : MonoBehaviour
 
     void Awake()
     {
-        gun = FindObjectOfType<PlayerControllerMapTut>().gun;
+        gun = FindObjectOfType<GameStateManager>().getPlayer().gun;
         ammoText = GetComponent<Text>();
         setAmmo = gun.gunAmmo;
         setMaxAmmo = gun.gunMaxAmmo;

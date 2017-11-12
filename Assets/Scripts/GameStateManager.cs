@@ -11,9 +11,12 @@ public class GameStateManager : MonoBehaviour {
     {
         this.player = p;
     }
+
+    public PlayerControllerMapTut getPlayer() { return this.player; }
+
     public void loadPlayer()
     {
-        Instantiate(player, Vector3.zero, Quaternion.identity);
+        player = Instantiate(player, Vector3.zero, Quaternion.identity);
     }
 
     private void Awake()
@@ -28,6 +31,6 @@ public class GameStateManager : MonoBehaviour {
             return;
         }
         DontDestroyOnLoad(gameObject);
-        //loadPlayer();
+        loadPlayer();
     }
 }

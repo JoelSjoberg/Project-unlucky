@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour {
 
 	//Creates CaveGenerators
-	public Transform prefab, caveGenerator, wall, doorParent, plane, roof, Portal, Scrap;
+	public Transform  wall, doorParent, plane, roof, Portal, Scrap;
     [HideInInspector]
     public PlayerControllerMapTut player;
     public Door door;
@@ -21,7 +21,7 @@ public class MapGenerator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        player = FindObjectOfType<PlayerControllerMapTut>();
+        player = FindObjectOfType<GameStateManager>().getPlayer();
         makeDungeon(); 
     }
 // ---- end of start method

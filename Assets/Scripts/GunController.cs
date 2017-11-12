@@ -32,12 +32,10 @@ public class GunController : MonoBehaviour {
     private Plane groundPlane;
     private float rayLength;
 
-	public AudioClip shootSound;
-
 
 	// Use this for initialization
 	void Start () {
-		
+        mainCamera = FindObjectOfType<FollowPlayer>().GetComponent<Camera>();
 	}
 	
 	// Update is called once per frame

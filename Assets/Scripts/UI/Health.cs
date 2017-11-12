@@ -34,7 +34,7 @@ public class Health : MonoBehaviour
     private void Update()
     {
         currentHealth = player.health;
-        UpdateHearts();
+        //UpdateHearts();
     }
     void checkHeartAmount()
     {

@@ -19,6 +19,7 @@ public class FollowPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         offsetYoff = offset.y;
+        focusTarget = FindObjectOfType<GameStateManager>().getPlayer().transform;
 	}
 	
 	// Update is called once per frame
