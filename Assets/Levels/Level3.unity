@@ -893,6 +893,7 @@ GameObject:
   - component: {fileID: 456003462}
   - component: {fileID: 456003464}
   - component: {fileID: 456003463}
+  - component: {fileID: 456003465}
   m_Layer: 5
   m_Name: LifeBar
   m_TagString: Untagged
@@ -957,6 +958,27 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 456003461}
+--- !u!114 &456003465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 456003461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c7890a12cc52743a4ae3db8fdf1c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  healthImages:
+  - {fileID: 558287088}
+  - {fileID: 1242274468}
+  - {fileID: 1511458400}
+  healthSprites:
+  - {fileID: 21300006, guid: dc620dbff4091dc4ab7987208095c55c, type: 3}
+  - {fileID: 21300002, guid: dc620dbff4091dc4ab7987208095c55c, type: 3}
+  - {fileID: 21300000, guid: dc620dbff4091dc4ab7987208095c55c, type: 3}
+  healthPerHeart: 2
 --- !u!1 &489896240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,7 +1981,6 @@ GameObject:
   - component: {fileID: 1669910976}
   - component: {fileID: 1669910975}
   - component: {fileID: 1669910979}
-  - component: {fileID: 1669910982}
   - component: {fileID: 1669910981}
   m_Layer: 0
   m_Name: Player
@@ -2033,7 +2054,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9953af02bb1803641b553e87fe1d76f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  maxHp: 6
+  health: 3
   evading: 0
   speed: 40
   slowDownSpeed: 10
@@ -2055,28 +2077,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0d03247d7ed6b47b26f61bbb833c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1669910982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114892275556142164, guid: 996ec71cc30823141892c6fe421f3bc3,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1669910974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9c7890a12cc52743a4ae3db8fdf1c90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  healthImages:
-  - {fileID: 558287088}
-  - {fileID: 1242274468}
-  - {fileID: 1511458400}
-  healthSprites:
-  - {fileID: 21300006, guid: dc620dbff4091dc4ab7987208095c55c, type: 3}
-  - {fileID: 21300002, guid: dc620dbff4091dc4ab7987208095c55c, type: 3}
-  - {fileID: 21300000, guid: dc620dbff4091dc4ab7987208095c55c, type: 3}
-  healthPerHeart: 2
 --- !u!1 &1713204321
 GameObject:
   m_ObjectHideFlags: 0

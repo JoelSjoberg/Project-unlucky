@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerControllerMapTut : MonoBehaviour {
 
     // Status variables
+    [HideInInspector]
+    public int maxHp = 6;
     public int health = 3;
     public bool evading = false;
     public float speed, slowDownSpeed, evadeTime, evadeSpeed = 100;
