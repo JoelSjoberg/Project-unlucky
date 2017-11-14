@@ -26,7 +26,7 @@ public class Health : MonoBehaviour
     {
         // take player health here instead
         checkHeartAmount();
-        player = GetComponent<PlayerControllerMapTut>();
+        player = FindObjectOfType<PlayerControllerMapTut>();
         currentHealth = player.health;
         heartAmount = currentHealth;
     }

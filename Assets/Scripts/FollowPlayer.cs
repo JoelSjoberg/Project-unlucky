@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour {
 
-    public Transform focusTarget;
     public Vector3 offset;
     public float offsetYon = 400;
     public float delay = 0.3f, shakeTime = 0f, shakeLimit = 0.2f;
 
 
 
+    private Transform focusTarget;
     private Vector3 velocity = Vector3.zero;
     private Vector3 target;
     private bool toggle = false;
@@ -19,6 +19,7 @@ public class FollowPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         offsetYoff = offset.y;
+        focusTarget = FindObjectOfType<PlayerControllerMapTut>().transform;
 	}
 	
 	// Update is called once per frame

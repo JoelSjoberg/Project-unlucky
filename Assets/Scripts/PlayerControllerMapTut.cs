@@ -125,7 +125,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
         renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         movementSpeed = speed;
         gameOverScreen.SetActive(false);
-
 	}
 	
 	// Update is called once per frame
