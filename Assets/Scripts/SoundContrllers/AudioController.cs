@@ -3,6 +3,7 @@ using System;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
+[Serializable]
 public class AudioController : MonoBehaviour {
 
     AudioSource audio;

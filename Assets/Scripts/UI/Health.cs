@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
@@ -15,11 +12,14 @@ public class Health : MonoBehaviour
     private int currentHealth;
     public int healthPerHeart = 2;
 
+    public GameObject gameOverScreen;
+
     PlayerControllerMapTut player;
 
     void Awake()
     {
         text = GetComponent<Text>();
+        gameOverScreen.SetActive(false);
     }
     // Use this for initialization
     void Start()
@@ -33,9 +33,15 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-        currentHealth = player.health;
-        UpdateHearts();
+        if (player.health <= 0) gameOverScreen.SetActive(true);
+        else
+        {
+            currentHealth = player.health;
+            UpdateHearts();
+        }
+        if (player == null) return;
     }
+
     void checkHeartAmount()
     {
         for (int i = 0; i < heartAmount; i++)
@@ -44,6 +50,7 @@ public class Health : MonoBehaviour
         }
     }
 
+    // TODO: ADD COMMENT THAT EXPLAINS METHOD
     void UpdateHearts()
     {
         bool empty = false;

@@ -1,19 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
+using UnityEditor;
 using UnityEngine;
-
 public class GameStateManager : MonoBehaviour {
 
 
     public PlayerControllerMapTut player;
     public static GameStateManager instance;
 
-    public void savePLayer()
+    public void savePlayer()
     {
-        this.player = FindObjectOfType<PlayerControllerMapTut>();
+        AssetDatabase.CreateAsset(player, "Assets/Prefabs/Player.prefab");
     }
     public void loadPlayer()
     {
+        this.player = (PlayerControllerMapTut)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Player.prefab", typeof(PlayerControllerMapTut));
         Instantiate(player, Vector3.zero, Quaternion.identity);
     }
 
@@ -21,10 +21,10 @@ public class GameStateManager : MonoBehaviour {
 
     private void Awake()
     {
+        Debug.Log("GameManager Started");
         if (instance == null)
         {
             instance = this;
-            player = (PlayerControllerMapTut)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Player.prefab", typeof(PlayerControllerMapTut));
         }
         else
         {
@@ -33,8 +33,17 @@ public class GameStateManager : MonoBehaviour {
         }
 
         DontDestroyOnLoad(gameObject);
+        loadPlayer();
+    }
 
-        Debug.Log("New GameManager");
-        //loadPlayer();
+    private void OnLevelWasLoaded(int level)
+    {
+        if (player != null)
+        {
+           // destroy the current player to prevent several instances of player at once
+            DestroyImmediate(this.player);
+        }
+        else savePlayer();
+        loadPlayer();
     }
 }

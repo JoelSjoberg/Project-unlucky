@@ -1,20 +1,19 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[Serializable]
 public class PlayerControllerMapTut : MonoBehaviour {
 
     // Status variables
     [HideInInspector]
     public int maxHp = 6;
     public int health = 3;
+    public int scrap = 36;
     public bool evading = false;
     public float speed, slowDownSpeed, evadeTime, evadeSpeed = 100;
     private float movementSpeed, evadeTimer = 0;
-
-    //Gameover related
-    public GameObject gameOverScreen;
 
     //invulnerability
     public float invulnerableTime = 0.5f;
@@ -65,8 +64,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
             if (health <= 0)
             {
                 FindObjectOfType<AudioController>().playTheme("LevelEnd");
-                gameOverScreen.SetActive(true);
-                Destroy(gameObject);
                 //SceneManager.LoadScene(2);
             }
         }
@@ -85,7 +82,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
     // recieve health and TODO: play sound
     public void heal(int h)
     {
-        health += h;
+        health += h % (maxHp - health + 1);
     }
 
     // keep player inside room
@@ -126,7 +123,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody> ();
         renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         movementSpeed = speed;
-        gameOverScreen.SetActive(false);
 	}
 	
 	// Update is called once per frame
