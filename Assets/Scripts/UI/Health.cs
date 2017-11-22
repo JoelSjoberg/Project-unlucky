@@ -33,13 +33,16 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-        if (player.health <= 0) gameOverScreen.SetActive(true);
+        if (player.health <= 0)
+        {
+            currentHealth = 0;
+            gameOverScreen.SetActive(true);
+        }
         else
         {
             currentHealth = player.health;
-            UpdateHearts();
         }
-        if (player == null) return;
+            UpdateHearts();
     }
 
     void checkHeartAmount()

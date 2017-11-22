@@ -38,17 +38,18 @@ public class Ammo : MonoBehaviour
     {
         if (gun == null) return;
         ammo = gun.bullets;
+        Debug.Log(ammo);
         maxAmmo = gun.remForBullet;
 
 
         if (ammo <= 10)
         {
-            ammo--;
+            //ammo--;
             ammoText.text = " " + ammo + "    " + maxAmmo;
         }
         else
         {
-            ammo--;
+            //ammo--;
             ammoText.text = ammo + "   " + maxAmmo;
         }
 

@@ -16,8 +16,9 @@ public class PortalBehaviour : MonoBehaviour {
             FindObjectOfType<MapGenerator>().transform.position += new Vector3(0, 400, 0);
             FindObjectOfType<MapGenerator>().makeDungeon();
             FindObjectOfType<TimeController>().slowDown(2); // slow down time to emphasize transition
-            //Instantiate(plane, FindObjectOfType<MapGenerator>().transform.position, Quaternion.identity);
-            //SceneManager.LoadScene("Level3");
+            // Instantiate(plane, FindObjectOfType<MapGenerator>().transform.position, Quaternion.identity);
+            // FindObjectOfType<StateHolder>().Save();
+            // SceneManager.LoadScene("Level3");
         }
     }
 
