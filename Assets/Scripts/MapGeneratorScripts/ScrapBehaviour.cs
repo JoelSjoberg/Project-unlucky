@@ -11,7 +11,7 @@ public class ScrapBehaviour : MonoBehaviour {
             // play the sound from the audio manager
             FindObjectOfType<AudioController>().play("Scrap");
             Destroy(gameObject);
-            other.GetComponent<PlayerControllerMapTut>().gun.ammoBuffer++;
+            other.GetComponent<PlayerControllerMapTut>().scrap++;
         }
     }
 }

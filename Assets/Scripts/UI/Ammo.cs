@@ -21,21 +21,11 @@ public class Ammo : MonoBehaviour
     public bool ammoEmpty = false;
     
     Text ammoText;
-    
-    // Use this for initialization
+
     void Start()
-    {
-        
-    }
-
-
-
-    void Awake()
     {
         gun = FindObjectOfType<PlayerControllerMapTut>().gun;
         ammoText = GetComponent<Text>();
-        setAmmo = gun.gunAmmo;
-        setMaxAmmo = gun.gunMaxAmmo;
         ammo = setAmmo;
         maxAmmo = setMaxAmmo;
         ammoEmpty = false;
@@ -46,43 +36,22 @@ public class Ammo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (gun.shotFired && !ammoEmpty)
+        if (gun == null) return;
+        ammo = gun.bullets;
+        Debug.Log(ammo);
+        maxAmmo = gun.remForBullet;
+
+
+        if (ammo <= 10)
         {
-
-            //Checks if ammo is less than 10 to use more spacing to make the counter look better
-            if (ammo <= 10)
-            {
-                ammo--;
-                ammoText.text = " " + ammo + "    " + maxAmmo;
-            }
-            else
-            {
-                ammo--;
-                ammoText.text = ammo + "   " + maxAmmo;
-            }
-            gun.shotFired = false;
+            //ammo--;
+            ammoText.text = " " + ammo + "    " + maxAmmo;
         }
-
-
-        //If enough scrap is collected, 1 ammo is added
-        if (gun.ammoAdded)
+        else
         {
-            if (ammo <= 10)
-            {
-                maxAmmo++;
-                ammoText.text = " " + ammo + "    " + maxAmmo;
-
-            }
-            else
-            {
-                maxAmmo++;
-                ammoText.text = ammo + "   " + maxAmmo;
-            }
-            gun.ammoAdded = false;
-            ammoEmpty = false;
+            //ammo--;
+            ammoText.text = ammo + "   " + maxAmmo;
         }
-
 
         //If reloading when ammo is empty
         if (ammo == 0 && maxAmmo > 0)

@@ -4,33 +4,27 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
 
-    public Ammo ammo;
-    public bool shotFired;
-    public int gunAmmo;
-    public int gunMaxAmmo;
+    public int scrapPerBullet = 3;
+    public int bullets;
+    public int remForBullet;
 
-    [HideInInspector]
-    public int ammoBuffer = 0;
-    public int ammoBufferGoal = 3;
-    public bool ammoAdded;
-
-
-    public Camera mainCamera;
     public int damage;
     public bool isFiring;
     public float bulletSpeed;
-    public float shotIntervall = 0.1f;
 
+    public float shotIntervall = 0.1f;
     private float timeSinceLastShot = 0;
-    
+    private int currentAmmo;
 
     public Vector3 offset;
     public Transform firePoint;
     public BulletController bulletPrefab;
 
+    public Camera mainCamera;
     private Ray cameraRay;
     private Plane groundPlane;
     private float rayLength;
+    PlayerControllerMapTut player;
 
 	public AudioClip shootSound;
 
@@ -38,17 +32,16 @@ public class GunController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         mainCamera = FindObjectOfType<Camera>();
-	}
+        player = GetComponentInParent< PlayerControllerMapTut >();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        // add ammo when ammoBuffer >= ammoBufferGoal
-        if(ammoBuffer >= ammoBufferGoal)
-        {
-            Debug.Log("ammo added");
-            ammoAdded = true;
-            ammoBuffer = 0;
-        }
+
+        // get scrap from player
+
+        bullets = player.scrap / scrapPerBullet;
+        remForBullet = player.scrap % scrapPerBullet;
 
         // rotate with mouse
         cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition); // Cast a "ray" from mainCamera to the cursor position
@@ -62,7 +55,7 @@ public class GunController : MonoBehaviour {
             // rotate the gun towards ray point
             transform.LookAt(new Vector3(pointToLook.x + offset.x, transform.position.y + offset.y, pointToLook.z + offset.z));
         }
-        if (isFiring && !ammo.ammoEmpty)
+        if (isFiring && bullets > 0)
         {
             timeSinceLastShot += Time.deltaTime;
             if(shotIntervall <= timeSinceLastShot)
@@ -75,7 +68,7 @@ public class GunController : MonoBehaviour {
 
                 timeSinceLastShot = 0;
 
-                shotFired = true;
+                transform.parent.GetComponent<PlayerControllerMapTut>().scrap -= scrapPerBullet;
             }
         }
         else

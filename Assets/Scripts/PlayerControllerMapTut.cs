@@ -1,18 +1,23 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[Serializable]
 public class PlayerControllerMapTut : MonoBehaviour {
 
     // Status variables
+<<<<<<< HEAD
     public int health = 3, scrap = 36;
+=======
+    [HideInInspector]
+    public int maxHp = 6;
+    public int health = 3;
+    public int scrap = 36;
+>>>>>>> GameManagerTesting
     public bool evading = false;
     public float speed, slowDownSpeed, evadeTime, evadeSpeed = 100;
     private float movementSpeed, evadeTimer = 0;
-
-    //Gameover related
-    public GameObject gameOverScreen;
 
     //invulnerability
     public float invulnerableTime = 0.5f;
@@ -54,17 +59,26 @@ public class PlayerControllerMapTut : MonoBehaviour {
     {
         if(!invulnerable)
         {
-            invulnerable = true;
-            renderer.color = new Color(255, 255, 255, 0.2f);
-            this.health -= d;
-            FindObjectOfType<AudioController>().play("Hurt");
-            stagger();
             // if you die
             if (health <= 0)
             {
+
                 FindObjectOfType<AudioController>().playTheme("LevelEnd");
+<<<<<<< HEAD
                 gameOverScreen.SetActive(true);
                 gameObject.SetActive(false);
+=======
+                // Destroy(gameObject);
+                // SceneManager.LoadScene(2);
+            }
+            else
+            {
+                stagger();
+                invulnerable = true;
+                renderer.color = new Color(255, 255, 255, 0.2f);
+                this.health -= d;
+                FindObjectOfType<AudioController>().play("Hurt");
+>>>>>>> GameManagerTesting
             }
         }
     }
@@ -82,7 +96,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
     // recieve health and TODO: play sound
     public void heal(int h)
     {
-        health += h;
+        health += h % (maxHp - health + 1);
     }
 
     // keep player inside room
@@ -117,38 +131,9 @@ public class PlayerControllerMapTut : MonoBehaviour {
         if (!right && xAxis > 0) xAxis = 0;
     }
 
-    // Use this for initialization
-    void Start () {
-
-        rigidbody = GetComponent<Rigidbody> ();
-        renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
-        movementSpeed = speed;
-        gameOverScreen.SetActive(false);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-        // stop player if it is colliding with walls
-        checkCollision();
-
-        velocity = new Vector3 (xAxis, 0, zAxis).normalized * movementSpeed;
-        velocity *= Time.deltaTime;
-
-        // rigidbody.AddForce(velocity);
-        // if (xAxis == 0 && zAxis == 0) rigidbody.velocity = Vector3.zero;
-        //rigidbody.velocity = velocity;
-        transform.Translate(velocity.x, 0, velocity.z);
-
-        // Input(Keyboard and Mouse)
-        if (Input.GetMouseButtonDown(0)) gun.isFiring = true;
-        if (Input.GetMouseButtonUp(0)) gun.isFiring = false;
-        if (Input.GetKeyDown("left shift"))
-        {
-            movementSpeed = evadeSpeed;
-            evading = true;
-        }
-
+    // Method for handling evasion
+    void doEvasion()
+    {
         // evading
         if (evading) evadeTimer += Time.deltaTime;
         if (evadeTimer >= evadeTime)
@@ -157,7 +142,11 @@ public class PlayerControllerMapTut : MonoBehaviour {
             movementSpeed = speed;
             evadeTimer = 0;
         }
+    }
 
+    // Method for handling invulnerability
+    void doInvulnerability()
+    {
         // invulnerability
         if (invulnerable)
         {
@@ -169,5 +158,42 @@ public class PlayerControllerMapTut : MonoBehaviour {
             invulnerable = false;
             invulnerableTimer = 0;
         }
+    }
+
+    // Use this for initialization
+    void Start () {
+
+        rigidbody = GetComponent<Rigidbody> ();
+        renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
+        movementSpeed = speed;
+        FindObjectOfType<StateHolder>().LoadPlayseStats();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+
+        // stop player if it is colliding with walls
+        checkCollision();
+
+        // Input(Keyboard and Mouse)
+        if(health > 0)
+        {
+
+            velocity = new Vector3 (xAxis, 0, zAxis).normalized * movementSpeed;
+            velocity *= Time.deltaTime;
+
+            transform.Translate(velocity.x, 0, velocity.z);
+
+            if (Input.GetMouseButtonDown(0)) gun.isFiring = true;
+            if (Input.GetMouseButtonUp(0)) gun.isFiring = false;
+            if (Input.GetKeyDown("left shift"))
+            {
+                movementSpeed = evadeSpeed;
+                evading = true;
+            }
+        }
+
+        doEvasion();
+        doInvulnerability();
     }
 }
