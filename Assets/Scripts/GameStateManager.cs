@@ -5,26 +5,30 @@ using UnityEngine;
 public class GameStateManager : MonoBehaviour {
 
 
-    public PlayerControllerMapTut player;
+    private PlayerControllerMapTut player;
     public static GameStateManager instance;
 
-    public void savePLayer()
+    public int health = 3, scrap = 36;
+
+    public void savePlayer()
     {
-        this.player = FindObjectOfType<PlayerControllerMapTut>();
+        player = FindObjectOfType<PlayerControllerMapTut>();
+        this.health = player.health;
+        this.scrap = player.scrap;
     }
     public void loadPlayer()
     {
-        Instantiate(player, Vector3.zero, Quaternion.identity);
+        player = FindObjectOfType<PlayerControllerMapTut>();
+        player.health = this.health;
+        player.scrap = this.scrap;
     }
 
-    public PlayerControllerMapTut getPlayer() { return this.player; }
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            player = (PlayerControllerMapTut)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Player.prefab", typeof(PlayerControllerMapTut));
         }
         else
         {
@@ -33,8 +37,7 @@ public class GameStateManager : MonoBehaviour {
         }
 
         DontDestroyOnLoad(gameObject);
-
-        Debug.Log("New GameManager");
-        //loadPlayer();
+        loadPlayer();
     }
+
 }

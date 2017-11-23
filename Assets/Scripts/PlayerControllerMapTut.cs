@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerControllerMapTut : MonoBehaviour {
 
     // Status variables
-    public int health = 3;
+    public int health = 3, scrap = 36;
     public bool evading = false;
     public float speed, slowDownSpeed, evadeTime, evadeSpeed = 100;
     private float movementSpeed, evadeTimer = 0;
@@ -64,8 +64,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
             {
                 FindObjectOfType<AudioController>().playTheme("LevelEnd");
                 gameOverScreen.SetActive(true);
-                Destroy(gameObject);
-                //SceneManager.LoadScene(2);
+                gameObject.SetActive(false);
             }
         }
     }
