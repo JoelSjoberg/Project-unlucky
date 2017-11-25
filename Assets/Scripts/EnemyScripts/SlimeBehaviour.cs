@@ -80,7 +80,7 @@ public class SlimeBehaviour : MonoBehaviour {
 
         else if (bleed.active)
         {
-            // set sprite color to blue
+            // set sprite color to red
             transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
             bleedBuffer += Time.deltaTime;
             if (bleedBuffer >= bleedTimer) basicBehaviour.health = 0;
@@ -91,7 +91,7 @@ public class SlimeBehaviour : MonoBehaviour {
                 basicBehaviour.player.heal(1);
 
                 // needs testing
-                //FindObjectOfType<TimeController>().slowDown(0.3f); // slow down time to magnify impact
+                // FindObjectOfType<TimeController>().slowDown(0.3f); // slow down time to magnify impact
             }
             previousState = bleed;
         }

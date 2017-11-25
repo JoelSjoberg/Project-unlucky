@@ -11,9 +11,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
     public float speed, slowDownSpeed, evadeTime, evadeSpeed = 100;
     private float movementSpeed, evadeTimer = 0;
 
-    //Gameover related
-    public GameObject gameOverScreen;
-
     //invulnerability
     public float invulnerableTime = 0.5f;
     private float invulnerableTimer = 0;
@@ -63,7 +60,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
             if (health <= 0)
             {
                 FindObjectOfType<AudioController>().playTheme("LevelEnd");
-                gameOverScreen.SetActive(true);
                 gameObject.SetActive(false);
             }
         }
@@ -123,7 +119,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody> ();
         renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         movementSpeed = speed;
-        gameOverScreen.SetActive(false);
+        gameObject.SetActive(true);
         FindObjectOfType<GameStateManager>().loadPlayer(); // loads status from 
 	}
 	
