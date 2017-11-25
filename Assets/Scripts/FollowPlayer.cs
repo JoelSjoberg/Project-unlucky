@@ -54,9 +54,9 @@ public class FollowPlayer : MonoBehaviour {
     }
 
     // shake is called from outside sources
-    public void shake()
+    public void shake(float time)
     {
-        
+        shakeLimit = time;
         shakeTime = 0;
     }
 

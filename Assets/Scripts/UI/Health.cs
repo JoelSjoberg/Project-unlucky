@@ -15,11 +15,14 @@ public class Health : MonoBehaviour
     private int currentHealth;
     public int healthPerHeart = 2;
 
+    public GameObject gameOverScreen;
     PlayerControllerMapTut player;
+
 
     void Awake()
     {
         text = GetComponent<Text>();
+        gameOverScreen.SetActive(false);
     }
     // Use this for initialization
     void Start()
@@ -35,7 +38,11 @@ public class Health : MonoBehaviour
     {
         currentHealth = player.health;
         UpdateHearts();
+
+        if (player.health <= 0) gameOverScreen.SetActive(true);
+
     }
+
     void checkHeartAmount()
     {
         for (int i = 0; i < heartAmount; i++)

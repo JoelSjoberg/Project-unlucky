@@ -76,7 +76,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
         velocity = new Vector3((xAxis), 0, (zAxis)).normalized * -100;
         velocity *= Time.deltaTime;
         transform.Translate(velocity.x, 0, velocity.z); // move player in reverse direction of movement
-        FindObjectOfType<FollowPlayer>().shake(); // shake the camera
+        FindObjectOfType<FollowPlayer>().shake(0.1f); // shake the camera
     }
 
     // recieve health and TODO: play sound
@@ -124,6 +124,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
         renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         movementSpeed = speed;
         gameOverScreen.SetActive(false);
+        FindObjectOfType<GameStateManager>().loadPlayer(); // loads status from 
 	}
 	
 	// Update is called once per frame
@@ -137,7 +138,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
 
         // rigidbody.AddForce(velocity);
         // if (xAxis == 0 && zAxis == 0) rigidbody.velocity = Vector3.zero;
-        //rigidbody.velocity = velocity;
+        // rigidbody.velocity = velocity;
         transform.Translate(velocity.x, 0, velocity.z);
 
         // Input(Keyboard and Mouse)

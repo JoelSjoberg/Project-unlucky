@@ -4,16 +4,8 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
 
-    public Ammo ammo;
-    public bool shotFired;
-    public int gunAmmo;
-    public int gunMaxAmmo;
 
-    [HideInInspector]
-    public int ammoBuffer = 0;
-    public int ammoBufferGoal = 3;
-    public bool ammoAdded;
-
+    public int scrapPerBullet = 3, bullets, remForBullet;
 
     public Camera mainCamera;
     public int damage;
@@ -32,23 +24,20 @@ public class GunController : MonoBehaviour {
     private Plane groundPlane;
     private float rayLength;
 
-	public AudioClip shootSound;
+    PlayerControllerMapTut player;
 
 
 	// Use this for initialization
 	void Start () {
         mainCamera = FindObjectOfType<Camera>();
+        player = GetComponentInParent<PlayerControllerMapTut>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        // add ammo when ammoBuffer >= ammoBufferGoal
-        if(ammoBuffer >= ammoBufferGoal)
-        {
-            Debug.Log("ammo added");
-            ammoAdded = true;
-            ammoBuffer = 0;
-        }
+
+        bullets = player.scrap / scrapPerBullet;
+        remForBullet = player.scrap % scrapPerBullet;
 
         // rotate with mouse
         cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition); // Cast a "ray" from mainCamera to the cursor position
@@ -62,7 +51,7 @@ public class GunController : MonoBehaviour {
             // rotate the gun towards ray point
             transform.LookAt(new Vector3(pointToLook.x + offset.x, transform.position.y + offset.y, pointToLook.z + offset.z));
         }
-        if (isFiring && !ammo.ammoEmpty)
+        if (isFiring && bullets > 0)
         {
             timeSinceLastShot += Time.deltaTime;
             if(shotIntervall <= timeSinceLastShot)
@@ -75,7 +64,7 @@ public class GunController : MonoBehaviour {
 
                 timeSinceLastShot = 0;
 
-                shotFired = true;
+                player.scrap -= scrapPerBullet;
             }
         }
         else
