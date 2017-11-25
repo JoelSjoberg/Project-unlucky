@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class ScrapBehaviour : MonoBehaviour {
 
-    private void OnTriggerEnter(Collider other)
+    public float attractionSpeed = 5f;
+
+    public void moveToPlayer()
     {
-        if(other.tag == "Player")
+        transform.position = Vector3.MoveTowards(transform.position, FindObjectOfType<PlayerControllerMapTut>().transform.position, attractionSpeed);
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
         {
             // play the sound from the audio manager
             FindObjectOfType<AudioController>().play("Scrap");
-            Destroy(gameObject);
             other.GetComponent<PlayerControllerMapTut>().scrap++;
+            Destroy(gameObject);
         }
     }
 }

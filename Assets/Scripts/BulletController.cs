@@ -26,19 +26,18 @@ public class BulletController : MonoBehaviour {
     {
         this.speed += increaser;
     }
-    private void OnTriggerExit(Collider other)
-    { 
-        if (other.name != "Player") Destroy(gameObject);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
-        if (other.name == "WallThingy") Destroy(gameObject);
-
+        Debug.Log(other.tag);
+        if (other.tag == "Wall")
+        {
+            Destroy(gameObject);
+        }
         if(other.tag == "Enemy")
         {
             other.GetComponent<EnemyBehaviour>().takeDamage(damage);
+            Destroy(gameObject);
         }
     }
 }

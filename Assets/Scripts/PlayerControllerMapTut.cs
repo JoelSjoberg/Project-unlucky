@@ -9,7 +9,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
     public int health = 3, scrap = 36;
     public bool evading = false;
     public float speed, slowDownSpeed, evadeTime, evadeSpeed = 100;
-    private float movementSpeed, evadeTimer = 0;
+    private float movementSpeed, evadeTimer = 0, scrapAttractor;
 
     //invulnerability
     public float invulnerableTime = 0.5f;
@@ -17,7 +17,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
     private bool invulnerable = false;
 
     public GunController gun;
-
+    public Attractor attractor;
     // for collision detection
     public int offset = 5;
     private bool up = true, down = true, left = true, right = true;
@@ -27,6 +27,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
 	private Rigidbody rigidbody;
     private SpriteRenderer renderer;
 	private Vector3 velocity;
+
 
     // place player on given cordinates
     public void spawn(Vector3 newPos)
