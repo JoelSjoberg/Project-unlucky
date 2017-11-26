@@ -147,7 +147,7 @@ public class MapGenerator : MonoBehaviour {
         {
             for (int i = 0; i < Random.Range(0, 10); i++)
             {
-                Instantiate(Scrap, r.getRandomRoomPosition(10, transform.position.y), Quaternion.identity);
+                Instantiate(Scrap, r.getRandomRoomPosition(10, transform.position.y - 1), Quaternion.identity);
             }
         }
     }

@@ -173,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 4
   speed: 15
-  offset: 5
+  offset: 20
   damage: 1
   staggerDuration: 0.2
   staggerTimer: 0

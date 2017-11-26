@@ -18,6 +18,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
 
     public GunController gun;
     public Attractor attractor;
+
     // for collision detection
     public int offset = 5;
     private bool up = true, down = true, left = true, right = true;

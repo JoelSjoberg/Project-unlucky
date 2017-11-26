@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour {
 
-
     private Room currentRoom;
     public int health = 4, speed = 100, offset = 5, damage = 1;
     public float staggerDuration = 0.05f, staggerTimer = 0;
@@ -28,7 +27,6 @@ public class EnemyBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        checkCollision();
 
         if (staggered && staggerTimer < staggerDuration)
         {
@@ -46,28 +44,33 @@ public class EnemyBehaviour : MonoBehaviour {
     {
         return (player.transform.position - transform.position).magnitude;
     }
+
     // spawn enemy in room
     public void spawnInRoom(Room room, float y)
     {
         transform.position = room.getRandomRoomPosition(0, y);
         this.currentRoom= room;
     }
+
     // set current room(for collision and if enemy ever wants to leave room)
     public void setCurrentRoom (Room r)
     {
         currentRoom = r;
     }
 
-    // collision similar to the one in playerControllerMapTut.cs
-    Vector3 towardsPlayer;
-    private void checkCollision()
+    Vector3 towardsDestination;
+    public void moveToDestination(Vector3 dest)
     {
-        if (player == null) return;
-        towardsPlayer = player.transform.position - transform.position;
-        xAxis = towardsPlayer.x;
-        zAxis = towardsPlayer.z;
+        towardsDestination = dest - transform.position;
+        xAxis = towardsDestination.x;
+        zAxis = towardsDestination.z;
 
-        
+        checkCollision();
+    }
+
+    // collision similar to the one in playerControllerMapTut.cs
+    private void checkCollision()
+    {   
         // Collision with walls in current room
         
         // collision with left wall

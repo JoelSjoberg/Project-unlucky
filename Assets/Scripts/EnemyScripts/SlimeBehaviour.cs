@@ -38,6 +38,8 @@ public class SlimeBehaviour : MonoBehaviour {
 
     EnemyBehaviour basicBehaviour;
     Renderer renderer;
+    Vector3 roamingDestination;
+    float roamTime = 6f, roamTimer = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -59,8 +61,8 @@ public class SlimeBehaviour : MonoBehaviour {
         {
             die.active = basicBehaviour.health <= 0;
             bleed.active = basicBehaviour.health == 1;
-            attack.active = basicBehaviour.collidingWithPlayer && basicBehaviour.health > 1;
-            followPlayer.active = basicBehaviour.inSameRoomAsPlayer() && basicBehaviour.getDistanceFromPlayer() <= followDistance;
+            attack.active = basicBehaviour.collidingWithPlayer && basicBehaviour.health > 1 && basicBehaviour.player.health > 0;
+            followPlayer.active = basicBehaviour.inSameRoomAsPlayer() && basicBehaviour.getDistanceFromPlayer() <= followDistance && basicBehaviour.player.health > 0;
             staggered.active = basicBehaviour.staggered;
             idle.active = !die.active && !bleed.active && !attack.active && !followPlayer.active && !staggered.active;
         }
@@ -113,17 +115,31 @@ public class SlimeBehaviour : MonoBehaviour {
         else if(idle.active)
         {
             previousState = idle;
+            // Move to a random place when idle
+            // get destination in room
+
+            //...Nope
+            if(roamTimer >= roamTime)
+            {
+                roamingDestination = basicBehaviour.getRoom().getRandomRoomPosition(basicBehaviour.offset, transform.position.y);
+                roamTimer = 0;
+            }
+            roamTimer += Time.deltaTime;
+            basicBehaviour.moveToDestination(roamingDestination);
+            if(basicBehaviour)transform.Translate(basicBehaviour.getVelocity());
+
         }
     }
 
-    // In all farness these should probably not be here. These methods are a biproduct of the admittedly poor colision detection I wrote
-    // in desperation when the physics-engine started letting the player leave the rooms if it went fast enough.
+    // Define these methods here to create different movement patterns for each enemy
     public void moveTowardsPlayer()
     {
+        basicBehaviour.moveToDestination(basicBehaviour.player.transform.position);
         transform.Translate(basicBehaviour.getVelocity());
     }
     public void moveAwayFromPlayer()
     {
+        basicBehaviour.moveToDestination(basicBehaviour.player.transform.position);
         basicBehaviour.inverseAxes();
         transform.Translate(basicBehaviour.getVelocity());
     }

@@ -34,7 +34,6 @@ public class Room {
             return xOverlap && yOverlap;
         }
 
-
         private bool xCol, yCol;
         public bool vectorInRoom(Vector3 v, int offset)
         {
