@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4158329797862148}
   - component: {fileID: 212636230668952652}
   - component: {fileID: 95164428690791568}
+  - component: {fileID: 114593493943587730}
   m_Layer: 0
   m_Name: EnemySprite
   m_TagString: Untagged
@@ -180,6 +181,17 @@ MonoBehaviour:
   staggered: 0
   player: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
+--- !u!114 &114593493943587730
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1101843511596254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8607147771986b46b58445a2a765112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114765701530147712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,7 +241,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 0.19, y: 0.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
