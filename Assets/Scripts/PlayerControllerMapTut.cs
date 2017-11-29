@@ -125,9 +125,10 @@ public class PlayerControllerMapTut : MonoBehaviour {
         gameObject.SetActive(true);
         FindObjectOfType<GameStateManager>().loadPlayer(); // loads status from 
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    
+    // Update is called once per frame
+    void Update () {
 
         // stop player if it is colliding with walls
         checkCollision();
@@ -170,4 +171,25 @@ public class PlayerControllerMapTut : MonoBehaviour {
             invulnerableTimer = 0;
         }
     }
+
+
+    // Adds +1 to level counter when player touches portal
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Portal")
+        {
+            if(!Level.touchingPortal)
+            {
+                Level.level++;
+                Level.touchingPortal = true;
+            }
+        }
+    }
+ 
+    private void OnTriggerExit(Collider other)
+    {
+        Level.touchingPortal = false;
+    }
+
+
 }
