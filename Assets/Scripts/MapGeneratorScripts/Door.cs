@@ -36,6 +36,7 @@ public class Door : MonoBehaviour {
                 closed = true;
                 other.GetComponent<PlayerControllerMapTut>().setRoom(pair.room);
                 other.transform.position = pair.transform.position;
+                FindObjectOfType<TimeController>().slowDown(1);
             }
         }
     }

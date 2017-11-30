@@ -24,8 +24,10 @@ public class GameStateManager : MonoBehaviour {
     }
 
 
+
     private void Awake()
     {
+
         // remove any other instance of this object when awoken
         if (instance == null)
         {
