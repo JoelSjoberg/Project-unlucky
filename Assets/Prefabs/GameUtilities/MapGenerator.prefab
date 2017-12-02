@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1043840044316550}
+  m_IsPrefabParent: 1
+--- !u!1 &1043840044316550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4927837445263022}
+  - component: {fileID: 114474928684533684}
+  m_Layer: 0
+  m_Name: MapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4927837445263022
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1043840044316550}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114474928684533684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1043840044316550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5029eaf1671583c45b07f75172398920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4742327637928188, guid: 8f0222fa31e971142ba06b9ae87cbaa4, type: 2}
+  caveGenerator: {fileID: 4024036019546674, guid: 7f76a8baddb507944a1c67dab222e8f7,
+    type: 2}
+  wall: {fileID: 4876888085803292, guid: d755e98388411084b9be0269a63a3223, type: 2}
+  doorParent: {fileID: 4187949809039662, guid: 6443d2aa8d4a30542972d762337257ef, type: 2}
+  plane: {fileID: 4225764821498152, guid: 6442191bb59199843aa6826f4bad8570, type: 2}
+  roof: {fileID: 4876543726649250, guid: 3e898126ccb53fd4da8e5bb3d8d262d3, type: 2}
+  Portal: {fileID: 4076353412156324, guid: d00ef995e79e1c34ea606365959dcbec, type: 2}
+  Scrap: {fileID: 4757124818831826, guid: 83c4ebec63565d54ba3b9009d90ad478, type: 2}
+  player: {fileID: 0}
+  door: {fileID: 114800002514512268, guid: 7fae2a90fb0950f428ce3c41cdeba658, type: 2}
+  enemy: {fileID: 114276375828816148, guid: 2e37fd5f9485f844dbc89ac4fa28fd0e, type: 2}
+  minWidth: 80
+  minHeight: 80
+  maxWidth: 160
+  maxHeight: 160
+  space: 25
+  minRooms: 5
+  maxRooms: 9
+  doorOffset: 5
+  num_rooms: 7
+  iterations: 60

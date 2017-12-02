@@ -173,7 +173,6 @@ public class MapGenerator : MonoBehaviour {
 
                 if (graph.Count == num_rooms) break;
             }
-
         }
     }
 
