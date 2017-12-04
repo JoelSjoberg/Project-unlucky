@@ -50,7 +50,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
     }
 
     // take damage equal to given amount and play hurt sound, if you die: load game over scene
-    public void takeDamage(int d, Vector3 damager)
+    public void takeDamage(int d)
     {
         if(!invulnerable)
         {

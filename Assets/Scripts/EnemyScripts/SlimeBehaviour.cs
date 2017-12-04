@@ -104,7 +104,7 @@ public class SlimeBehaviour : MonoBehaviour {
             previousState = staggered;
         }
 
-        else if (attack.active) basicBehaviour.player.takeDamage(basicBehaviour.damage, transform.position);
+        else if (attack.active) basicBehaviour.player.takeDamage(basicBehaviour.damage);
 
         else if(followPlayer.active)
         {

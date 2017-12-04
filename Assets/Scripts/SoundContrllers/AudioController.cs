@@ -64,7 +64,7 @@ public class AudioController : MonoBehaviour {
     public void playTheme(string name)
     {
         // find sound from sounds array to play
-        fadeOut();
+        stop();
         currentSong = Array.Find(sounds, sound => sound.name == name);
         currentSong.source.Play();
     }
