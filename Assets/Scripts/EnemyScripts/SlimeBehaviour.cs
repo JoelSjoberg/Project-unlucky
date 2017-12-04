@@ -91,6 +91,8 @@ public class SlimeBehaviour : MonoBehaviour {
             {
                 basicBehaviour.health = 0;
                 basicBehaviour.player.heal(1);
+                // give 3 scrap when eaten
+                basicBehaviour.player.scrap += 3;
 
                 // needs testing
                 // FindObjectOfType<TimeController>().slowDown(0.3f); // slow down time to magnify impact

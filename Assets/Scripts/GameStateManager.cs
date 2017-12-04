@@ -8,6 +8,9 @@ public class GameStateManager : MonoBehaviour {
     private PlayerControllerMapTut player;
     public static GameStateManager instance;
 
+    [HideInInspector]
+    public List<List<EnemyBehaviour>> enemiesInLevel = new List<List<EnemyBehaviour>>();
+
     public int health = 3, scrap = 36;
 
     public void savePlayer()
@@ -23,11 +26,16 @@ public class GameStateManager : MonoBehaviour {
         player.scrap = this.scrap;
     }
 
-
+    public void DeleteEnemiesInLevel(int level) 
+    {
+        foreach(EnemyBehaviour ob in enemiesInLevel[level])
+        {
+            ob.setActiveTo(false);
+        }
+    }
 
     private void Awake()
     {
-
         // remove any other instance of this object when awoken
         if (instance == null)
         {
@@ -38,7 +46,6 @@ public class GameStateManager : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-
         DontDestroyOnLoad(gameObject);
     }
 

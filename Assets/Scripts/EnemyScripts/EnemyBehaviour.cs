@@ -129,6 +129,11 @@ public class EnemyBehaviour : MonoBehaviour {
         return this.currentRoom;
     }
 
+    public void setActiveTo(bool b)
+    {
+        this.gameObject.SetActive(b);
+    }
+
     // if player collides with enemy
     private void OnCollisionEnter(Collision col)
     {

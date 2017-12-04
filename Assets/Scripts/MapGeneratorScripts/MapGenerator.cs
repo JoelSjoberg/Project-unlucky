@@ -25,10 +25,10 @@ public class MapGenerator : MonoBehaviour {
         makeDungeon(); 
     }
 // ---- end of start method
-    private void Update()
+    /*private void Update()
     {
         drawRoomConnectors(); // draws a line in the scene view displaying the connections between them
-    }
+    }*/
 
     // method for creating the whole dungeon
     public void makeDungeon()
@@ -44,6 +44,7 @@ public class MapGenerator : MonoBehaviour {
         float area;
         int minEnemies = 0, maxEnemies = 3;
         // spawn enemies
+        List<EnemyBehaviour> enemies = new List<EnemyBehaviour>();
         for (int i = 1; i < graph.Count; i++)
         {
             area = graph[i].getArea();
@@ -51,14 +52,21 @@ public class MapGenerator : MonoBehaviour {
             if (area < (minWidth + maxWidth / 10) * (minHeight + maxHeight / 10)) { minEnemies = 0; maxEnemies = 1; }
             else if (area < (minWidth + maxWidth / 4) * (minHeight + maxHeight / 4)) { minEnemies = 0; maxEnemies = 3; }
             else if (area < (minWidth + maxWidth / 3) * (minHeight + maxHeight / 3)) { minEnemies = 1; maxEnemies = 4; }
-            else { minEnemies = 3; maxEnemies = 6; }
+            else { minEnemies = 2; maxEnemies = 5; }
+
 
             for (int j = 0; j < Random.Range(minEnemies, maxEnemies); j++)
             {
                 EnemyBehaviour slime = Instantiate(enemy, graph[i].getRandomRoomPosition(20, transform.position.y), Quaternion.identity);
                 slime.setCurrentRoom(graph[i]);
+              
+                enemies.Add(slime);
             }
         }
+ // ADD THEM HERE
+        FindObjectOfType<GameStateManager>().enemiesInLevel.Add(enemies);
+
+        //FindObjectOfType<GameStateManager>().DeleteEnemiesInLevel(0);
 
         prims();
         // each connection now exists in each rooms adjList(i.e. if you want to know which room is connected to which)
@@ -127,7 +135,7 @@ public class MapGenerator : MonoBehaviour {
         int biggestDFI = 0;
         foreach (Room r in graph)
         {
-            if (biggestDFI < r.DFI) ;
+            if (biggestDFI < r.DFI);
         }
 
         // find room to spawn portal

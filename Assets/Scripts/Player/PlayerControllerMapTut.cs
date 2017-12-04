@@ -56,7 +56,10 @@ public class PlayerControllerMapTut : MonoBehaviour {
         {
             invulnerable = true;
             renderer.color = new Color(255, 255, 255, 0.2f);
-            this.health -= d;
+
+            if (health - d < 0) health = 0;
+            else this.health -= d;
+
             FindObjectOfType<AudioController>().play("Hurt");
             stagger();
             // if you die
