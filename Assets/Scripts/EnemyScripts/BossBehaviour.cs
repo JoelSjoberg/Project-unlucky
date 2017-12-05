@@ -13,10 +13,12 @@ public class BossBehaviour : MonoBehaviour {
     public int scrap;
 
     public Attractor attractor;
+    public Vector3 spawningPos;
 
     public void spawn(Vector3 pos)
     {
         transform.position = pos;
+        spawningPos = pos;
     }
 
 	// Use this for initialization
@@ -108,8 +110,8 @@ public class BossBehaviour : MonoBehaviour {
         else
         {
             timer = 0;
-            //state = bossState.attacking;
-            state = bossState.draining;
+            state = bossState.attacking;
+            //state = bossState.draining;
         }
     }
 
@@ -143,7 +145,8 @@ public class BossBehaviour : MonoBehaviour {
         else
         {
             timer = 0;
-            state = bossState.stomping;
+            //state = bossState.stomping;
+            state = bossState.returning;
         }
     }
 
@@ -269,15 +272,18 @@ public class BossBehaviour : MonoBehaviour {
             durration = 10;
             Debug.Log("Returnin");
             FindObjectOfType<AudioController>().playTheme("Return");
+            baseBehaviour.speed = 30;
         }
         if (timer <= durration)
         {
             timer += Time.deltaTime;
+            if (((Vector3)(spawningPos - transform.position)).magnitude > 12) moveTowardsPoint(spawningPos);
         }
         else
         {
             timer = 0;
             state = bossState.raging;
+            baseBehaviour.speed = 150;
         }
     }
 
