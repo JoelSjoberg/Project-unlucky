@@ -111,7 +111,6 @@ public class BossBehaviour : MonoBehaviour {
         {
             timer = 0;
             state = bossState.attacking;
-            //state = bossState.draining;
         }
     }
 
@@ -145,8 +144,7 @@ public class BossBehaviour : MonoBehaviour {
         else
         {
             timer = 0;
-            //state = bossState.stomping;
-            state = bossState.returning;
+            state = bossState.stomping;
         }
     }
 

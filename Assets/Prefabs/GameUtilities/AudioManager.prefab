@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1139541830872554}
+  m_RootGameObject: {fileID: 1008331532973022}
   m_IsPrefabParent: 1
---- !u!1 &1139541830872554
+--- !u!1 &1008331532973022
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4353752846885300}
-  - component: {fileID: 114715676254558188}
+  - component: {fileID: 4986437488970916}
+  - component: {fileID: 114804553733265768}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -27,12 +27,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4353752846885300
+--- !u!4 &4986437488970916
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1139541830872554}
+  m_GameObject: {fileID: 1008331532973022}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
@@ -40,12 +40,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114715676254558188
+--- !u!114 &114804553733265768
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1139541830872554}
+  m_GameObject: {fileID: 1008331532973022}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19967ffe5430e1041b224f471cf45bac, type: 3}
@@ -167,7 +167,19 @@ MonoBehaviour:
     looping: 0
     source: {fileID: 0}
   - name: YourIgnorance
-    clip: {fileID: 8300000, guid: cb59bab544254674a93555e978900678, type: 3}
+    clip: {fileID: 8300000, guid: f4cdc80b21243d84aae6be8dfc98ccbc, type: 3}
+    volume: 0.5
+    pitch: 1
+    looping: 0
+    source: {fileID: 0}
+  - name: YetHere
+    clip: {fileID: 8300000, guid: ce1368fb16ac92b4a82f19bb9c0e7983, type: 3}
+    volume: 0.5
+    pitch: 1
+    looping: 0
+    source: {fileID: 0}
+  - name: FortuneSmiles
+    clip: {fileID: 8300000, guid: e96f76327ffdaea4eb7b4e4ce69c17fd, type: 3}
     volume: 0.5
     pitch: 1
     looping: 0
