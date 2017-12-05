@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1827349004842220}
+  m_RootGameObject: {fileID: 1139541830872554}
   m_IsPrefabParent: 1
---- !u!1 &1827349004842220
+--- !u!1 &1139541830872554
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4923475514637276}
-  - component: {fileID: 114518219023226124}
+  - component: {fileID: 4353752846885300}
+  - component: {fileID: 114715676254558188}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -27,12 +27,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4923475514637276
+--- !u!4 &4353752846885300
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1827349004842220}
+  m_GameObject: {fileID: 1139541830872554}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
@@ -40,12 +40,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114518219023226124
+--- !u!114 &114715676254558188
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1827349004842220}
+  m_GameObject: {fileID: 1139541830872554}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19967ffe5430e1041b224f471cf45bac, type: 3}
@@ -97,6 +97,78 @@ MonoBehaviour:
   - name: BossTheme
     clip: {fileID: 8300000, guid: 874fe4ff8837d854092934080a71d1a1, type: 3}
     volume: 0.5
+    pitch: 0.75
+    looping: 1
+    source: {fileID: 0}
+  - name: Attacking
+    clip: {fileID: 8300000, guid: c334cd7903b00b24f98e6e8f2b795138, type: 3}
+    volume: 0.5
     pitch: 1
     looping: 1
+    source: {fileID: 0}
+  - name: Idle
+    clip: {fileID: 8300000, guid: 2cfd84e5ca7119c42b99efe57db6228b, type: 3}
+    volume: 0.5
+    pitch: 0.7
+    looping: 1
+    source: {fileID: 0}
+  - name: Raging
+    clip: {fileID: 8300000, guid: 2988b91887ea0654cbb9a7ee9d5814e8, type: 3}
+    volume: 0.5
+    pitch: 1
+    looping: 1
+    source: {fileID: 0}
+  - name: Rampaging
+    clip: {fileID: 8300000, guid: c185e6f9ecfb5a143be1d382ea08240c, type: 3}
+    volume: 0.5
+    pitch: 1
+    looping: 1
+    source: {fileID: 0}
+  - name: SpecialAttacking
+    clip: {fileID: 8300000, guid: a645f9c01530a0a489bc533086d03f8c, type: 3}
+    volume: 0.5
+    pitch: 1
+    looping: 1
+    source: {fileID: 0}
+  - name: Stomping
+    clip: {fileID: 8300000, guid: ce775587dfa3ad04a8ce517e9fb7a4ea, type: 3}
+    volume: 0.5
+    pitch: 1
+    looping: 1
+    source: {fileID: 0}
+  - name: Stunned
+    clip: {fileID: 8300000, guid: a95dd47cfea6be641b05e5d23004debc, type: 3}
+    volume: 0.5
+    pitch: 1
+    looping: 1
+    source: {fileID: 0}
+  - name: Return
+    clip: {fileID: 8300000, guid: 2cfd84e5ca7119c42b99efe57db6228b, type: 3}
+    volume: 0.5
+    pitch: 1
+    looping: 1
+    source: {fileID: 0}
+  - name: Draining
+    clip: {fileID: 8300000, guid: 6fff161248f576649b44c9a469e7a80b, type: 3}
+    volume: 0.5
+    pitch: 1
+    looping: 1
+    source: {fileID: 0}
+  - name: ItSeems
+    clip: {fileID: 8300000, guid: 2949e964423083d479d3bf57e371aeeb, type: 3}
+    volume: 0.5
+    pitch: 1
+    looping: 0
+    source: {fileID: 0}
+  - name: Roar
+    clip: {fileID: 8300000, guid: cb59bab544254674a93555e978900678, type: 3}
+    volume: 0.5
+    pitch: 1
+    looping: 0
+    source: {fileID: 0}
+  - name: YourIgnorance
+    clip: {fileID: 8300000, guid: cb59bab544254674a93555e978900678, type: 3}
+    volume: 0.5
+    pitch: 1
+    looping: 0
     source: {fileID: 0}

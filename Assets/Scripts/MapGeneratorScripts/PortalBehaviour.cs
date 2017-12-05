@@ -13,6 +13,7 @@ public class PortalBehaviour : MonoBehaviour {
         if(other.tag == "Player")
         {
             Debug.Log("makeDungeon");
+            if (Level.level == 3) SceneManager.LoadScene("BossTheme"); 
             Level.level++;
             Debug.Log("level + 1");
             Instantiate(plane, FindObjectOfType<MapGenerator>().transform.position + new Vector3(0, 100, 0), Quaternion.identity); // MAKE NEW GROUND 
