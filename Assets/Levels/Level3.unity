@@ -694,6 +694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   scrap: 36
+  maxHealth: 6
   evading: 0
   speed: 40
   slowDownSpeed: 10
