@@ -602,6 +602,27 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: -250
       objectReference: {fileID: 0}
+    - target: {fileID: 114128876341730238, guid: 07a7ca41226ee2a48b108b81ea094258,
+        type: 2}
+      propertyPath: healthSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300004, guid: dc620dbff4091dc4ab7987208095c55c,
+        type: 3}
+    - target: {fileID: 224861904900525464, guid: 07a7ca41226ee2a48b108b81ea094258,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861904900525464, guid: 07a7ca41226ee2a48b108b81ea094258,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861904900525464, guid: 07a7ca41226ee2a48b108b81ea094258,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07a7ca41226ee2a48b108b81ea094258, type: 2}
   m_IsPrefabParent: 0
@@ -760,6 +781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553ad80ea14c9e849ad47eebfa368621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 1
 --- !u!135 &1689957332
 SphereCollider:
   m_ObjectHideFlags: 0
