@@ -249,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrap: 0
   attractor: {fileID: 312910980}
+  spawningPos: {x: 0, y: 0, z: 0}
 --- !u!114 &52095118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,21 +631,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114297416649648066, guid: 07a7ca41226ee2a48b108b81ea094258,
-        type: 2}
-      propertyPath: lifeTime
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 224877673893739946, guid: 07a7ca41226ee2a48b108b81ea094258,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -250
-      objectReference: {fileID: 0}
-    - target: {fileID: 114161771747736482, guid: 07a7ca41226ee2a48b108b81ea094258,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: BossTheme
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07a7ca41226ee2a48b108b81ea094258, type: 2}
