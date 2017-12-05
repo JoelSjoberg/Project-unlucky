@@ -31,12 +31,12 @@ public class DialogueManager : MonoBehaviour {
                 break;
 
             case 3:
-                FindObjectOfType<AudioController>().play("");
+                FindObjectOfType<AudioController>().play("FortuneSmiles");
 
                 break;
 
             case 4:
-                FindObjectOfType<AudioController>().play("");
+                FindObjectOfType<AudioController>().play("YetHere");
 
                 break;
 
