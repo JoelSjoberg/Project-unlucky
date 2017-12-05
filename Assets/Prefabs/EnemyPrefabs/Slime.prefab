@@ -171,9 +171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1238accbd9a05374e921ce3baae35fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
+  health: 3
   speed: 15
-  offset: 20
+  offset: 10
+  roamingOffset: 20
   damage: 1
   staggerDuration: 0.2
   staggerTimer: 0

@@ -8,18 +8,22 @@ public class BossRoomGenerator : MonoBehaviour {
     private List<Room> tree = new List<Room>();
 
     public Transform wall, plane, roof, Scrap;
+
     [HideInInspector]
     public PlayerControllerMapTut player;
+    public EnemyBehaviour boss;
     public Door door;
-    public int bossRoomWidth, bossRoomHeight, doorOffset, roomspace;
     private Room spawnRoom, bossRoom;
+    public int bossRoomWidth, bossRoomHeight, doorOffset, roomspace;
     void Start () {
         player = FindObjectOfType<PlayerControllerMapTut>();
-
         makeBossRoom();
         graph[0].visited = true; // initialize visited value from the start
         player.currentRoom = graph[0];
         player.spawn(new Vector3(player.currentRoom.width / 2, transform.position.y, 10));
+        FindObjectOfType<BossBehaviour>().spawn(new Vector3 (bossRoom.width / 2, transform.position.y, bossRoom.height - 10));
+        FindObjectOfType<EnemyBehaviour>().setCurrentRoom(graph[0]);
+
         makeRoomObjects();
     }
 
@@ -61,6 +65,7 @@ public class BossRoomGenerator : MonoBehaviour {
 
     public void spawnScrap()
     {
+        // make scrap rain down on the level
         for (int i = 0; i < Random.Range(10, 50); i++)
         {
             Instantiate(Scrap, bossRoom.getRandomRoomPosition(10, transform.position.y + 40), Quaternion.identity);

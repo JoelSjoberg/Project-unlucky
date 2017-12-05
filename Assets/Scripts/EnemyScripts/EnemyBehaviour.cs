@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour {
 
     private Room currentRoom;
-    public int health = 4, speed = 100, offset = 5, damage = 1;
+    public int health = 4, speed = 100, offset = 5, roamingOffset = 20, damage = 1;
     public float staggerDuration = 0.05f, staggerTimer = 0;
     [HideInInspector]
     public bool collidingWithPlayer, staggered;
@@ -127,6 +127,11 @@ public class EnemyBehaviour : MonoBehaviour {
     public Room getRoom()
     {
         return this.currentRoom;
+    }
+
+    public void setActiveTo(bool b)
+    {
+        this.gameObject.SetActive(b);
     }
 
     // if player collides with enemy

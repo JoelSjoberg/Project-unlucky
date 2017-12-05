@@ -10,6 +10,10 @@ public class ScrapBehaviour : MonoBehaviour {
     {
         transform.position = Vector3.MoveTowards(transform.position, FindObjectOfType<PlayerControllerMapTut>().transform.position, attractionSpeed);
     }
+    public void moveToBoss()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, FindObjectOfType<BossBehaviour>().transform.position, attractionSpeed);
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
@@ -18,6 +22,15 @@ public class ScrapBehaviour : MonoBehaviour {
             FindObjectOfType<AudioController>().play("Scrap");
             other.GetComponent<PlayerControllerMapTut>().scrap++;
             Destroy(gameObject);
+        }
+
+        if(other.tag == "Boss")
+        {
+            if(other.GetComponent<BossBehaviour>().attractor.isActive)
+            {
+                other.GetComponent<BossBehaviour>().scrap++;
+                Destroy(gameObject);
+            }
         }
     }
 }

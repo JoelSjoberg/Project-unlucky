@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Attractor : MonoBehaviour {
 
+    public bool isActive = true;
+
     public void setRadius(float r)
     {
         // change size of attractor (or magnet if you will)
@@ -13,6 +15,8 @@ public class Attractor : MonoBehaviour {
     private void OnTriggerStay(Collider other)
     {
         // make scrap float towards player
-        if (other.tag == "Scrap") other.GetComponent<ScrapBehaviour>().moveToPlayer();
+        if(this.tag == "PlayerAttractor")if (other.tag == "Scrap") other.GetComponent<ScrapBehaviour>().moveToPlayer();
+
+        if(this.tag == "BossAttractor")if (other.tag == "Scrap") other.GetComponent<ScrapBehaviour>().moveToBoss();
     }
 }

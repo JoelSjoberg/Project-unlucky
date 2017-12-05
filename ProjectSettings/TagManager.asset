@@ -14,6 +14,8 @@ TagManager:
   - Scrap
   - Wall
   - Portal
+  - BossAttractor
+  - Boss
   layers:
   - Default
   - TransparentFX
