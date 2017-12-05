@@ -31,7 +31,12 @@ public class BossBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (baseBehaviour.player.health <= 0) gameObject.SetActive(false);
+        if (baseBehaviour.player.health <= 0 || baseBehaviour.health <= 0)
+        {
+            gameObject.SetActive(false);
+            FindObjectOfType<AudioController>().playTheme("GameOver");
+        }
+       
 		switch(state)
         {
             case bossState.idle:
@@ -103,6 +108,7 @@ public class BossBehaviour : MonoBehaviour {
             FindObjectOfType<FollowPlayer>().offset.y = 130;
             FindObjectOfType<FollowPlayer>().offsetYon = 130;
             FindObjectOfType<AudioController>().playTheme("Raging");
+            FindObjectOfType<AudioController>().play("Roar");
             FindObjectOfType<FollowPlayer>().shake(durration);
             FindObjectOfType<BossRoomGenerator>().spawnScrap();
         }
@@ -213,13 +219,28 @@ public class BossBehaviour : MonoBehaviour {
             durration = 27;
             Debug.Log("SpecialAttack");
             FindObjectOfType<AudioController>().playTheme("SpecialAttacking");
+            baseBehaviour.speed = Random.Range(100, 250);
         }
-        if (timer <= durration) timer += Time.deltaTime;
+        if (timer <= durration)
+        {
+            timer += Time.deltaTime;
+            if (((Vector3)(playerPos - transform.position)).magnitude > 12) moveTowardsPoint(playerPos);
+            if (baseBehaviour.collidingWithPlayer) baseBehaviour.player.takeDamage(baseBehaviour.damage);
+            else
+            {
+                if (!wait(0.8f, 0.01f))
+                {
+                    playerPos = baseBehaviour.getRoom().getRandomRoomPosition(10, 0);
+                    baseBehaviour.speed = Random.Range(100, 250);
+                }
+            }
+        }
         else
         {
             timer = 0;
             state = bossState.attacking;
-            if (baseBehaviour.health <= 8) state = bossState.draining;
+            if (baseBehaviour.health <= 12) state = bossState.draining;
+            baseBehaviour.speed = 150;
         }
     }
     private void Stunned()
@@ -246,6 +267,7 @@ public class BossBehaviour : MonoBehaviour {
             durration = 17;
             Debug.Log("Draining");
             FindObjectOfType<AudioController>().playTheme("Draining");
+            FindObjectOfType<AudioController>().play("ItSeems");
             attractor.isActive = true;
             baseBehaviour.speed = 15;
         }
@@ -254,6 +276,7 @@ public class BossBehaviour : MonoBehaviour {
             timer += Time.deltaTime;
             baseBehaviour.player.transform.Translate(((baseBehaviour.player.transform.position - transform.position) * -1).normalized * 1f);
             moveTowardsPlayer();
+            if (baseBehaviour.collidingWithPlayer) baseBehaviour.player.takeDamage(baseBehaviour.damage);
         }
         else
         {
@@ -301,6 +324,24 @@ public class BossBehaviour : MonoBehaviour {
     private bool wait(float t)
     {
         if (WaitTimer == 0) FindObjectOfType<FollowPlayer>().shake(0.1f);
+        WaitTimer += Time.deltaTime;
+        if (WaitTimer >= t)
+        {
+            WaitTimer = 0;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    private bool wait(float t, float magnitude)
+    {
+        if (WaitTimer == 0)
+        {
+            FindObjectOfType<FollowPlayer>().shake(magnitude);
+            FindObjectOfType<BossRoomGenerator>().spawnScrap(0, 2);
+        }
         WaitTimer += Time.deltaTime;
         if (WaitTimer >= t)
         {

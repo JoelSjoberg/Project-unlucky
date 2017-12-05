@@ -21,7 +21,7 @@ public class PortalBehaviour : MonoBehaviour {
             FindObjectOfType<MapGenerator>().makeDungeon();
             FindObjectOfType<TimeController>().slowDown(2); // slow down time to emphasize transition
             FindObjectOfType<DialogueManager>().DisplayNextSentence();
-            // FindObjectOfType<GameStateManager>().savePlayer();
+            FindObjectOfType<GameStateManager>().savePlayer();
             // SceneManager.LoadScene("Level3");
         }
     }

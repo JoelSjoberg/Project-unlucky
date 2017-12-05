@@ -71,4 +71,12 @@ public class BossRoomGenerator : MonoBehaviour {
             Instantiate(Scrap, bossRoom.getRandomRoomPosition(10, transform.position.y + 40), Quaternion.identity);
         }
     }
+    public void spawnScrap(float a, float b)
+    {
+        // make scrap rain down on the level
+        for (int i = 0; i < Random.Range(a, b); i++)
+        {
+            Instantiate(Scrap, bossRoom.getRandomRoomPosition(10, transform.position.y + 40), Quaternion.identity);
+        }
+    }
 }

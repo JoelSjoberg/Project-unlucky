@@ -162,8 +162,8 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Roar
     clip: {fileID: 8300000, guid: cb59bab544254674a93555e978900678, type: 3}
-    volume: 0.5
-    pitch: 1
+    volume: 0.37
+    pitch: 1.77
     looping: 0
     source: {fileID: 0}
   - name: YourIgnorance
