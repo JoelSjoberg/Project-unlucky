@@ -90,7 +90,10 @@ public class SlimeBehaviour : MonoBehaviour {
             if (basicBehaviour.collidingWithPlayer)
             {
                 basicBehaviour.health = 0;
-                basicBehaviour.player.heal(1);
+                if(!(basicBehaviour.player.health >= basicBehaviour.player.maxHealth))
+                {
+                    basicBehaviour.player.heal(1);
+                }
                 // give 3 scrap when eaten
                 basicBehaviour.player.scrap += 3;
 

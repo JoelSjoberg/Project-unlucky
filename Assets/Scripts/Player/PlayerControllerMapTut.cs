@@ -7,6 +7,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
 
     // Status variables
     public int health = 3, scrap = 36;
+    public int maxHealth = 6;
     public bool evading = false;
     public float speed, slowDownSpeed, evadeTime, evadeSpeed = 100;
     private float movementSpeed, evadeTimer = 0, scrapAttractor;
@@ -174,25 +175,4 @@ public class PlayerControllerMapTut : MonoBehaviour {
             invulnerableTimer = 0;
         }
     }
-
-
-    // Adds +1 to level counter when player touches portal
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Portal")
-        {
-            if(!Level.touchingPortal)
-            {
-                Level.level++;
-                Level.touchingPortal = true;
-            }
-        }
-    }
- 
-    private void OnTriggerExit(Collider other)
-    {
-        Level.touchingPortal = false;
-    }
-
-
 }
