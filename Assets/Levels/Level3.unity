@@ -558,7 +558,7 @@ Prefab:
     - target: {fileID: 224687461776897216, guid: 07a7ca41226ee2a48b108b81ea094258,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224687461776897216, guid: 07a7ca41226ee2a48b108b81ea094258,
         type: 2}
@@ -712,7 +712,7 @@ Transform:
   - {fileID: 124809109}
   - {fileID: 1713204322}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1669910979
 MonoBehaviour:
@@ -877,6 +877,11 @@ Prefab:
       propertyPath: sounds.Array.size
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 114715676254558188, guid: 9405c1b0dd55b16459154907950f59ce,
+        type: 2}
+      propertyPath: sounds.Array.size
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 4923475514637276, guid: 9405c1b0dd55b16459154907950f59ce, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1034,6 +1039,51 @@ Prefab:
       propertyPath: sounds.Array.data[12].looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114715676254558188, guid: 9405c1b0dd55b16459154907950f59ce,
+        type: 2}
+      propertyPath: sounds.Array.data[20].name
+      value: YetHere
+      objectReference: {fileID: 0}
+    - target: {fileID: 114715676254558188, guid: 9405c1b0dd55b16459154907950f59ce,
+        type: 2}
+      propertyPath: sounds.Array.data[20].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ce1368fb16ac92b4a82f19bb9c0e7983, type: 3}
+    - target: {fileID: 114715676254558188, guid: 9405c1b0dd55b16459154907950f59ce,
+        type: 2}
+      propertyPath: sounds.Array.data[20].volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114715676254558188, guid: 9405c1b0dd55b16459154907950f59ce,
+        type: 2}
+      propertyPath: sounds.Array.data[20].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114715676254558188, guid: 9405c1b0dd55b16459154907950f59ce,
+        type: 2}
+      propertyPath: sounds.Array.data[21].name
+      value: FortuneSmiles
+      objectReference: {fileID: 0}
+    - target: {fileID: 114715676254558188, guid: 9405c1b0dd55b16459154907950f59ce,
+        type: 2}
+      propertyPath: sounds.Array.data[21].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e96f76327ffdaea4eb7b4e4ce69c17fd, type: 3}
+    - target: {fileID: 114715676254558188, guid: 9405c1b0dd55b16459154907950f59ce,
+        type: 2}
+      propertyPath: sounds.Array.data[21].volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114715676254558188, guid: 9405c1b0dd55b16459154907950f59ce,
+        type: 2}
+      propertyPath: sounds.Array.data[21].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114715676254558188, guid: 9405c1b0dd55b16459154907950f59ce,
+        type: 2}
+      propertyPath: sounds.Array.data[19].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f4cdc80b21243d84aae6be8dfc98ccbc, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9405c1b0dd55b16459154907950f59ce, type: 2}
   m_IsPrefabParent: 0
