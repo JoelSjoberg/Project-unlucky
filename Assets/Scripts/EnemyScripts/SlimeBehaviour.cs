@@ -123,7 +123,7 @@ public class SlimeBehaviour : MonoBehaviour {
             //...Nope
             if(roamTimer >= roamTime)
             {
-                roamingDestination = basicBehaviour.getRoom().getRandomRoomPosition(basicBehaviour.offset, transform.position.y);
+                roamingDestination = basicBehaviour.getRoom().getRandomRoomPosition(basicBehaviour.roamingOffset, transform.position.y);
                 roamTimer = 0;
             }
             roamTimer += Time.deltaTime;

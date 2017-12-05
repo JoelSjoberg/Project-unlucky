@@ -9,6 +9,10 @@ public class BossBehaviour : MonoBehaviour {
 
     private float timer = 0;
     private float durration = 0;
+    [HideInInspector]
+    public int scrap;
+
+    public Attractor attractor;
 
     public void spawn(Vector3 pos)
     {
@@ -19,6 +23,7 @@ public class BossBehaviour : MonoBehaviour {
 	void Start ()
     {
         baseBehaviour = GetComponent<EnemyBehaviour>();
+        attractor.isActive = false;
 	}
 	
 	// Update is called once per frame
@@ -93,6 +98,8 @@ public class BossBehaviour : MonoBehaviour {
         {
             Debug.Log("ROOOAAAARRR");
             durration = 1;
+            FindObjectOfType<FollowPlayer>().offset.y = 130;
+            FindObjectOfType<FollowPlayer>().offsetYon = 130;
             FindObjectOfType<AudioController>().playTheme("Raging");
             FindObjectOfType<FollowPlayer>().shake(durration);
             FindObjectOfType<BossRoomGenerator>().spawnScrap();
@@ -101,7 +108,8 @@ public class BossBehaviour : MonoBehaviour {
         else
         {
             timer = 0;
-            state = bossState.attacking;
+            //state = bossState.attacking;
+            state = bossState.draining;
         }
     }
 
@@ -209,8 +217,8 @@ public class BossBehaviour : MonoBehaviour {
         else
         {
             timer = 0;
+            state = bossState.attacking;
             if (baseBehaviour.health <= 8) state = bossState.draining;
-            else state = bossState.attacking;
         }
     }
     private void Stunned()
@@ -237,14 +245,19 @@ public class BossBehaviour : MonoBehaviour {
             durration = 17;
             Debug.Log("Draining");
             FindObjectOfType<AudioController>().playTheme("Draining");
+            attractor.isActive = true;
+            baseBehaviour.speed = 15;
         }
         if (timer <= durration)
         {
             timer += Time.deltaTime;
             baseBehaviour.player.transform.Translate(((baseBehaviour.player.transform.position - transform.position) * -1).normalized * 1f);
+            moveTowardsPlayer();
         }
         else
         {
+            baseBehaviour.speed = 150;
+            attractor.isActive = false;
             timer = 0;
             state = bossState.returning;
         }

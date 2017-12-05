@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 52095119}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,7 +231,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 537, y: 0, z: 616.5}
   m_LocalScale: {x: 20, y: 10, z: 20}
-  m_Children: []
+  m_Children:
+  - {fileID: 312910982}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -246,6 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3dc4d2d41d9a54fbd8955e68b548cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrap: 0
+  attractor: {fileID: 312910980}
 --- !u!114 &52095118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +263,7 @@ MonoBehaviour:
   health: 35
   speed: 150
   offset: 5
+  roamingOffset: 20
   damage: 2
   staggerDuration: 0.05
   staggerTimer: 0
@@ -350,6 +354,60 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!1 &312910979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 312910982}
+  - component: {fileID: 312910980}
+  - component: {fileID: 312910981}
+  m_Layer: 0
+  m_Name: Attractor
+  m_TagString: BossAttractor
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &312910980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 312910979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553ad80ea14c9e849ad47eebfa368621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 1
+--- !u!135 &312910981
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 312910979}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 100
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &312910982
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 312910979}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 52095116}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &435127814
 Prefab:
   m_ObjectHideFlags: 0
@@ -813,6 +871,16 @@ Prefab:
       propertyPath: lifeTime
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 224877673893739946, guid: 07a7ca41226ee2a48b108b81ea094258,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -250
+      objectReference: {fileID: 0}
+    - target: {fileID: 114161771747736482, guid: 07a7ca41226ee2a48b108b81ea094258,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: BossTheme
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07a7ca41226ee2a48b108b81ea094258, type: 2}
   m_IsPrefabParent: 0
@@ -859,6 +927,11 @@ Prefab:
         type: 2}
       propertyPath: m_Mass
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 135489716153037396, guid: 68563d8fa596e994dbfe6fd8ef992e70,
+        type: 2}
+      propertyPath: m_Radius
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68563d8fa596e994dbfe6fd8ef992e70, type: 2}
@@ -1013,6 +1086,11 @@ Prefab:
     - target: {fileID: 4987384526685436, guid: 6326cfbc26ee6d142a3cf33160620296, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114102624391745920, guid: 6326cfbc26ee6d142a3cf33160620296,
+        type: 2}
+      propertyPath: offset.y
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6326cfbc26ee6d142a3cf33160620296, type: 2}

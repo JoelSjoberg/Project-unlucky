@@ -33,7 +33,7 @@ public class BulletController : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        if(other.tag == "Enemy")
+        if(other.tag == "Enemy" || other.tag == "Boss")
         {
             other.GetComponent<EnemyBehaviour>().takeDamage(damage);
             Destroy(gameObject);
