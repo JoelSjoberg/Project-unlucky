@@ -23,5 +23,30 @@ public class DialogueManager : MonoBehaviour {
         if (sentences.Count == 0) return;
         
         FindObjectOfType<DialogueTrigger>().WriteText(dialogue.name, sentences.Dequeue());
+
+        switch (Level.level) {
+
+            case 2:
+                FindObjectOfType<AudioController>().play("YourIgnorance");
+                break;
+
+            case 3:
+                FindObjectOfType<AudioController>().play("");
+
+                break;
+
+            case 4:
+                FindObjectOfType<AudioController>().play("");
+
+                break;
+
+            case 5:
+                FindObjectOfType<AudioController>().play("ItSeems");
+
+                break;
+
+            default:
+                break;
+        }
     }
 }
