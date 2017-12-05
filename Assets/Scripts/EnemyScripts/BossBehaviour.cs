@@ -34,7 +34,7 @@ public class BossBehaviour : MonoBehaviour {
         if (baseBehaviour.player.health <= 0 || baseBehaviour.health <= 0)
         {
             gameObject.SetActive(false);
-            FindObjectOfType<AudioController>().playTheme("GameOver");
+            FindObjectOfType<AudioController>().playTheme("LevelEnd");
         }
        
 		switch(state)

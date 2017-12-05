@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour {
 
     private Room currentRoom;
-    public int health = 4, speed = 100, offset = 5, roamingOffset = 20, damage = 1;
+    public int health = 4, speed = 100, offset = 5, roamingOffset = 20, damage = 1, maxHp;
     public float staggerDuration = 0.05f, staggerTimer = 0;
     [HideInInspector]
     public bool collidingWithPlayer, staggered;
@@ -22,6 +22,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         player = FindObjectOfType<PlayerControllerMapTut>();
+        maxHp = health;
     }
 
 	// Update is called once per frame
