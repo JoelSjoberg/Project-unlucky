@@ -148,9 +148,8 @@ public class PlayerControllerMapTut : MonoBehaviour {
 
         // Input(Keyboard and Mouse)
 		//disable shooting while in safe heaven to make button presses work
-		if (!inSafeHeaven) {
-			if (Input.GetMouseButtonDown(0)) gun.isFiring = true;
-		}        
+
+		if (Input.GetMouseButtonDown(0)) gun.isFiring = true;		        
         if (Input.GetMouseButtonUp(0)) gun.isFiring = false;
 
         if (Input.GetKeyDown("left shift"))

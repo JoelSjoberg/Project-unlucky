@@ -28,7 +28,7 @@ public class ButtonManager : MonoBehaviour {
 
 	public void Buy(){
 		Debug.Log ("Buy pressed");
-		if (playerRef.scrap >= 2 && playerRef.health < playerRef.maxHealth ) {
+		if (playerRef.scrap >= 3 && playerRef.health < playerRef.maxHealth ) {
 			playerRef.heal (1);
 			playerRef.scrap-=3;
 			Debug.Log ("Scrap | health: " + playerRef.scrap.ToString() + " " + playerRef.health.ToString());
@@ -42,6 +42,7 @@ public class ButtonManager : MonoBehaviour {
 			obj.SetActive (false);
 		}
 		playerRef.inSafeHeaven = false;
+		FindObjectOfType<DialogueManager>().DisplayNextSentence();
 	}
 }
 
