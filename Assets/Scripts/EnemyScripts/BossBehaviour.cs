@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossBehaviour : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class BossBehaviour : MonoBehaviour {
     private float durration = 0;
     [HideInInspector]
     public int scrap;
+    public RawImage health;
 
     public Attractor attractor;
     public Vector3 spawningPos;
@@ -25,7 +27,9 @@ public class BossBehaviour : MonoBehaviour {
 	void Start ()
     {
         baseBehaviour = GetComponent<EnemyBehaviour>();
+
         attractor.isActive = false;
+        health.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -111,6 +115,7 @@ public class BossBehaviour : MonoBehaviour {
             FindObjectOfType<AudioController>().play("Roar");
             FindObjectOfType<FollowPlayer>().shake(durration);
             FindObjectOfType<BossRoomGenerator>().spawnScrap();
+            health.gameObject.SetActive(true);
         }
         if (timer <= durration) timer += Time.deltaTime;
         else
