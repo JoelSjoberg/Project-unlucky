@@ -244,7 +244,7 @@ public class BossBehaviour : MonoBehaviour {
         {
             timer = 0;
             state = bossState.attacking;
-            if (baseBehaviour.health <= 12) state = bossState.draining;
+            if (baseBehaviour.health <= 15) state = bossState.draining;
             baseBehaviour.speed = 150;
         }
     }
