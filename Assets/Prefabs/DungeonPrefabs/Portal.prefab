@@ -106,3 +106,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plane: {fileID: 4890380155593326, guid: 86a2d476d79691e4da4dea454d2c2062, type: 2}
+  playerRef: {fileID: 0}

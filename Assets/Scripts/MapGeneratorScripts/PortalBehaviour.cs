@@ -6,13 +6,20 @@ using UnityEngine;
 public class PortalBehaviour : MonoBehaviour {
 
     public Transform plane;
-
+	public PlayerControllerMapTut playerRef;
     // Load a new map
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
             Debug.Log("makeDungeon");
+			//go to safe heaven
+			if (Level.level == 1) {
+				Debug.Log ("Go to safe heaven");
+				playerRef.transform.position = new Vector3 (-800, 0, 50);
+			}
+
+
             if (Level.level == 3) SceneManager.LoadScene("BossTheme"); 
             Level.level++;
             Debug.Log("level + 1");
