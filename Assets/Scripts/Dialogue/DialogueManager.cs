@@ -47,14 +47,13 @@ public class DialogueManager : MonoBehaviour {
                 break;
 
             case 4:
-                FindObjectOfType<AudioController>().play("YetHere");
-
-                break;
-
-            case 5:
+               
                 FindObjectOfType<AudioController>().play("ItSeems");
 
                 break;
+
+           
+                
 
             default:
                 break;
