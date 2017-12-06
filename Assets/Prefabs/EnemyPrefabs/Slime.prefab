@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1707727768167182}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3.8}
+  m_LocalPosition: {x: 15.551375, y: 23.700489, z: -33.630856}
   m_LocalScale: {x: 9, y: 6, z: 12}
   m_Children:
   - {fileID: 4158329797862148}
@@ -176,6 +176,7 @@ MonoBehaviour:
   offset: 10
   roamingOffset: 20
   damage: 1
+  maxHp: 0
   staggerDuration: 0.2
   staggerTimer: 0
   collidingWithPlayer: 0
@@ -239,7 +240,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 300
   m_Sprite: {fileID: 21300008, guid: 6dc6431cdf21be84cb027cafc63448bb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7058823, g: 0.45155707, b: 0.45155707, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1

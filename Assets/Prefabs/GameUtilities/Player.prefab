@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553ad80ea14c9e849ad47eebfa368621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 1
 --- !u!114 &114116396024814614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -388,6 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   scrap: 36
+  maxHealth: 6
   evading: 0
   speed: 40
   slowDownSpeed: 10
@@ -397,6 +399,7 @@ MonoBehaviour:
   gun: {fileID: 114549691224391708}
   attractor: {fileID: 114010890810523282}
   offset: 8
+  inSafeHeaven: 0
 --- !u!114 &114823768300339176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -418,7 +421,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.3
+  m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212227997004219874
 SpriteRenderer:
@@ -453,7 +456,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 300
   m_Sprite: {fileID: 21300000, guid: 4f41a04dc642f0c498437b855b553731, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8235294, g: 0.80536336, b: 0.80536336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
