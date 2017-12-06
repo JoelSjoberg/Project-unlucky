@@ -10,6 +10,7 @@ public class ButtonManager : MonoBehaviour {
 
 	void Start(){
 		playerRef = FindObjectOfType<PlayerControllerMapTut> ();
+		merchantUI = GameObject.FindGameObjectsWithTag ("MerchantUI");
 	}
 
 	public void StartGame(string firstLevel){
@@ -42,7 +43,7 @@ public class ButtonManager : MonoBehaviour {
 			obj.SetActive (false);
 		}
 		playerRef.inSafeHeaven = false;
-		FindObjectOfType<DialogueManager>().DisplayNextSentence();
+		//FindObjectOfType<DialogueManager>().DisplayNextSentence();
 	}
 }
 

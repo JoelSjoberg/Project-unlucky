@@ -8,9 +8,11 @@ public class PortalBehaviour : MonoBehaviour {
     public Transform plane;
 	public PlayerControllerMapTut playerRef;
 	private Vector3 safeHeavenPosition = new Vector3 (-900, 0, 50); 
+	public GameObject[] merchantUI;
 
 	void Start(){
 		playerRef = FindObjectOfType<PlayerControllerMapTut> ();
+		merchantUI = GameObject.FindGameObjectsWithTag ("MerchantUI");
 	}
 
     // Load a new map
@@ -18,6 +20,9 @@ public class PortalBehaviour : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
+			foreach (GameObject obj in merchantUI) {
+				obj.SetActive (false);
+			}
 			
 			Debug.Log ("makeDungeon " + Level.level.ToString());
             if (Level.level == 3) SceneManager.LoadScene("BossTheme"); 
@@ -29,7 +34,7 @@ public class PortalBehaviour : MonoBehaviour {
             FindObjectOfType<TimeController>().slowDown(2); // slow down time to emphasize transition
             
 			//moved to ButtonManager so that dialog is not shown in safe heaven but after leaving
-			//FindObjectOfType<DialogueManager>().DisplayNextSentence();
+			FindObjectOfType<DialogueManager>().DisplayNextSentence();
 
             FindObjectOfType<GameStateManager>().savePlayer();
             // SceneManager.LoadScene("Level3");
