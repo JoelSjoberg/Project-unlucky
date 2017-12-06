@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour {
 
+	public PlayerControllerMapTut playerRef;
+	public GameObject[] merchantUI;
+
+	void Start(){
+		playerRef = FindObjectOfType<PlayerControllerMapTut> ();
+	}
 
 	public void StartGame(string firstLevel){
 		SceneManager.LoadScene (firstLevel);
@@ -22,10 +28,19 @@ public class ButtonManager : MonoBehaviour {
 
 	public void Buy(){
 		Debug.Log ("Buy pressed");
+		if (playerRef.scrap >= 2 && playerRef.health < playerRef.maxHealth ) {
+			playerRef.health++;
+			playerRef.scrap--;
+			Debug.Log ("Scrap | health: " + playerRef.scrap.ToString() + " " + playerRef.scrap.ToString());
+		}
 	}
 
 	public void Leave(){
 		Debug.Log ("Leave pressed");
+		playerRef.transform.position = new Vector3 (50, (Level.level - 1) * 200, 50);
+		foreach (GameObject obj in merchantUI) {
+			obj.SetActive (false);
+		}
 	}
 }
 

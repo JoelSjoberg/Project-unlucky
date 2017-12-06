@@ -8,13 +8,9 @@ public class PortalBehaviour : MonoBehaviour {
     public Transform plane;
 	public PlayerControllerMapTut playerRef;
 	private Vector3 safeHeavenPosition = new Vector3 (-900, 0, 50); 
-	public GameObject merchantUI;
-
 
 	void Start(){
 		playerRef = FindObjectOfType<PlayerControllerMapTut> ();
-		merchantUI = GameObject.FindGameObjectWithTag ("MerchantUI");
-		merchantUI.SetActive (false);
 	}
 
     // Load a new map
@@ -39,7 +35,7 @@ public class PortalBehaviour : MonoBehaviour {
 			if (Level.level % 1 == 0) {
 				Debug.Log ("Go to safe heaven");
 				playerRef.transform.position = safeHeavenPosition;
-				merchantUI.SetActive (true);
+
 			}
 
         }
