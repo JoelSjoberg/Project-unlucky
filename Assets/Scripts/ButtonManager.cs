@@ -43,7 +43,7 @@ public class ButtonManager : MonoBehaviour {
 			obj.SetActive (false);
 		}
 		playerRef.inSafeHeaven = false;
-		//FindObjectOfType<DialogueManager>().DisplayNextSentence();
+		FindObjectOfType<DialogueManager>().DisplayNextSentence();
 	}
 }
 
