@@ -33,14 +33,17 @@ public class PortalBehaviour : MonoBehaviour {
             FindObjectOfType<MapGenerator>().makeDungeon();
             FindObjectOfType<TimeController>().slowDown(2); // slow down time to emphasize transition
             
-			//moved to ButtonManager so that dialog is not shown in safe heaven but after leaving
 			//FindObjectOfType<DialogueManager>().DisplayNextSentence();
 
             FindObjectOfType<GameStateManager>().savePlayer();
             // SceneManager.LoadScene("Level3");
 
+			if (Level.level % 3 != 0) {
+				FindObjectOfType<DialogueManager>().DisplayNextSentence();
+			}
+
 			//safe heaven
-			if (Level.level % 1 == 0) {
+			if (Level.level % 3 == 0) {
 				Debug.Log ("Go to safe heaven");
 				playerRef.transform.position = safeHeavenPosition;
 				playerRef.inSafeHeaven = true;
