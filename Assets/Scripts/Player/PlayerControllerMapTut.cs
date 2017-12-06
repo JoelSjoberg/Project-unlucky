@@ -144,12 +144,18 @@ public class PlayerControllerMapTut : MonoBehaviour {
         // rigidbody.AddForce(velocity);
         // if (xAxis == 0 && zAxis == 0) rigidbody.velocity = Vector3.zero;
         // rigidbody.velocity = velocity;
-        transform.Translate(velocity.x, 0, velocity.z);
+		if (!inSafeHeaven) {
+			transform.Translate(velocity.x, 0, velocity.z);
+		}
+        
 
         // Input(Keyboard and Mouse)
 		//disable shooting while in safe heaven to make button presses work
 
-		if (Input.GetMouseButtonDown(0)) gun.isFiring = true;		        
+		if (!inSafeHeaven) {
+			if (Input.GetMouseButtonDown(0)) gun.isFiring = true;	
+		}
+			        
         if (Input.GetMouseButtonUp(0)) gun.isFiring = false;
 
         if (Input.GetKeyDown("left shift"))

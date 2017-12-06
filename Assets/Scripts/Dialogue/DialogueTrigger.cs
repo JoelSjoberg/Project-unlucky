@@ -34,6 +34,7 @@ public class DialogueTrigger : MonoBehaviour {
         dialogueText.text = sentence;
 
         Vector3 pos = new Vector3(0, 0, 0) ;
+
         float x = Random.Range(200, Screen.width - 200);
         float y = Random.Range(200, Screen.height - 200);
         pos.x = x;

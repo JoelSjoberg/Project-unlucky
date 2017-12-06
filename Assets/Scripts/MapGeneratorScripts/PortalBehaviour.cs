@@ -34,7 +34,7 @@ public class PortalBehaviour : MonoBehaviour {
             FindObjectOfType<TimeController>().slowDown(2); // slow down time to emphasize transition
             
 			//moved to ButtonManager so that dialog is not shown in safe heaven but after leaving
-			FindObjectOfType<DialogueManager>().DisplayNextSentence();
+			//FindObjectOfType<DialogueManager>().DisplayNextSentence();
 
             FindObjectOfType<GameStateManager>().savePlayer();
             // SceneManager.LoadScene("Level3");
