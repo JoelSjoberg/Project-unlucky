@@ -34,3 +34,7 @@ sysinfo.txt
 *.unitypackage
 Assets/Scripts/MapGenerator.cs
 Assets/Sprites/Weapons/Materials.meta
+Assets/Levels/BossTheme.unity
+Assets/Prefabs/DungeonPrefabs/Roof.prefab
+Assets/Prefabs/DungeonPrefabs/RoomFloor.prefab
+Assets/Prefabs/DungeonPrefabs/WallThing.prefab
