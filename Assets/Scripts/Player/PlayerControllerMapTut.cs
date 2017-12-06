@@ -30,6 +30,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
     private SpriteRenderer renderer;
 	private Vector3 velocity;
 
+	public bool inSafeHeaven = false;
 
     // place player on given cordinates
     public void spawn(Vector3 newPos)
@@ -146,8 +147,12 @@ public class PlayerControllerMapTut : MonoBehaviour {
         transform.Translate(velocity.x, 0, velocity.z);
 
         // Input(Keyboard and Mouse)
-        if (Input.GetMouseButtonDown(0)) gun.isFiring = true;
+		//disable shooting while in safe heaven to make button presses work
+		if (!inSafeHeaven) {
+			if (Input.GetMouseButtonDown(0)) gun.isFiring = true;
+		}        
         if (Input.GetMouseButtonUp(0)) gun.isFiring = false;
+
         if (Input.GetKeyDown("left shift"))
         {
             movementSpeed = evadeSpeed;

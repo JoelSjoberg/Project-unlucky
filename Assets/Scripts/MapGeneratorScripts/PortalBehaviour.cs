@@ -35,6 +35,7 @@ public class PortalBehaviour : MonoBehaviour {
 			if (Level.level % 1 == 0) {
 				Debug.Log ("Go to safe heaven");
 				playerRef.transform.position = safeHeavenPosition;
+				playerRef.inSafeHeaven = true;
 
 			}
 

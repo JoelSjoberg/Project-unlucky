@@ -29,9 +29,9 @@ public class ButtonManager : MonoBehaviour {
 	public void Buy(){
 		Debug.Log ("Buy pressed");
 		if (playerRef.scrap >= 2 && playerRef.health < playerRef.maxHealth ) {
-			playerRef.health++;
-			playerRef.scrap--;
-			Debug.Log ("Scrap | health: " + playerRef.scrap.ToString() + " " + playerRef.scrap.ToString());
+			playerRef.heal (1);
+			playerRef.scrap-=3;
+			Debug.Log ("Scrap | health: " + playerRef.scrap.ToString() + " " + playerRef.health.ToString());
 		}
 	}
 
@@ -41,6 +41,7 @@ public class ButtonManager : MonoBehaviour {
 		foreach (GameObject obj in merchantUI) {
 			obj.SetActive (false);
 		}
+		playerRef.inSafeHeaven = false;
 	}
 }
 
