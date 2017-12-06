@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,8 +22,18 @@ public class DialogueManager : MonoBehaviour {
     public void DisplayNextSentence()
     {
         if (sentences.Count == 0) return;
-        
+
+        if (SceneManager.GetActiveScene().name == "BossTheme") {
+
+            FindObjectOfType<DialogueTrigger>().WriteText(dialogue.name, FindObjectOfType<Dialogue>().sentences[3]);
+            FindObjectOfType<AudioController>().play("ItSeems");
+
+        }
+        else {
+
         FindObjectOfType<DialogueTrigger>().WriteText(dialogue.name, sentences.Dequeue());
+        }
+
 
         switch (Level.level) {
 
