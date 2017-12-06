@@ -19,6 +19,14 @@ public class ButtonManager : MonoBehaviour {
 		SceneManager.LoadScene (menuLevel);
 		Debug.Log ("Menu button pressed");
 	}
+
+	public void Buy(){
+		Debug.Log ("Buy pressed");
+	}
+
+	public void Leave(){
+		Debug.Log ("Leave pressed");
+	}
 }
 
 
