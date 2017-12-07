@@ -11,7 +11,7 @@ public class GameStateManager : MonoBehaviour {
     [HideInInspector]
     public List<List<EnemyBehaviour>> enemiesInLevel = new List<List<EnemyBehaviour>>();
 
-    public int health = 3, scrap = 36;
+    public int health , scrap;
 
     public void savePlayer()
     {

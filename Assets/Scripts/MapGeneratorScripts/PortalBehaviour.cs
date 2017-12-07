@@ -24,20 +24,24 @@ public class PortalBehaviour : MonoBehaviour {
 				obj.SetActive (false);
 			}
 			
-			Debug.Log ("makeDungeon " + Level.level.ToString());
-            if (Level.level == 3) SceneManager.LoadScene("BossTheme"); 
+            // increment level
             Level.level++;
-            Debug.Log("level + 1");
+
             Instantiate(plane, FindObjectOfType<MapGenerator>().transform.position + new Vector3(0, 100, 0), Quaternion.identity); // MAKE NEW GROUND 
             FindObjectOfType<MapGenerator>().transform.position += new Vector3(0, 200, 0);
             FindObjectOfType<MapGenerator>().makeDungeon();
             FindObjectOfType<TimeController>().slowDown(2); // slow down time to emphasize transition
+            FindObjectOfType<PlayerControllerMapTut>().updateSpriteLayer();
             
 			//FindObjectOfType<DialogueManager>().DisplayNextSentence();
 
-            FindObjectOfType<GameStateManager>().savePlayer();
             // SceneManager.LoadScene("Level3");
 
+            if (Level.level == 3)
+            {
+                FindObjectOfType<GameStateManager>().savePlayer();
+                SceneManager.LoadScene("BossTheme");
+            }
 			if (Level.level % 3 != 0) {
 				FindObjectOfType<DialogueManager>().DisplayNextSentence();
 			}

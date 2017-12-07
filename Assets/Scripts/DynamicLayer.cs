@@ -12,8 +12,8 @@ public class DynamicLayer : MonoBehaviour {
         r.sortingOrder = (int)transform.position.y;
 	}
 
-    private void Update()
+    /*private void Update()
     {
         r.sortingOrder = (int)transform.position.y;
-    }
+    }*/
 }

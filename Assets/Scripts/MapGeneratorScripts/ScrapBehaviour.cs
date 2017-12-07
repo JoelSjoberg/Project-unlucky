@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScrapBehaviour : MonoBehaviour {
 
-    public float attractionSpeed = 5f;
+    public float attractionSpeed;
 
     public void moveToPlayer()
     {

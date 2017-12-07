@@ -40,7 +40,6 @@ public class BossBehaviour : MonoBehaviour {
             gameObject.SetActive(false);
             FindObjectOfType<AudioController>().playTheme("LevelEnd");
         }
-       
 		switch(state)
         {
             case bossState.idle:
@@ -81,6 +80,8 @@ public class BossBehaviour : MonoBehaviour {
         }
 	}
 
+
+    // stand in anticipation...
     private void Idle()
     {
         // first itteration
@@ -101,7 +102,7 @@ public class BossBehaviour : MonoBehaviour {
             state = bossState.raging;
         }
     }
-
+    // Shake the room 
     private void Raging()
     {
         // first itteration
@@ -124,7 +125,7 @@ public class BossBehaviour : MonoBehaviour {
             state = bossState.attacking;
         }
     }
-
+    // jump on player
     Vector3 playerPos;
     private void Attacking()
     {
@@ -158,7 +159,6 @@ public class BossBehaviour : MonoBehaviour {
             state = bossState.stomping;
         }
     }
-
     // TODO: make debris fall when stomping
     private void Stomping()
     {
@@ -184,7 +184,6 @@ public class BossBehaviour : MonoBehaviour {
             if (baseBehaviour.health <= 15) state = bossState.stunned;
         }
     }
-
     // same ass attacking but faster and shorter
     private void Rampaging()
     {
@@ -216,7 +215,7 @@ public class BossBehaviour : MonoBehaviour {
             else state = bossState.stomping;
         }
     }
-
+    // attack in random directions
     private void specialAttack()
     {
         if (timer == 0)

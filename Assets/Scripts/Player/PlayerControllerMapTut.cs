@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerControllerMapTut : MonoBehaviour {
 
     // Status variables
-    public int health = 3, scrap = 36;
+    public int health, scrap;
     public int maxHealth = 6;
     public bool evading = false;
     public float speed, slowDownSpeed, evadeTime, evadeSpeed = 100;
@@ -121,10 +121,15 @@ public class PlayerControllerMapTut : MonoBehaviour {
         if (!right && xAxis > 0) xAxis = 0;
     }
 
+    public void updateSpriteLayer()
+    {
+        GetComponentInChildren<PlayerSpriteDL>().updateLayer();
+    }
+
     // Use this for initialization
     void Start () {
 
-        rigidbody = GetComponent<Rigidbody> ();
+        rigidbody = GetComponent<Rigidbody>();
         renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         movementSpeed = speed;
         gameObject.SetActive(true);
