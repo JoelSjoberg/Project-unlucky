@@ -292,6 +292,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 225243005870555628, guid: 07a7ca41226ee2a48b108b81ea094258,
+        type: 2}
+      propertyPath: m_BlocksRaycasts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225243005870555628, guid: 07a7ca41226ee2a48b108b81ea094258,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114508889880550122, guid: 07a7ca41226ee2a48b108b81ea094258,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.722
+      objectReference: {fileID: 0}
+    - target: {fileID: 114508889880550122, guid: 07a7ca41226ee2a48b108b81ea094258,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07a7ca41226ee2a48b108b81ea094258, type: 2}
   m_IsPrefabParent: 0

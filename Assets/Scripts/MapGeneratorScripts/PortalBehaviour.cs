@@ -37,7 +37,7 @@ public class PortalBehaviour : MonoBehaviour {
 
             // SceneManager.LoadScene("Level3");
 
-            if (Level.level == 3)
+            if (Level.level == 4)
             {
                 FindObjectOfType<GameStateManager>().savePlayer();
                 SceneManager.LoadScene("BossTheme");
