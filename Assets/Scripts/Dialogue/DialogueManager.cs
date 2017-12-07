@@ -18,6 +18,11 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
+    public void writeText(string name, string text)
+    {
+        FindObjectOfType<DialogueTrigger>().WriteText(name, text);
+    }
+
     // display the next sentence from the speaker
     public void DisplayNextSentence()
     {

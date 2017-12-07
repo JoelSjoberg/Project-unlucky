@@ -19,11 +19,11 @@ public class GameStateManager : MonoBehaviour {
         this.health = player.health;
         this.scrap = player.scrap;
     }
-    public void loadPlayer()
+    public void loadPlayer(PlayerControllerMapTut p)
     {
-        player = FindObjectOfType<PlayerControllerMapTut>();
-        player.health = this.health;
-        player.scrap = this.scrap;
+        
+        p.health = this.health;
+        p.scrap = this.scrap;
     }
 
     public void DeleteEnemiesInLevel(int level) 

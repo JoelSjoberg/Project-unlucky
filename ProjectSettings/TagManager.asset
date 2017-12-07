@@ -18,6 +18,7 @@ TagManager:
   - Boss
   - MerchantUI
   - BuyButton
+  - Bullet
   layers:
   - Default
   - TransparentFX

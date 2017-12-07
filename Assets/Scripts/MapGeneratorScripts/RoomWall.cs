@@ -16,14 +16,13 @@ public class RoomWall : MonoBehaviour {
         transform.position = new Vector3(x, 0, z);
     }
 
-    PlayerControllerMapTut player;
     private void OnTriggerEnter(Collider other)
     {
-        positionOnTrigger = other.transform.position;
-        Vector3 reverseVelocity = Vector3.zero;
-        if(other.tag == "Player")
+        if (other.tag == "Bullet")
         {
-            player = other.GetComponent<PlayerControllerMapTut>();
+            Debug.Log("hello");
+            Destroy(other.gameObject);
         }
+
     }
 }

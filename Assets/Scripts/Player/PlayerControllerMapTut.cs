@@ -133,7 +133,7 @@ public class PlayerControllerMapTut : MonoBehaviour {
         renderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         movementSpeed = speed;
         gameObject.SetActive(true);
-        FindObjectOfType<GameStateManager>().loadPlayer(); // loads status from 
+        FindObjectOfType<GameStateManager>().loadPlayer(this); // loads status from GameStateManager
 	}
 
     
