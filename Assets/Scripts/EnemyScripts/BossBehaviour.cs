@@ -13,8 +13,6 @@ public class BossBehaviour : MonoBehaviour {
     [HideInInspector]
     public int scrap;
     public RawImage health;
-
-    public Attractor attractor;
     public Vector3 spawningPos;
 
     public void spawn(Vector3 pos)
@@ -27,8 +25,7 @@ public class BossBehaviour : MonoBehaviour {
 	void Start ()
     {
         baseBehaviour = GetComponent<EnemyBehaviour>();
-
-        attractor.isActive = false;
+        
         health.gameObject.SetActive(false);
 	}
 	
@@ -87,9 +84,11 @@ public class BossBehaviour : MonoBehaviour {
         // first itteration
         if (timer == 0)
         {
-            durration = 10;
+            durration = 14.5f;
             Debug.Log("idle");
             FindObjectOfType<AudioController>().playTheme("Idle");
+            FindObjectOfType<DialogueManager>().writeText("Bane", "Yet here you are... SO BE IT");
+            FindObjectOfType<AudioController>().play("YetHere");
         }
         if (timer <= durration)
         {
@@ -113,7 +112,7 @@ public class BossBehaviour : MonoBehaviour {
             FindObjectOfType<FollowPlayer>().offset.y = 130;
             FindObjectOfType<FollowPlayer>().offsetYon = 130;
             FindObjectOfType<AudioController>().playTheme("Raging");
-            FindObjectOfType<AudioController>().play("Roar");
+            FindObjectOfType<AudioController>().play("Roar3");
             FindObjectOfType<FollowPlayer>().shake(durration);
             FindObjectOfType<BossRoomGenerator>().spawnScrap();
             health.gameObject.SetActive(true);
@@ -189,7 +188,7 @@ public class BossBehaviour : MonoBehaviour {
     {
         if (timer == 0)
         {
-            durration = 12;
+            durration = 12.5f;
             Debug.Log("Rampaging");
             FindObjectOfType<AudioController>().playTheme("Rampaging");
             playerPos = baseBehaviour.player.transform.position;
@@ -268,11 +267,11 @@ public class BossBehaviour : MonoBehaviour {
     {
         if (timer == 0)
         {
-            durration = 17;
+            durration = 17.4f;
             Debug.Log("Draining");
             FindObjectOfType<AudioController>().playTheme("Draining");
             FindObjectOfType<AudioController>().play("ItSeems");
-            attractor.isActive = true;
+            FindObjectOfType<DialogueManager>().writeText("Bane", "It seems your devotion have brought you thus far. And we will KILL YOU FOR IT!");
             baseBehaviour.speed = 15;
         }
         if (timer <= durration)
@@ -285,7 +284,6 @@ public class BossBehaviour : MonoBehaviour {
         else
         {
             baseBehaviour.speed = 150;
-            attractor.isActive = false;
             timer = 0;
             state = bossState.returning;
         }

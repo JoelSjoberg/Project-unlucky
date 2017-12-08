@@ -108,49 +108,49 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Idle
     clip: {fileID: 8300000, guid: 2cfd84e5ca7119c42b99efe57db6228b, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 0.7
     looping: 1
     source: {fileID: 0}
   - name: Raging
     clip: {fileID: 8300000, guid: 2988b91887ea0654cbb9a7ee9d5814e8, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     looping: 1
     source: {fileID: 0}
   - name: Rampaging
     clip: {fileID: 8300000, guid: c185e6f9ecfb5a143be1d382ea08240c, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     looping: 1
     source: {fileID: 0}
   - name: SpecialAttacking
     clip: {fileID: 8300000, guid: a645f9c01530a0a489bc533086d03f8c, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     looping: 1
     source: {fileID: 0}
   - name: Stomping
     clip: {fileID: 8300000, guid: ce775587dfa3ad04a8ce517e9fb7a4ea, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     looping: 1
     source: {fileID: 0}
   - name: Stunned
     clip: {fileID: 8300000, guid: a95dd47cfea6be641b05e5d23004debc, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     looping: 1
     source: {fileID: 0}
   - name: Return
     clip: {fileID: 8300000, guid: 2cfd84e5ca7119c42b99efe57db6228b, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     looping: 1
     source: {fileID: 0}
   - name: Draining
     clip: {fileID: 8300000, guid: 6fff161248f576649b44c9a469e7a80b, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     looping: 1
     source: {fileID: 0}
@@ -181,6 +181,12 @@ MonoBehaviour:
   - name: FortuneSmiles
     clip: {fileID: 8300000, guid: e96f76327ffdaea4eb7b4e4ce69c17fd, type: 3}
     volume: 0.5
+    pitch: 1
+    looping: 0
+    source: {fileID: 0}
+  - name: Roar3
+    clip: {fileID: 8300000, guid: e96f76327ffdaea4eb7b4e4ce69c17fd, type: 3}
+    volume: 0.3
     pitch: 1
     looping: 0
     source: {fileID: 0}

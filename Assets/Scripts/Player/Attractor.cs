@@ -11,12 +11,4 @@ public class Attractor : MonoBehaviour {
         // change size of attractor (or magnet if you will)
         GetComponent<SphereCollider>().radius = r;
     }
-
-    private void OnTriggerStay(Collider other)
-    {
-        // make scrap float towards player
-        if(this.tag == "PlayerAttractor")if (other.tag == "Scrap") other.GetComponent<ScrapBehaviour>().moveToPlayer();
-
-        if(this.tag == "BossAttractor")if (other.tag == "Scrap") other.GetComponent<ScrapBehaviour>().moveToBoss();
-    }
 }

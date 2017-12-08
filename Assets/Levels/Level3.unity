@@ -1100,6 +1100,11 @@ Prefab:
       propertyPath: sounds.Array.data[18].volume
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 114804553733265768, guid: 9405c1b0dd55b16459154907950f59ce,
+        type: 2}
+      propertyPath: sounds.Array.data[22].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 722fd770ab1674849aedd7e5ca9da14f, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9405c1b0dd55b16459154907950f59ce, type: 2}
   m_IsPrefabParent: 0

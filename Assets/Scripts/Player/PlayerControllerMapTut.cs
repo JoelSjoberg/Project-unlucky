@@ -36,7 +36,6 @@ public class PlayerControllerMapTut : MonoBehaviour {
     public void spawn(Vector3 newPos)
     {
         transform.position = newPos;
-        //FindObjectOfType<PlayerRotator>().GetComponent<DynamicSpriteLayer>().updateSortingOrder();
     }
 
     // Change the room thich the collsion works with

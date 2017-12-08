@@ -28,15 +28,9 @@ public class DialogueManager : MonoBehaviour {
     {
         if (sentences.Count == 0) return;
 
-        if (SceneManager.GetActiveScene().name == "BossTheme") {
-
-            FindObjectOfType<DialogueTrigger>().WriteText(dialogue.name, FindObjectOfType<Dialogue>().sentences[3]);
-            FindObjectOfType<AudioController>().play("ItSeems");
-
-        }
         else {
 
-        FindObjectOfType<DialogueTrigger>().WriteText(dialogue.name, sentences.Dequeue());
+           FindObjectOfType<DialogueTrigger>().WriteText(dialogue.name, sentences.Dequeue());
         }
 
 
@@ -50,15 +44,6 @@ public class DialogueManager : MonoBehaviour {
                 FindObjectOfType<AudioController>().play("FortuneSmiles");
 
                 break;
-
-            case 4:
-               
-                FindObjectOfType<AudioController>().play("ItSeems");
-
-                break;
-
-           
-                
 
             default:
                 break;

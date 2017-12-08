@@ -78,7 +78,7 @@ public class AudioController : MonoBehaviour {
     // need debugging, does not work
     public void fadeOut()
     {
-        while(currentSong.volume >= 0) currentSong.volume -= (Time.deltaTime * 0.0001f);
+        //while(currentSong.volume >= 0) currentSong.volume -= (Time.deltaTime * 0.0001f);
         stop();
     }
 

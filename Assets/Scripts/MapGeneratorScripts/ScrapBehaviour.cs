@@ -10,10 +10,6 @@ public class ScrapBehaviour : MonoBehaviour {
     {
         transform.position = Vector3.MoveTowards(transform.position, FindObjectOfType<PlayerControllerMapTut>().transform.position, attractionSpeed);
     }
-    public void moveToBoss()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, FindObjectOfType<BossBehaviour>().transform.position, attractionSpeed);
-    }
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
@@ -23,14 +19,9 @@ public class ScrapBehaviour : MonoBehaviour {
             other.GetComponent<PlayerControllerMapTut>().scrap++;
             Destroy(gameObject);
         }
-
-        if(other.tag == "Boss")
+        if(other.tag == "PlayerAttractor")
         {
-            if(other.GetComponent<BossBehaviour>().attractor.isActive)
-            {
-                other.GetComponent<BossBehaviour>().scrap++;
-                Destroy(gameObject);
-            }
+            moveToPlayer();
         }
     }
 }

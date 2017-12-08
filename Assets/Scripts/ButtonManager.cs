@@ -28,7 +28,6 @@ public class ButtonManager : MonoBehaviour {
 	}
 
 	public void Buy(){
-		Debug.Log ("Buy pressed");
 		if (playerRef.scrap >= 3 && playerRef.health < playerRef.maxHealth ) {
 			playerRef.heal (1);
 			playerRef.scrap-=3;
@@ -37,7 +36,6 @@ public class ButtonManager : MonoBehaviour {
 	}
 
 	public void Leave(){
-		Debug.Log ("Leave pressed");
 		playerRef.transform.position = new Vector3 (50, (Level.level - 1) * 200, 50);
 		foreach (GameObject obj in merchantUI) {
 			obj.SetActive (false);

@@ -25,8 +25,6 @@ public class BossRoomGenerator : MonoBehaviour {
         FindObjectOfType<EnemyBehaviour>().setCurrentRoom(graph[0]);
 
         makeRoomObjects();
-
-        FindObjectOfType<DialogueManager>().DisplayNextSentence();
     }
 
     private void makeBossRoom()
